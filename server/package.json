@@ -1,31 +1,28 @@
 {
-  "name": "node",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --passWithNoTests --watch",
-    "test:staged": "jest --passWithNoTests"
+    "test": "jest",
+    "lint": "eslint src/** test/** --fix",
+    "start": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Antenor Zapata <antenorzapata@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@types/jest": "^26.0.24",
-    "@types/mongoose": "^5.11.97",
-    "@types/node": "^16.3.1",
-    "@typescript-eslint/eslint-plugin": "^4.28.2",
-    "eslint": "^7.30.0",
-    "eslint-config-standard-with-typescript": "^20.0.0",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-standard": "^5.0.0",
-    "husky": "^7.0.1",
-    "jest": "^27.0.6",
-    "lint-staged": "^11.0.0",
-    "ts-jest": "^27.0.3",
-    "ts-node": "^10.1.0",
-    "typescript": "^4.3.5"
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "jest": "23.6.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.4",
+    "morgan": "^1.10.0",
+    "supertest": "^6.1.6"
   }
 }
