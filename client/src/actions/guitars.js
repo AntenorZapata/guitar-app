@@ -1,9 +1,8 @@
-import fetchGuitars from '../api';
-import { FETCH_ALL } from './types';
+import { fetchGuitars, createGuitar } from '../api';
+import { FETCH_ALL, CREATE_GUITAR } from './types';
 
 // Actions Creators
-
-const getGuitars = () => async (dispatch) => {
+export const getGuitars = () => async (dispatch) => {
   try {
     const { data } = await fetchGuitars();
     dispatch({ type: FETCH_ALL, payload: data });
@@ -12,4 +11,11 @@ const getGuitars = () => async (dispatch) => {
   }
 };
 
-export default getGuitars;
+export const createGuitarData = (guitar) => async (dispatch) => {
+  try {
+    const { data } = await createGuitar(guitar);
+    dispatch({ type: CREATE_GUITAR, payload: data });
+  } catch (err) {
+    console.log(err.message);
+  }
+};

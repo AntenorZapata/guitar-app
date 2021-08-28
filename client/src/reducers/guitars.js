@@ -1,19 +1,12 @@
 import { CREATE_GUITAR, FETCH_ALL } from '../actions/types';
 
-const initialState = {
-  cards: [],
-};
-
-const reducer = (state = initialState, action) => {
+const reducer = (state = [], action) => {
   switch (action.type) {
     case FETCH_ALL:
-      return {
-        ...state,
-        cards: action.payload,
-      };
+      return action.payload;
 
     case CREATE_GUITAR:
-      return state;
+      return [...state, action.payload];
 
     default:
       return state;

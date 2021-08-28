@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import GuitarCard from './components/guitarCard/GuitarCard';
+import Form from './components/form/Form';
 
-import getGuitars from './actions/guitars';
+import { getGuitars } from './actions/guitars';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export default function App() {
   return (
     <div>
       <GuitarCard />
+      <Form />
     </div>
   );
 }
