@@ -6,5 +6,4 @@ const router = express.Router();
 
 router.route('/').get(getAll).post(validateGuitar, create);
 
-
 module.exports = router;

@@ -1,7 +1,7 @@
 const rescue = require('express-rescue');
 const Guitar = require('../models/guitarModel');
 
-const getAll = rescue(async (req, res, next) => {
+const getAll = rescue(async (req, res) => {
   const guitar = await Guitar.find();
   res.status(200).json(guitar);
 });
