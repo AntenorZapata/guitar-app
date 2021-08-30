@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongodb');
 const Guitar = require('../models/guitarModel');
 
 const getAllGuitars = async () => {
@@ -13,6 +12,7 @@ const createGuitar = async (body) => {
 
 const getGuitarById = async (id) => {
   const guitar = await Guitar.findById(id);
+
   return guitar;
 };
 
