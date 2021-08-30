@@ -26,4 +26,18 @@ const validateGuitar = (req, res, next) => {
   return next();
 };
 
-module.exports = validateGuitar;
+const validateId = (req, res, next) => {
+  const { id } = req.params;
+
+  if (!id || id.length !== 24) {
+    const err = new Error('Invalid Id');
+    err.status = 400;
+    return next(err);
+  }
+  return next();
+};
+
+module.exports = {
+  validateGuitar,
+  validateId,
+};

@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "mocha test",
+    "test:mocha": "nyc --all --include models --include services --include controllers mocha test/unit/*.js --exit",
     "lint": "eslint src/** test/** --fix",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "secure-mode": "jest --watch"
   },
   "keywords": [],
   "author": "Antenor Zapata <antenorzapata@gmail.com>",
@@ -15,15 +17,17 @@
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
-    "jest": "23.6.0"
+    "mocha": "^9.1.1"
   },
   "dependencies": {
+    "chai": "^4.3.4",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-rescue": "^1.1.31",
+    "mongodb": "^4.1.1",
     "mongoose": "^5.13.4",
     "morgan": "^1.10.0",
-    "supertest": "^6.1.6"
+    "sinon": "^11.1.2"
   }
 }
