@@ -18,6 +18,14 @@ mongoose
     console.log('db connection success');
   });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log('app rodando na porta 3001');
+});
+
+process.on('unhandledRejection', (err) => {
+  console.log(err.name, err.message);
+  console.log('unhandler rejection Shuting down');
+  server.close(() => {
+    process.exit(1);
+  });
 });
