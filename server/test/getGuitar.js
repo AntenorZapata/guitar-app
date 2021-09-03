@@ -1,16 +1,16 @@
-// const guitarBody = require('./guitarBody');
-const { expect } = require('chai');
-// const sinon = require('sinon');
-const { getAll } = require('../controllers/guitarController');
+// // const guitarBody = require('./guitarBody');
+// const { expect } = require('chai');
+// // const sinon = require('sinon');
+// const { getAll } = require('../controllers/guitarController');
 
-describe('test the port the server is running and the status of the request', () => {
-  describe(' get success', () => {
-    it('should respond on port 3001 with statusCode 200 OK', async () => {
-      const res = await getAll();
-      console.log(res);
+// describe('test the port the server is running and the status of the request', () => {
+//   describe(' get success', () => {
+//     it('should respond on port 3001 with statusCode 200 OK', async () => {
+//       const res = await getAll();
+//       console.log(res);
 
-      expect(res.status).to.be.equal(200);
-    });
+//       expect(res.status).to.be.equal(200);
+//     });
 
     //   it('should response have a length of 1', async () => {
     //     const res = await request.get('/guitars');

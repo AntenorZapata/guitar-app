@@ -44,9 +44,7 @@ const sendErrorProd = (err, res) => {
   }
 };
 
-// eslint-disable-next-line no-unused-vars
 module.exports = (err, req, res, _next) => {
-  // eslint-disable-next-line no-param-reassign
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
 
