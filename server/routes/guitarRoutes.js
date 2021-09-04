@@ -5,7 +5,7 @@ const { validateToken } = require('../middlewares/auth');
 
 const router = express.Router();
 
-router.route('/').get(getAll).post(create);
+router.route('/').get(getAll).post(validateGuitar, create);
 
 router.route('/:id').get(validateId, getById);
 

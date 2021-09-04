@@ -12,11 +12,11 @@ export default function form() {
     description: '',
     songs: [],
     price: 0,
-    imagesCover: [],
+    imageCover: '',
     images: [],
     link: '',
     tags: [],
-    likes: 0,
+    likeCount: 0,
   });
 
   const handleValue = ({ target }) => {
@@ -29,8 +29,6 @@ export default function form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(state);
 
     dispatch(createGuitarData(state));
   };
@@ -72,7 +70,7 @@ export default function form() {
         </label>
         <label htmlFor="image-cover">
           image-cover
-          <input type="text" id="image-cover" name="imagesCover" onChange={handleValue} />
+          <input type="text" id="image-cover" name="imageCover" onChange={handleValue} />
         </label>
         <label htmlFor="images">
           Images
@@ -89,26 +87,10 @@ export default function form() {
         </label>
         <label htmlFor="likes">
           Likes
-          <input type="text" id="likes" name="likes" onChange={handleValue} />
+          <input type="number" id="likes" name="likeCount" onChange={handleValue} />
         </label>
         <button type="submit">Criar guitarra</button>
       </form>
     </div>
   );
 }
-
-// {
-//   "brand": "ibanez",
-//   "model": "zx 232",
-//   "year": 1999,
-//   "summary": "Guitarra novissima",
-//   "description": "guitarra usava por varios guitarristas famosos",
-//   "player": "Steve Vai",
-//   "songs": ["alabama", "shot"],
-//   "price": 12000,
-//   "imageCover": "a.jpg",
-//   "images": ["essa.jpg", "aquela.png"],
-//   "link": "https://www.google.com",
-//   "tags": ["ibanez", "guitarra"],
-//   "likeCount": 2
-// }

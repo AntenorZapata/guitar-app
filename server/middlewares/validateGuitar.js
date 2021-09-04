@@ -1,4 +1,7 @@
-const validateGuitar = (req, res, next) => {
+const AppError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
+
+const validateGuitar = catchAsync(async (req, res, next) => {
   const values = [
     'brand',
     'model',
@@ -15,14 +18,10 @@ const validateGuitar = (req, res, next) => {
   ];
 
   if (values.some((field) => !req.body[field])) {
-    const err = new Error('Invalid Data');
-    err.status = 400;
-    err.message = 'Invalid Data';
-
-    next(err);
+    return next(new AppError('Invalid Data', 400));
   }
   return next();
-};
+});
 
 const validateId = (req, res, next) => {
   const { id } = req.params;
