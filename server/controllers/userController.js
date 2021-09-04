@@ -1,5 +1,5 @@
 const {
-  getAllUsers, registerUser, loginUser, forgotPass,
+  getAllUsers, registerUser, loginUser, forgotPass, resetPass,
 } = require('../services/userService');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
@@ -37,6 +37,7 @@ const login = catchAsync(async (req, res, next) => {
 const forgotPassword = catchAsync(async (req, res, next) => {
   const { email } = req.body;
   const { user, resetToken } = await forgotPass(email);
+
   if (!user) {
     return next(new AppError('There is no user with email address.', 404));
   }
@@ -69,9 +70,27 @@ const forgotPassword = catchAsync(async (req, res, next) => {
   }
 });
 
+const resetPassword = catchAsync(async (req, res, next) => {
+  const { token } = req.params;
+
+  const user = await resetPass(token);
+
+  if (!user) {
+    return next(new AppError('Token is invalid or has expired', 400));
+  }
+  user.password = req.body.password;
+
+  user.passwordResetToken = undefined;
+  user.passwordResetExpires = undefined;
+  await user.save();
+
+  return sendToken(user, 200, res);
+});
+
 module.exports = {
   getAll,
   register,
   login,
   forgotPassword,
+  resetPassword,
 };

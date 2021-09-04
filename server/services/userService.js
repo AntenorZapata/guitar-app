@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 
@@ -8,6 +9,7 @@ const registerUser = async (body) => {
 
 const loginUser = async (email, password) => {
   const user = await User.findOne({ email }).select('+password');
+  if (!user) return false;
   const correct = await user.correctPassword(password, user.password);
 
   return {
@@ -27,8 +29,23 @@ const forgotPass = async (email) => {
   return false;
 };
 
+const resetPass = async (token) => {
+  const hashedToken = crypto
+    .createHash('sha256')
+    .update(token)
+    .digest('hex');
+
+  const user = await User.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetExpires: { $gt: Date.now() },
+  });
+
+  return user;
+};
+
 module.exports = {
   registerUser,
   loginUser,
   forgotPass,
+  resetPass,
 };
