@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 const AppError = require('../utils/appError');
 
 const handleCastErrorDB = (err) => {

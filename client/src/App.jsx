@@ -9,9 +9,9 @@ import { getGuitars } from './actions/guitars';
 export default function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getGuitars());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getGuitars());
+  // }, [dispatch]);
 
   return (
     <div>

@@ -23,7 +23,6 @@ const getById = rescue(async (req, res, next) => {
   return res.status(200).json(guitar);
 });
 
-// eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, _next) => res.status(err.status).json({ error: `${err.message}` });
 
 module.exports = {

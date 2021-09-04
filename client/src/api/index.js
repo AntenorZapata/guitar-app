@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:3001/guitars';
+const url = 'http://localhost:3001/api/v1/guitars';
 
 export const fetchGuitars = () => axios.get(url);
 

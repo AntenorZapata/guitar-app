@@ -12,7 +12,7 @@ export default function form() {
     description: '',
     songs: [],
     price: 0,
-    imageCover: [],
+    imagesCover: [],
     images: [],
     link: '',
     tags: [],
@@ -21,12 +21,16 @@ export default function form() {
 
   const handleValue = ({ target }) => {
     const { name } = target;
-
-    setState({ ...state, [name]: target.value });
+    setState({
+      ...state,
+      [name]: Array.isArray(state[name]) ? target.value.split(', ') : target.value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log(state);
 
     dispatch(createGuitarData(state));
   };
@@ -58,32 +62,31 @@ export default function form() {
           Player
           <input type="text" id="player" name="player" onChange={handleValue} />
         </label>
-        {/* <label htmlFor="songs">
+        <label htmlFor="songs">
           Songs
           <input type="text" id="songs" name="songs" onChange={handleValue} />
-        </label> */}
+        </label>
         <label htmlFor="price">
           Price
           <input type="number" id="price" name="price" onChange={handleValue} />
         </label>
-        {/* <label htmlFor="image-cover">
+        <label htmlFor="image-cover">
           image-cover
-          <input type="text" id="image-cover" />
-        </label> */}
-        {/* <label htmlFor="images">
+          <input type="text" id="image-cover" name="imagesCover" onChange={handleValue} />
+        </label>
+        <label htmlFor="images">
           Images
-          <input type="text" id="images" />
-        </label> */}
+          <input type="text" id="images" name="images" onChange={handleValue} />
+        </label>
         <label htmlFor="link">
           Link
           <input type="text" id="link" name="link" onChange={handleValue} />
         </label>
 
-        {/* <label htmlFor="tags">
+        <label htmlFor="tags">
           Tags
-          <input type="text" id="tags" />
-        </label> */}
-
+          <input type="text" id="tags" name="tags" onChange={handleValue} />
+        </label>
         <label htmlFor="likes">
           Likes
           <input type="text" id="likes" name="likes" onChange={handleValue} />
