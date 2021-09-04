@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -37,6 +38,8 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// Cria um hash para o password que será armazenado no DB
+
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     next();
@@ -46,14 +49,31 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-userSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
+userSchema.methods.correctPassword = async function (
+  candidatePassword,
+  userPassword,
+) {
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
 userSchema.methods.getSignedToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES, algorithm: 'HS256',
+    expiresIn: process.env.JWT_EXPIRES,
+    algorithm: 'HS256',
   });
+};
+
+userSchema.methods.getResetPasswordToken = function () {
+  const resetToken = crypto.randomBytes(32).toString('hex');
+
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
 };
 
 const User = mongoose.model('User', userSchema);

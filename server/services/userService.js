@@ -11,11 +11,24 @@ const loginUser = async (email, password) => {
   const correct = await user.correctPassword(password, user.password);
 
   return {
-    user, correct,
+    user,
+    correct,
   };
+};
+
+const forgotPass = async (email) => {
+  const user = await User.findOne({ email });
+
+  if (user) {
+    const resetToken = user.getResetPasswordToken();
+    await user.save();
+    return { user, resetToken };
+  }
+  return false;
 };
 
 module.exports = {
   registerUser,
   loginUser,
+  forgotPass,
 };

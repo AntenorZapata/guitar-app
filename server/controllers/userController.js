@@ -1,6 +1,9 @@
-const { getAllUsers, registerUser, loginUser } = require('../services/userService');
+const {
+  getAllUsers, registerUser, loginUser, forgotPass,
+} = require('../services/userService');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
+const sendEmail = require('../utils/email');
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
@@ -31,8 +34,44 @@ const login = catchAsync(async (req, res, next) => {
   return sendToken(user, 200, res);
 });
 
+const forgotPassword = catchAsync(async (req, res, next) => {
+  const { email } = req.body;
+  const { user, resetToken } = await forgotPass(email);
+  if (!user) {
+    return next(new AppError('There is no user with email address.', 404));
+  }
+
+  const resetUrl = `http://localhost:3000/passwordReset/${resetToken}`;
+  const message = `Update your password: ${resetUrl}.`;
+
+  try {
+    await sendEmail({
+      to: user.email,
+      subject: 'Your password reset token (valid for 10 min)',
+      message,
+    });
+
+    return res.status(200).json({
+      status: 'success',
+      message: 'Token sent to email',
+    });
+  } catch (err) {
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save({ validateBeforeSave: false });
+
+    return next(
+      new AppError(
+        'There was an error sending the email. Trye again later!',
+        500,
+      ),
+    );
+  }
+});
+
 module.exports = {
   getAll,
   register,
   login,
+  forgotPassword,
 };
