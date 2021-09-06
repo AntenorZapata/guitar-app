@@ -1,7 +1,9 @@
 const Guitar = require('../models/guitarModel');
+const catchAsync = require('../utils/catchAsync');
 
 const getAllGuitars = async () => {
   const guitar = await Guitar.find();
+
   return guitar;
 };
 
@@ -24,9 +26,15 @@ const updateGuitar = async (id, body) => {
   return guitar;
 };
 
+const removeGuitar = async (id) => {
+  const guitar = await Guitar.findByIdAndDelete(id);
+  return guitar;
+};
+
 module.exports = {
   getAllGuitars,
   createGuitar,
   getGuitarById,
   updateGuitar,
+  removeGuitar,
 };
