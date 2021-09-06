@@ -1,4 +1,3 @@
-// const Guitar = require('../models/guitarModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const {
@@ -7,7 +6,7 @@ const {
   getGuitarById,
   updateGuitar,
   removeGuitar,
-} = require('../services/guitarService');
+} = require('../service/guitarService');
 
 const getAll = catchAsync(async (req, res) => {
   const guitars = await getAllGuitars();

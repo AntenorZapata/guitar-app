@@ -1,6 +1,6 @@
 const {
   getAllUsers, registerUser, loginUser, forgotPass, resetPass,
-} = require('../services/userService');
+} = require('../service/userService');
 
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
