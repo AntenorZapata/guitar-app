@@ -20,18 +20,16 @@ const validateGuitar = catchAsync(async (req, res, next) => {
   if (values.some((field) => !req.body[field])) {
     return next(new AppError('Invalid Data', 400));
   }
-  return next();
+  next();
 });
 
 const validateId = (req, res, next) => {
   const { id } = req.params;
 
   if (!id || id.length !== 24) {
-    const err = new Error('Invalid Id');
-    err.status = 400;
-    return next(err);
+    return next(new AppError('Invalid Id', 400));
   }
-  return next();
+  next();
 };
 
 module.exports = {

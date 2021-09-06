@@ -15,8 +15,18 @@ const getGuitarById = async (id) => {
   return guitar;
 };
 
+const updateGuitar = async (id, body) => {
+  const guitar = await Guitar.findByIdAndUpdate(id, body, {
+    new: true,
+    runValidators: true,
+  });
+
+  return guitar;
+};
+
 module.exports = {
   getAllGuitars,
   createGuitar,
   getGuitarById,
+  updateGuitar,
 };

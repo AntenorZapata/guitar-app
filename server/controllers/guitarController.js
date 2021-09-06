@@ -1,18 +1,24 @@
-const rescue = require('express-rescue');
 // const Guitar = require('../models/guitarModel');
-const { getAllGuitars, createGuitar, getGuitarById } = require('../services/guitarService');
+const AppError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
+const {
+  getAllGuitars,
+  createGuitar,
+  getGuitarById,
+  updateGuitar,
+} = require('../services/guitarService');
 
-const getAll = rescue(async (req, res) => {
+const getAll = catchAsync(async (req, res) => {
   const guitar = await getAllGuitars();
   res.status(200).json(guitar);
 });
 
-const create = rescue(async (req, res) => {
+const create = catchAsync(async (req, res) => {
   const guitar = await createGuitar(req.body);
   res.status(201).json(guitar);
 });
 
-const getById = rescue(async (req, res, next) => {
+const getById = catchAsync(async (req, res, next) => {
   const { id } = req.params;
   const guitar = await getGuitarById(id);
   if (!guitar) {
@@ -23,6 +29,17 @@ const getById = rescue(async (req, res, next) => {
   return res.status(200).json(guitar);
 });
 
+const update = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+  const guitar = await updateGuitar(id, req.body);
+
+  if (!guitar) {
+    return next(new AppError('No guitar found with that ID', 404));
+  }
+
+  return res.status(200).json({ status: 'success', guitar });
+});
+
 const errorHandler = (err, req, res, _next) => res.status(err.status).json({ error: `${err.message}` });
 
 module.exports = {
@@ -30,4 +47,5 @@ module.exports = {
   create,
   getById,
   errorHandler,
+  update,
 };
