@@ -3,7 +3,7 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const User = require('../models/userModel');
 
-exports.validateToken = catchAsync(async (req, res, next) => {
+const validateToken = catchAsync(async (req, res, next) => {
   const { authorization } = req.headers;
 
   // if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -20,12 +20,6 @@ exports.validateToken = catchAsync(async (req, res, next) => {
 
   const freshUser = await User.findById(decoded.id);
 
-  if (freshUser.role !== 'admin') {
-    return next(
-      new AppError('The user does not have permission to create new guitars', 401),
-    );
-  }
-
   if (!freshUser) {
     return next(
       new AppError('The user belonging to this token no longer exist', 401),
@@ -35,3 +29,18 @@ exports.validateToken = catchAsync(async (req, res, next) => {
   req.user = freshUser;
   return next();
 });
+
+const restrictTo = (...args) => (req, res, next) => {
+  if (!args.includes(req.user.role)) {
+    return next(
+      new AppError('You do not have permission to perform this action', 403),
+    );
+  }
+
+  next();
+};
+
+module.exports = {
+  restrictTo,
+  validateToken,
+};

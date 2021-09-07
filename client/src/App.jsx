@@ -24,8 +24,7 @@ export default function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/forgotPassword" component={ForgotPassword} />
-        <Route exact path="/resetPassword" component={ResetPassword} />
-
+        <Route exact path="/passwordReset/:token" component={ResetPassword} />
       </Switch>
       {/* <GuitarCard />
       <Form /> */}
