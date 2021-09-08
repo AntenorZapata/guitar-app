@@ -31,6 +31,7 @@ const validateToken = catchAsync(async (req, res, next) => {
 });
 
 const restrictTo = (...args) => (req, res, next) => {
+  console.log(args);
   if (!args.includes(req.user.role)) {
     return next(
       new AppError('You do not have permission to perform this action', 403),

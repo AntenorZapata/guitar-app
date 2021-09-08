@@ -46,7 +46,7 @@ const remove = catchAsync(async (req, res, next) => {
     return next(new AppError('No guitar found with that ID', 404));
   }
 
-  res.status(204).json({
+  return res.status(204).json({
     status: 'success',
     data: null,
   });

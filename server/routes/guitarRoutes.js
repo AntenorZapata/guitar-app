@@ -16,6 +16,6 @@ router.route('/').get(getAll).post(validateToken, restrictTo('admin'), validateG
 router.route('/:id')
   .get(validateId, getById)
   .patch(validateId, update)
-  .delete(restrictTo('admin'), validateId, remove);
+  .delete(validateToken, restrictTo('admin'), validateId, remove);
 
 module.exports = router;
