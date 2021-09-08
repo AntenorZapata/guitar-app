@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginAction } from '../actions';
 
 export default function Login() {
   const [state, setState] = useState({ email: '', password: '' });
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleValueInput = (e) => {
     e.preventDefault();
@@ -12,15 +15,17 @@ export default function Login() {
     setState({ ...state, [name]: e.target.value });
   };
 
-  const hendleSubmit = () => {
-    const { email, password } = state;
+  const hendleSubmit = async (e) => {
+    e.preventDefault();
+    // const { email, password } = state;
+    await dispatch(loginAction(state));
 
     history.push('/');
   };
 
   return (
     <div>
-      <form>
+      <form onSubmit={hendleSubmit}>
         <label htmlFor="email">
           Email
           <input

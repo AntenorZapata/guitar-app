@@ -6,9 +6,9 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const sendEmail = require('../utils/email');
 
-const sendToken = (user, statusCode, res) => {
-  const token = user.getSignedToken();
-  res.status(statusCode).json({ success: 'success', token });
+const sendToken = async (user, statusCode, res) => {
+  const token = await user.getSignedToken();
+  return res.status(statusCode).json({ success: 'success', token });
 };
 
 const getAll = async (req, res) => {

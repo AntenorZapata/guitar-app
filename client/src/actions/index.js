@@ -22,8 +22,9 @@ export const createGuitarData = (guitar) => async (dispatch) => {
 
 export const loginAction = (user) => async (dispatch) => {
   try {
-    const { userData } = await login(user);
-    dispatch({ type: LOGIN, payload: userData });
+    const { data } = await login(user);
+    localStorage.setItem('token', data.token);
+    dispatch({ type: LOGIN, payload: data });
   } catch (err) {
     console.log(err.message);
   }
