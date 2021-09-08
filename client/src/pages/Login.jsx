@@ -20,7 +20,7 @@ export default function Login() {
           <input type="text" />
         </label>
         <button type="submit">Entrar</button>
-        <Link to="/forgotPassword">Esqueci minha senha</Link>
+        {/* <Link to="/forgotPassword">Esqueci minha senha</Link> */}
       </form>
     </div>
   );
