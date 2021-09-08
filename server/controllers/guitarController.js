@@ -10,7 +10,7 @@ const {
 
 const getAll = catchAsync(async (req, res) => {
   const guitars = await getAllGuitars();
-  return res.status(200).json({ status: 'success', guitars });
+  return res.status(200).json({ status: 'success', result: guitars });
 });
 
 const create = catchAsync(async (req, res) => {

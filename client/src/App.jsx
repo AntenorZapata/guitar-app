@@ -9,7 +9,7 @@ import ResetPassword from './pages/ResetPassword';
 import GuitarCard from './components/guitarCard/GuitarCard';
 import Form from './components/form/Form';
 
-import { getGuitars } from './actions/guitars';
+import { getGuitars } from './actions';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -20,14 +20,14 @@ export default function App() {
 
   return (
     <div>
-      <Switch>
+      {/* <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/forgotPassword" component={ForgotPassword} />
         <Route exact path="/passwordReset/:token" component={ResetPassword} />
-      </Switch>
-      {/* <GuitarCard />
-      <Form /> */}
+      </Switch> */}
+      <GuitarCard />
+      <Form />
     </div>
   );
 }
