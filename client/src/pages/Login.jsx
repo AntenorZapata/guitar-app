@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { loginAction } from '../actions';
+import { loginAction, clearErrors } from '../actions';
 
 export default function Login() {
   const [state, setState] = useState({ email: '', password: '' });
   const history = useHistory();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(clearErrors());
+  }, []);
 
   const handleValueInput = (e) => {
     e.preventDefault();
@@ -17,7 +21,6 @@ export default function Login() {
 
   const hendleSubmit = async (e) => {
     e.preventDefault();
-    // const { email, password } = state;
     await dispatch(loginAction(state));
 
     history.push('/');
