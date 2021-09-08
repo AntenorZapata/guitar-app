@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import Home from './pages/Home';
 
 import GuitarCard from './components/guitarCard/GuitarCard';
 import Form from './components/form/Form';
@@ -20,14 +21,15 @@ export default function App() {
 
   return (
     <div>
-      {/* <Switch>
+      <Switch>
+        <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/forgotPassword" component={ForgotPassword} />
         <Route exact path="/passwordReset/:token" component={ResetPassword} />
-      </Switch> */}
-      <GuitarCard />
-      <Form />
+      </Switch>
+      {/* <GuitarCard />
+      <Form /> */}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 export const FETCH_ALL = 'FETCH_ALL';
 export const CREATE_GUITAR = 'CREATE_GUITAR';
+export const LOGIN = 'LOGIN';
 
 // export const FETCH_CURRENCY = 'FETCH_CURRENCY';
 // export const ADD_EXPENSE = 'ADD_EXPENSE';

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export default function Login() {
   const [state, setState] = useState({ email: '', password: '' });
+  const history = useHistory();
 
   const handleValueInput = (e) => {
     e.preventDefault();
@@ -13,6 +14,8 @@ export default function Login() {
 
   const hendleSubmit = () => {
     const { email, password } = state;
+
+    history.push('/');
   };
 
   return (

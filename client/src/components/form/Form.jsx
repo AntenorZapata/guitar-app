@@ -48,7 +48,6 @@ export default function form() {
               onChange={handleValue}
             />
           </label>
-
         ))}
         <button type="submit">Criar guitarra</button>
       </form>
