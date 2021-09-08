@@ -1,4 +1,5 @@
 import { ToastContainer, toast } from 'react-toastify';
+
 import {
   fetchGuitars, createGuitar, login, forgotPassword,
 } from '../api';
@@ -38,8 +39,8 @@ export const loginAction = (user) => async (dispatch) => {
 export const forgotAction = (email) => async (dispatch) => {
   try {
     const { data } = await forgotPassword(email);
+    // toast.success('Senha enviada para email cadastrado.');
     dispatch({ type: FORGOT_PASS, payload: data });
-    toast.success('Senha enviada para email cadastrado!');
   } catch (err) {
     dispatch({ type: RESET_ERR, payload: err.response.data.message });
   }

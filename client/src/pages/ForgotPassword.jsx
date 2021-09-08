@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { loginAction, forgotAction } from '../actions';
+import axios from 'axios';
+import { loginAction, forgotAction, clearErrors } from '../actions';
+
+const forgotUrl = 'http://localhost:3001/api/v1/users/forgotPassword/';
 
 export default function ForgotPassword() {
   const [state, setState] = useState({ email: '' });
   const [error, setError] = useState(false);
   const { resetPassword } = useSelector((err) => err.errors);
+  const user = useSelector((data) => data.user);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -22,9 +26,17 @@ export default function ForgotPassword() {
 
   const hendleSubmit = (e) => {
     e.preventDefault();
-
+    dispatch(clearErrors());
     dispatch(forgotAction(state));
+    setState({ email: '' });
   };
+
+  useEffect(() => {
+    if (!resetPassword && user.length) {
+      toast.success(user.message);
+      history.push('/');
+    }
+  });
 
   const renderError = () => <span>{resetPassword}</span>;
 
