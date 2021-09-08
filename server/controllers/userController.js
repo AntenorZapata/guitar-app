@@ -45,7 +45,7 @@ const forgotPassword = catchAsync(async (req, res, next) => {
   }
 
   const resetUrl = `http://localhost:3000/passwordReset/${resetToken}`;
-  const message = `Update your password: ${resetUrl}.`;
+  const message = `Update your password: ${resetUrl}`;
 
   try {
     await sendEmail({

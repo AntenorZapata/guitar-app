@@ -1,5 +1,9 @@
-import { fetchGuitars, createGuitar, login } from '../api';
-import { FETCH_ALL, CREATE_GUITAR, LOGIN } from './types';
+import {
+  fetchGuitars, createGuitar, login, forgotPassword,
+} from '../api';
+import {
+  FETCH_ALL, CREATE_GUITAR, LOGIN, FORGOT_PASS,
+} from './types';
 
 // Actions Creators
 export const getGuitars = () => async (dispatch) => {
@@ -25,6 +29,15 @@ export const loginAction = (user) => async (dispatch) => {
     const { data } = await login(user);
     localStorage.setItem('token', data.token);
     dispatch({ type: LOGIN, payload: data });
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+export const forgotAction = (email) => async (dispatch) => {
+  try {
+    const { data } = await forgotPassword(email);
+    dispatch({ type: FORGOT_PASS, payload: data });
   } catch (err) {
     console.log(err.message);
   }
