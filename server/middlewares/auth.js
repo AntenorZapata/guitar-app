@@ -31,15 +31,22 @@ const validateToken = catchAsync(async (req, res, next) => {
 });
 
 const restrictTo = (...args) => (req, res, next) => {
-  console.log(args);
   if (!args.includes(req.user.role)) {
     return next(
       new AppError('You do not have permission to perform this action', 403),
     );
   }
-
   next();
 };
+
+// const validateUser = (req, res, next) => {
+//   const { email } = req.body;
+//   const user = await getUserByEmail(email);
+
+//   if (user) {
+//     return res.status(409).json({ message: 'Email already registered' });
+//   }
+// }
 
 module.exports = {
   restrictTo,

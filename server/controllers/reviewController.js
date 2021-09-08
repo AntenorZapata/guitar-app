@@ -1,5 +1,5 @@
 const { createReview, getAllReviews } = require('../service/reviewService');
-const AppError = require('../utils/appError');
+// const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
 const getAll = catchAsync(async (req, res) => {
