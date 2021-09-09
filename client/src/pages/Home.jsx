@@ -13,7 +13,7 @@ function Home() {
       <nav>
 
         <Link to={token ? '/fav' : '/login'}>{token ? 'Favoritos' : 'Login'}</Link>
-        {' '}
+
         <Link to={token ? '/config' : '/signup'}>{token ? 'Minha Conta' : 'Crie sua conta'}</Link>
 
         {token

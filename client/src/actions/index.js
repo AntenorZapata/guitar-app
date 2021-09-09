@@ -1,10 +1,22 @@
 import { ToastContainer, toast } from 'react-toastify';
 
 import {
-  fetchGuitars, createGuitar, login, forgotPassword, signupUser,
+  fetchGuitars,
+  createGuitar,
+  login,
+  forgotPassword,
+  signupUser,
+  resetPass,
 } from '../api';
 import {
-  FETCH_ALL, CREATE_GUITAR, LOGIN, FORGOT_PASS, RESET_ERR, CLEAR_ERRORS, SIGNUP,
+  FETCH_ALL,
+  CREATE_GUITAR,
+  LOGIN,
+  FORGOT_PASS,
+  FORGOT_ERR,
+  RESET_ERR,
+  CLEAR_ERRORS, SIGNUP,
+  RESET,
   SIGNUP_ERR,
 } from './types';
 
@@ -43,7 +55,7 @@ export const forgotAction = (email) => async (dispatch) => {
     toast.success('Senha enviada para email cadastrado.');
     dispatch({ type: FORGOT_PASS, payload: data });
   } catch (err) {
-    dispatch({ type: RESET_ERR, payload: err.response.data.message });
+    dispatch({ type: FORGOT_ERR, payload: err.response.data.message });
   }
 };
 
@@ -54,6 +66,16 @@ export const signupAction = (user) => async (dispatch) => {
     dispatch({ type: SIGNUP, payload: data.token });
   } catch (err) {
     dispatch({ type: SIGNUP_ERR, payload: err.response.data.message });
+    return err.response.data.message;
+  }
+};
+
+export const resetAction = (password, token) => async (dispatch) => {
+  try {
+    const { data } = await resetPass(password, token);
+    dispatch({ type: RESET, payload: data.token });
+  } catch (err) {
+    dispatch({ type: RESET_ERR, payload: err.response.data.message });
     return err.response.data.message;
   }
 };

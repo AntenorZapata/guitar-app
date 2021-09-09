@@ -10,7 +10,7 @@ const forgotUrl = 'http://localhost:3001/api/v1/users/forgotPassword/';
 export default function ForgotPassword() {
   const [state, setState] = useState({ email: '' });
   const [error, setError] = useState(false);
-  const { resetPassword } = useSelector((err) => err.errors);
+  const { forgotPassword } = useSelector((err) => err.errors);
   const user = useSelector((data) => data.user);
 
   const history = useHistory();
@@ -31,7 +31,7 @@ export default function ForgotPassword() {
 
   return (
     <div>
-      {resetPassword && (
+      {forgotPassword && (
       <div>
         <p>
           Não existe cadastro com o e-mail informado.

@@ -1,4 +1,6 @@
-import { LOGIN, FORGOT_PASS, SIGNUP } from '../actions/types';
+import {
+  LOGIN, FORGOT_PASS, SIGNUP, RESET,
+} from '../actions/types';
 
 const userReducer = (state = [], action) => {
   switch (action.type) {
@@ -9,6 +11,9 @@ const userReducer = (state = [], action) => {
       return action.payload;
 
     case SIGNUP:
+      return action.payload;
+
+    case RESET:
       return action.payload;
 
     default:

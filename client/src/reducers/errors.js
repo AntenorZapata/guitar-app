@@ -1,16 +1,19 @@
-import { RESET_ERR, CLEAR_ERRORS, SIGNUP_ERR } from '../actions/types';
+import {
+  FORGOT_ERR, CLEAR_ERRORS, SIGNUP_ERR, RESET_ERR,
+} from '../actions/types';
 
 const initialState = {
-  resetPassword: '',
+  forgotPassword: '',
   signup: '',
+  resetPassword: '',
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case RESET_ERR:
+    case FORGOT_ERR:
       return {
         ...state,
-        resetPassword: action.payload,
+        forgotPassword: action.payload,
       };
 
     case SIGNUP_ERR:
@@ -22,7 +25,14 @@ const reducer = (state = initialState, action) => {
     case CLEAR_ERRORS:
       return {
         ...state,
+        forgotPassword: '',
+        signup: '',
         resetPassword: '',
+      };
+    case RESET_ERR:
+      return {
+        ...state,
+        resetPassword: action.payload,
       };
 
     default:

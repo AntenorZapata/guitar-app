@@ -20,3 +20,5 @@ export const login = (user) => axios.post(userUrl, user, config);
 export const forgotPassword = (email) => axios.post(forgotUrl, email, config);
 
 export const signupUser = (user) => axios.post(signupUrl, user, config);
+
+export const resetPass = (password, token) => axios.post(`http://localhost:3001/api/v1/users/resetPassword/${token}`, password, config);

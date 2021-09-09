@@ -62,12 +62,11 @@ export default function Login() {
         </label>
         <button type="submit">Entrar</button>
         <Link to="/forgotPassword">Esqueci minha senha</Link>
-
+        <Link to="/signup">Criar conta</Link>
       </form>
       {error && (
       <span>
         E-mail ou senha inválidos.
-        <Link to="/signup">Criar conta</Link>
       </span>
       )}
     </div>
