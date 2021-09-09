@@ -1,7 +1,8 @@
-import { RESET_ERR, CLEAR_ERRORS } from '../actions/types';
+import { RESET_ERR, CLEAR_ERRORS, SIGNUP_ERR } from '../actions/types';
 
 const initialState = {
   resetPassword: '',
+  signup: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,6 +11,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         resetPassword: action.payload,
+      };
+
+    case SIGNUP_ERR:
+      return {
+        ...state,
+        signup: action.payload,
       };
 
     case CLEAR_ERRORS:

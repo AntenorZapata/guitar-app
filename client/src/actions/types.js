@@ -4,6 +4,8 @@ export const LOGIN = 'LOGIN';
 export const FORGOT_PASS = 'FORGOT_PASS';
 export const RESET_ERR = 'RESET_ERR';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const SIGNUP = 'SIGNUP';
+export const SIGNUP_ERR = 'SIGNUP_ERR';
 
 // export const FETCH_CURRENCY = 'FETCH_CURRENCY';
 // export const ADD_EXPENSE = 'ADD_EXPENSE';

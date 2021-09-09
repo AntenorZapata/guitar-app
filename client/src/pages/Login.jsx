@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginAction, clearErrors } from '../actions';
 
 export default function Login() {
   const [state, setState] = useState({ email: '', password: '' });
+  const { data } = useSelector((stateData) => stateData.user);
+  const [error, setError] = useState(false);
+  const token = localStorage.getItem('token');
+
   const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(clearErrors());
+
+    if (token) {
+      history.push('/');
+    }
   }, []);
 
   const handleValueInput = (e) => {
@@ -21,9 +29,12 @@ export default function Login() {
 
   const hendleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(loginAction(state));
-
-    history.push('/');
+    const res = await dispatch(loginAction(state));
+    if (res) {
+      setError(true);
+    } else {
+      history.push('/');
+    }
   };
 
   return (
@@ -43,7 +54,7 @@ export default function Login() {
         <label htmlFor="password">
           Password
           <input
-            type="text"
+            type="password"
             name="password"
             value={state.password}
             onChange={handleValueInput}
@@ -51,7 +62,14 @@ export default function Login() {
         </label>
         <button type="submit">Entrar</button>
         <Link to="/forgotPassword">Esqueci minha senha</Link>
+
       </form>
+      {error && (
+      <span>
+        E-mail ou senha inválidos.
+        <Link to="/signup">Criar conta</Link>
+      </span>
+      )}
     </div>
   );
 }

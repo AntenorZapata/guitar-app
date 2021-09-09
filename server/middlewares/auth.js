@@ -3,6 +3,11 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const User = require('../models/userModel');
 
+const verifyEmail = (email) => {
+  const pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+  return email.match(pattern);
+};
+
 const validateToken = catchAsync(async (req, res, next) => {
   const { authorization } = req.headers;
 
@@ -39,16 +44,32 @@ const restrictTo = (...args) => (req, res, next) => {
   next();
 };
 
-// const validateUser = (req, res, next) => {
-//   const { email } = req.body;
-//   const user = await getUserByEmail(email);
+const validateUser = async (req, res, next) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
 
-//   if (user) {
-//     return res.status(409).json({ message: 'Email already registered' });
-//   }
-// }
+  if (user) {
+    return res.status(409).json({ message: 'Email already registered' });
+  }
+  next();
+};
+
+const validateUserData = (req, res, next) => {
+  const { email, name, password } = req.body;
+
+  if (!name
+    || !email
+    || !verifyEmail(email)
+    || !password
+    || password.length < 8) {
+    return res.status(400).json({ message: 'Invalid entries. Try again.' });
+  }
+  next();
+};
 
 module.exports = {
   restrictTo,
   validateToken,
+  validateUser,
+  validateUserData,
 };

@@ -1,6 +1,6 @@
-import { LOGIN, FORGOT_PASS } from '../actions/types';
+import { LOGIN, FORGOT_PASS, SIGNUP } from '../actions/types';
 
-const loginReducer = (state = [], action) => {
+const userReducer = (state = [], action) => {
   switch (action.type) {
     case LOGIN:
       return action.payload;
@@ -8,9 +8,12 @@ const loginReducer = (state = [], action) => {
     case FORGOT_PASS:
       return action.payload;
 
+    case SIGNUP:
+      return action.payload;
+
     default:
       return state;
   }
 };
 
-export default loginReducer;
+export default userReducer;

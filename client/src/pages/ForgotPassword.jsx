@@ -3,7 +3,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
 import { loginAction, forgotAction, clearErrors } from '../actions';
 
 const forgotUrl = 'http://localhost:3001/api/v1/users/forgotPassword/';
@@ -37,7 +36,7 @@ export default function ForgotPassword() {
         <p>
           Não existe cadastro com o e-mail informado.
         </p>
-        <Link to="/signup">Faça sua conta!</Link>
+        <Link to="/signup">Crie sua conta.</Link>
       </div>
       )}
       <form onSubmit={hendleSubmit}>

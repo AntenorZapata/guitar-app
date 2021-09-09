@@ -1,10 +1,11 @@
 import { ToastContainer, toast } from 'react-toastify';
 
 import {
-  fetchGuitars, createGuitar, login, forgotPassword,
+  fetchGuitars, createGuitar, login, forgotPassword, signupUser,
 } from '../api';
 import {
-  FETCH_ALL, CREATE_GUITAR, LOGIN, FORGOT_PASS, RESET_ERR, CLEAR_ERRORS,
+  FETCH_ALL, CREATE_GUITAR, LOGIN, FORGOT_PASS, RESET_ERR, CLEAR_ERRORS, SIGNUP,
+  SIGNUP_ERR,
 } from './types';
 
 // Actions Creators
@@ -43,6 +44,17 @@ export const forgotAction = (email) => async (dispatch) => {
     dispatch({ type: FORGOT_PASS, payload: data });
   } catch (err) {
     dispatch({ type: RESET_ERR, payload: err.response.data.message });
+  }
+};
+
+export const signupAction = (user) => async (dispatch) => {
+  try {
+    const { data } = await signupUser(user);
+    localStorage.setItem('token', data.token);
+    dispatch({ type: SIGNUP, payload: data.token });
+  } catch (err) {
+    dispatch({ type: SIGNUP_ERR, payload: err.response.data.message });
+    return err.response.data.message;
   }
 };
 
