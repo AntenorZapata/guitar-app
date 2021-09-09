@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction, clearErrors, resetAction } from '../actions';
+// import history from '../services/history';
 
-export default function ResetPassword(props) {
+// eslint-disable-next-line react/prop-types
+const ResetPassword = (props) => {
   const [state, setState] = useState({ password: '' });
-  const history = useHistory();
+  // const history = useHistory();
   const dispatch = useDispatch();
 
   const tokenLogin = localStorage.getItem('token');
 
   // eslint-disable-next-line react/prop-types
-  const { match: { params: { token } } } = props;
+  // const { match: { params: { token } } } = props;
 
-  console.log(token);
+  console.log(props);
 
   const handleValueInput = (e) => {
     e.preventDefault();
@@ -24,8 +26,11 @@ export default function ResetPassword(props) {
 
   const hendleSubmit = async (e) => {
     e.preventDefault();
-    const res = await dispatch(resetAction(state, token));
-    console.log(res);
+    // dispatch(resetAction(state, token));
+    // eslint-disable-next-line react/prop-types
+    localStorage.setItem('token', 'aaaaa');
+    // eslint-disable-next-line react/prop-types
+    // history.push('/');
   };
 
   return (
@@ -46,4 +51,6 @@ export default function ResetPassword(props) {
       </form>
     </div>
   );
-}
+};
+
+export default withRouter(ResetPassword);

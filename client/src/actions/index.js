@@ -73,6 +73,7 @@ export const signupAction = (user) => async (dispatch) => {
 export const resetAction = (password, token) => async (dispatch) => {
   try {
     const { data } = await resetPass(password, token);
+    localStorage.setItem('token', data.token);
     dispatch({ type: RESET, payload: data.token });
   } catch (err) {
     dispatch({ type: RESET_ERR, payload: err.response.data.message });
