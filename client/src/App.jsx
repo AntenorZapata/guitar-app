@@ -8,7 +8,6 @@ import ResetPassword from './pages/ResetPassword';
 import Home from './pages/Home';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Config from './pages/Config';
-import history from './services/history';
 
 import GuitarCard from './components/guitarCard/GuitarCard';
 import Form from './components/form/Form';
@@ -24,18 +23,15 @@ export default function App() {
 
   return (
     <div>
-      <Router history={history}>
-        <Switch>
 
-          <PrivateRoute exact path="/config" component={Config} />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/forgotPassword" component={ForgotPassword} />
-          <Route exact path="/passwordReset/:token" component={ResetPassword} />
-
-        </Switch>
-      </Router>
+      <Switch>
+        <PrivateRoute exact path="/config" component={Config} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/forgotPassword" component={ForgotPassword} />
+        <Route exact path="/passwordReset/:token" component={ResetPassword} />
+      </Switch>
 
       {/* <GuitarCard />
       <Form /> */}
