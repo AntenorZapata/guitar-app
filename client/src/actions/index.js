@@ -39,7 +39,7 @@ export const loginAction = (user) => async (dispatch) => {
 export const forgotAction = (email) => async (dispatch) => {
   try {
     const { data } = await forgotPassword(email);
-    // toast.success('Senha enviada para email cadastrado.');
+    toast.success('Senha enviada para email cadastrado.');
     dispatch({ type: FORGOT_PASS, payload: data });
   } catch (err) {
     dispatch({ type: RESET_ERR, payload: err.response.data.message });

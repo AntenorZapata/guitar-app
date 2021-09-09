@@ -28,21 +28,18 @@ export default function ForgotPassword() {
     e.preventDefault();
     dispatch(clearErrors());
     dispatch(forgotAction(state));
-    setState({ email: '' });
   };
-
-  useEffect(() => {
-    if (!resetPassword && user.length) {
-      toast.success(user.message);
-      history.push('/');
-    }
-  });
-
-  const renderError = () => <span>{resetPassword}</span>;
 
   return (
     <div>
-      {resetPassword && renderError()}
+      {resetPassword && (
+      <div>
+        <p>
+          Não existe cadastro com o e-mail informado.
+        </p>
+        <Link to="/signup">Faça sua conta!</Link>
+      </div>
+      )}
       <form onSubmit={hendleSubmit}>
         <label htmlFor="email">
           Email
