@@ -1,36 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory, withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { loginAction, clearErrors, resetAction } from '../actions';
-// import history from '../services/history';
 
-// eslint-disable-next-line react/prop-types
 const ResetPassword = (props) => {
   const [state, setState] = useState({ password: '' });
-  // const history = useHistory();
   const dispatch = useDispatch();
 
-  const tokenLogin = localStorage.getItem('token');
-
-  // eslint-disable-next-line react/prop-types
-  // const { match: { params: { token } } } = props;
-
-  console.log(props);
+  const { match: { params: { token } } } = props;
 
   const handleValueInput = (e) => {
     e.preventDefault();
     const { name } = e.target;
-
     setState({ ...state, [name]: e.target.value });
   };
 
   const hendleSubmit = async (e) => {
     e.preventDefault();
-    // dispatch(resetAction(state, token));
-    // eslint-disable-next-line react/prop-types
-    localStorage.setItem('token', 'aaaaa');
-    // eslint-disable-next-line react/prop-types
-    // history.push('/');
+    await dispatch(resetAction(state, token));
+    props.history.push('/');
   };
 
   return (
@@ -53,4 +41,16 @@ const ResetPassword = (props) => {
   );
 };
 
-export default withRouter(ResetPassword);
+ResetPassword.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      token: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+
+};
+
+export default ResetPassword;
