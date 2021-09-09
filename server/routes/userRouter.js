@@ -13,8 +13,8 @@ const {
 const router = express.Router();
 
 router.route('/signup').post(
-  validateUser,
   validateUserData,
+  validateUser,
   register,
 );
 router.route('/login').post(login);

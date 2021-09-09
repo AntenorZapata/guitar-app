@@ -57,13 +57,18 @@ const validateUser = async (req, res, next) => {
 const validateUserData = (req, res, next) => {
   const { email, name, password } = req.body;
 
-  if (!name
-    || !email
-    || !verifyEmail(email)
-    || !password
-    || password.length < 8) {
-    return res.status(400).json({ message: 'Invalid entries. Try again.' });
+  if (!email || !name || !password) {
+    return res.status(400).json({ message: 'Name, email and password are required.' });
   }
+
+  if (!verifyEmail(email)) {
+    return res.status(400).json({ message: 'Please enter a valid email address.' });
+  }
+
+  if (password.length < 8) {
+    return res.status(400).json({ message: 'Password must have at least 8 characters.' });
+  }
+
   next();
 };
 
