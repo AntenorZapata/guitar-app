@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Config from './pages/Config';
 import history from './services/history';
+import Favorites from './pages/Favorites';
 
 import GuitarCard from './components/guitarCard/GuitarCard';
 import Form from './components/form/Form';
@@ -27,11 +28,13 @@ export default function App() {
       <Router history={history}>
         <Switch>
           <PrivateRoute exact path="/config" component={Config} />
+          <PrivateRoute exact path="/favs" component={Favorites} />
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/forgotPassword" component={ForgotPassword} />
           <Route exact path="/passwordReset/:token" component={ResetPassword} />
+          <PrivateRoute path="*" component={Login} />
         </Switch>
       </Router>
 

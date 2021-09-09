@@ -5,25 +5,23 @@ import { loginAction, clearErrors } from '../actions';
 
 export default function Login() {
   const [state, setState] = useState({ email: '', password: '' });
-  const { data } = useSelector((stateData) => stateData.user);
+  // const { data } = useSelector((stateData) => stateData.user);
   const [error, setError] = useState(false);
   const token = localStorage.getItem('token');
 
   const history = useHistory();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(clearErrors());
-
-    if (token) {
-      history.push('/');
-    }
-  }, []);
+  // useEffect(() => {
+  //   dispatch(clearErrors());
+  //   if (token) {
+  //     history.push('/');
+  //   }
+  // }, []);
 
   const handleValueInput = (e) => {
     e.preventDefault();
     const { name } = e.target;
-
     setState({ ...state, [name]: e.target.value });
   };
 
@@ -52,7 +50,7 @@ export default function Login() {
           />
         </label>
         <label htmlFor="password">
-          Password
+          Senha
           <input
             type="password"
             name="password"

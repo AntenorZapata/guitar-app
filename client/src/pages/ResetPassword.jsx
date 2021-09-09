@@ -25,7 +25,7 @@ const ResetPassword = (props) => {
     <div>
       <form onSubmit={hendleSubmit}>
         <label htmlFor="password">
-          Password
+          Nova senha
           <input
             type="password"
             name="password"
