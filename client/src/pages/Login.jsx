@@ -8,7 +8,6 @@ export default function Login() {
   const history = useHistory();
   const dispatch = useDispatch();
   const [state, setState] = useState({ email: '', password: '' });
-  // const { data } = useSelector((stateData) => stateData.user);
   const { handleEmailValidation, handlePasswordValidation } = useValidation();
 
   const [error, setError] = useState({
@@ -27,16 +26,14 @@ export default function Login() {
 
   const handleValueInput = (e) => {
     e.preventDefault();
-    // setAuthError(false);
-    // setError({ email: { valid: true }, password: { valid: true } });
     const { name } = e.target;
     setState({ ...state, [name]: e.target.value });
   };
 
   const hendleSubmit = async (e) => {
     e.preventDefault();
-
     const res = await dispatch(loginAction(state));
+
     if (res) {
       setAuthError(true);
     } else {
