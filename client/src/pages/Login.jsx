@@ -2,34 +2,43 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction, clearErrors } from '../actions';
+import useValidation from '../hooks/useValidation';
 
 export default function Login() {
-  const [state, setState] = useState({ email: '', password: '' });
-  // const { data } = useSelector((stateData) => stateData.user);
-  const [error, setError] = useState(false);
-  const token = localStorage.getItem('token');
-
   const history = useHistory();
   const dispatch = useDispatch();
+  const [state, setState] = useState({ email: '', password: '' });
+  // const { data } = useSelector((stateData) => stateData.user);
+  const { handleEmailValidation, handlePasswordValidation } = useValidation();
 
-  // useEffect(() => {
-  //   dispatch(clearErrors());
-  //   if (token) {
-  //     history.push('/');
-  //   }
-  // }, []);
+  const [error, setError] = useState({
+    email: { valid: true, text: '' },
+    password: { valid: true, text: '' },
+  });
+  const [authError, setAuthError] = useState(false);
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    dispatch(clearErrors());
+    if (token) {
+      history.push('/');
+    }
+  }, []);
 
   const handleValueInput = (e) => {
     e.preventDefault();
+    // setAuthError(false);
+    // setError({ email: { valid: true }, password: { valid: true } });
     const { name } = e.target;
     setState({ ...state, [name]: e.target.value });
   };
 
   const hendleSubmit = async (e) => {
     e.preventDefault();
+
     const res = await dispatch(loginAction(state));
     if (res) {
-      setError(true);
+      setAuthError(true);
     } else {
       history.push('/');
     }
@@ -42,31 +51,33 @@ export default function Login() {
           Email
           <input
             type="email"
+            onBlur={(e) => handleEmailValidation(e, error, setError)}
             value={state.email}
             name="email"
             required
             id="email"
+            className={!error.email.valid ? 'email-invalid' : 'email-valid'}
             onChange={handleValueInput}
           />
         </label>
         <label htmlFor="password">
           Senha
           <input
+            onBlur={(e) => handlePasswordValidation(e, error, setError)}
             type="password"
             name="password"
             value={state.password}
+            className={!error.password.valid ? 'pass-invalid' : 'pass-valid'}
             onChange={handleValueInput}
           />
         </label>
-        <button type="submit">Entrar</button>
+        <button disabled={!error.email.valid || !error.password.valid} type="submit">Entrar</button>
         <Link to="/forgotPassword">Esqueci minha senha</Link>
         <Link to="/signup">Criar conta</Link>
       </form>
-      {error && (
-      <span>
-        E-mail ou senha inválidos.
-      </span>
-      )}
+      {!error.email.valid && (<span>{error.email.text}</span>)}
+      {!error.password.valid && (<span>{error.password.text}</span>)}
+      {authError && <span>Email ou senha inválidos.</span>}
     </div>
   );
 }

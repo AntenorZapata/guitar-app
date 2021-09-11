@@ -10,6 +10,7 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import Config from './pages/Config';
 import history from './services/history';
 import Favorites from './pages/Favorites';
+import './App.css';
 
 import GuitarCard from './components/guitarCard/GuitarCard';
 import Form from './components/form/Form';

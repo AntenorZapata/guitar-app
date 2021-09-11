@@ -5,15 +5,19 @@ import { signupAction, clearErrors } from '../actions';
 
 export default function Signup() {
   const [state, setState] = useState({ name: '', email: '', password: '' });
-  const { data } = useSelector((stateData) => stateData.user);
+  // const { data } = useSelector((stateData) => stateData.user);
   const [error, setError] = useState(false);
+  const token = localStorage.getItem('token');
 
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(clearErrors());
-  // }, []);
+  useEffect(() => {
+    dispatch(clearErrors());
+    if (token) {
+      history.push('/');
+    }
+  }, []);
 
   const handleValueInput = (e) => {
     e.preventDefault();
@@ -75,6 +79,11 @@ export default function Signup() {
         Email já está em uso.
       </span>
       )}
+      <p>
+        Já tem uma conta?
+        <Link to="/">Login</Link>
+
+      </p>
     </div>
   );
 }
