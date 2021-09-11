@@ -30,14 +30,13 @@ export default function form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     dispatch(createGuitarData(state));
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
         {fields.map((field) => (
-
           <label htmlFor={field.value} key={field.id}>
             {field.label}
             <input
@@ -51,7 +50,6 @@ export default function form() {
         ))}
         <button type="submit">Criar guitarra</button>
       </form>
-
     </div>
   );
 }

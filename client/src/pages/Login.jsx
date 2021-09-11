@@ -33,7 +33,6 @@ export default function Login() {
   const hendleSubmit = async (e) => {
     e.preventDefault();
     const res = await dispatch(loginAction(state));
-
     if (res) {
       setAuthError(true);
     } else {

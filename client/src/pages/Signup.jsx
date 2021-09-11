@@ -5,7 +5,6 @@ import { signupAction, clearErrors } from '../actions';
 
 export default function Signup() {
   const [state, setState] = useState({ name: '', email: '', password: '' });
-  // const { data } = useSelector((stateData) => stateData.user);
   const [error, setError] = useState(false);
   const token = localStorage.getItem('token');
 
@@ -72,7 +71,6 @@ export default function Signup() {
           />
         </label>
         <button type="submit">Criar conta</button>
-
       </form>
       {error && (
       <span>
@@ -82,7 +80,6 @@ export default function Signup() {
       <p>
         Já tem uma conta?
         <Link to="/">Login</Link>
-
       </p>
     </div>
   );

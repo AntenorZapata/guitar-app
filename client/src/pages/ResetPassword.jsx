@@ -18,7 +18,7 @@ const ResetPassword = (props) => {
   const hendleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(resetAction(state, token));
-    props.history.push('/');
+    props.history.push('/login');
   };
 
   return (
@@ -34,8 +34,6 @@ const ResetPassword = (props) => {
           />
         </label>
         <button type="submit">Entrar</button>
-        {/* <Link to="/forgotPassword">Esqueci minha senha</Link>
-        <Link to="/signup">Criar conta</Link> */}
       </form>
     </div>
   );
@@ -50,7 +48,6 @@ ResetPassword.propTypes = {
       token: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
-
 };
 
 export default ResetPassword;
