@@ -2,17 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signupAction, clearErrors } from '../actions';
+import useValidation from '../hooks/useValidation';
 
 export default function Signup() {
-  const [state, setState] = useState({ name: '', email: '', password: '' });
-  const [error, setError] = useState(false);
-  const token = localStorage.getItem('token');
-
   const history = useHistory();
   const dispatch = useDispatch();
+  const [state, setState] = useState({ email: '', password: '', name: '' });
+  const { handleEmailValidation, handlePasswordValidation, handleNameValidation } = useValidation();
+
+  const [error, setError] = useState({
+    email: { valid: true, text: '' },
+    password: { valid: true, text: '' },
+    name: { valid: true, text: '' },
+  });
+  const [authError, setAuthError] = useState(false);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    dispatch(clearErrors());
     if (token) {
       history.push('/');
     }
@@ -20,17 +26,16 @@ export default function Signup() {
 
   const handleValueInput = (e) => {
     e.preventDefault();
+    setAuthError(false);
     const { name } = e.target;
-
     setState({ ...state, [name]: e.target.value });
   };
 
   const hendleSubmit = async (e) => {
     e.preventDefault();
     const res = await dispatch(signupAction(state));
-
     if (res) {
-      setError(true);
+      setAuthError(true);
     } else {
       history.push('/');
     }
@@ -47,6 +52,8 @@ export default function Signup() {
             name="name"
             required
             id="name"
+            className={!error.name.valid ? 'name-invalid' : 'name-valid'}
+            onBlur={(e) => handleNameValidation(e, error, setError)}
             onChange={handleValueInput}
           />
         </label>
@@ -58,6 +65,8 @@ export default function Signup() {
             name="email"
             required
             id="email"
+            className={!error.email.valid ? 'email-invalid' : 'email-valid'}
+            onBlur={(e) => handleEmailValidation(e, error, setError)}
             onChange={handleValueInput}
           />
         </label>
@@ -67,19 +76,25 @@ export default function Signup() {
             type="password"
             name="password"
             value={state.password}
+            className={!error.password.valid ? 'pass-invalid' : 'pass-valid'}
+            onBlur={(e) => handlePasswordValidation(e, error, setError)}
             onChange={handleValueInput}
           />
         </label>
-        <button type="submit">Criar conta</button>
+        <button
+          disabled={!error.email.valid || !error.name.valid || state.password.length < 8}
+          type="submit"
+        >
+          Criar conta
+        </button>
       </form>
-      {error && (
-      <span>
-        Email já está em uso.
-      </span>
-      )}
+      {!error.email.valid && (<span>{error.email.text}</span>)}
+      {!error.password.valid && (<span>{error.password.text}</span>)}
+      {!error.name.valid && (<span>{error.name.text}</span>)}
+
       <p>
         Já tem uma conta?
-        <Link to="/">Login</Link>
+        <Link to="/login">Login</Link>
       </p>
     </div>
   );

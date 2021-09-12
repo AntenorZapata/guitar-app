@@ -18,7 +18,6 @@ export default function Login() {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    dispatch(clearErrors());
     if (token) {
       history.push('/');
     }
@@ -26,6 +25,7 @@ export default function Login() {
 
   const handleValueInput = (e) => {
     e.preventDefault();
+    setAuthError(false);
     const { name } = e.target;
     setState({ ...state, [name]: e.target.value });
   };
@@ -67,7 +67,7 @@ export default function Login() {
             onChange={handleValueInput}
           />
         </label>
-        <button disabled={!error.email.valid || !error.password.valid} type="submit">Entrar</button>
+        <button disabled={!error.email.valid || state.password.length < 8} type="submit">Entrar</button>
         <Link to="/forgotPassword">Esqueci minha senha</Link>
         <Link to="/signup">Criar conta</Link>
       </form>
