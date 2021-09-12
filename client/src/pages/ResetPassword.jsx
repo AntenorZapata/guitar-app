@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { loginAction, clearErrors, resetAction } from '../actions';
+import useValidation from '../hooks/useValidation';
 
 const ResetPassword = (props) => {
   const [state, setState] = useState({ password: '' });
   const dispatch = useDispatch();
+  const { handlePasswordValidation } = useValidation();
 
-  const { match: { params: { token } } } = props;
+  const { match: { params: { token } }, error, setError } = props;
+
+  console.log(props);
 
   const handleValueInput = (e) => {
     e.preventDefault();
@@ -31,10 +35,13 @@ const ResetPassword = (props) => {
             name="password"
             value={state.password}
             onChange={handleValueInput}
+            onBlur={(e) => handlePasswordValidation(e, error, setError)}
+            className={!error.password.valid ? 'pass-invalid' : 'pass-valid'}
           />
         </label>
-        <button type="submit">Entrar</button>
+        <button disabled={state.password < 8} type="submit">Entrar</button>
       </form>
+      {!error.password.valid && (<span>{error.password.text}</span>)}
     </div>
   );
 };

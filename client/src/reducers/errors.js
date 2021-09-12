@@ -6,6 +6,9 @@ const initialState = {
   forgotPassword: '',
   signup: '',
   resetPassword: '',
+  email: { valid: true, text: '' },
+  password: { valid: true, text: '' },
+  name: { valid: true, text: '' },
 };
 
 const reducer = (state = initialState, action) => {

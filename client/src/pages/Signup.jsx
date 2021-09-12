@@ -91,7 +91,6 @@ export default function Signup() {
       {!error.email.valid && (<span>{error.email.text}</span>)}
       {!error.password.valid && (<span>{error.password.text}</span>)}
       {!error.name.valid && (<span>{error.name.text}</span>)}
-
       <p>
         Já tem uma conta?
         <Link to="/login">Login</Link>

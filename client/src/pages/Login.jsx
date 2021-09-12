@@ -4,16 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginAction, clearErrors } from '../actions';
 import useValidation from '../hooks/useValidation';
 
-export default function Login() {
+export default function Login({ error, setError }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const [state, setState] = useState({ email: '', password: '' });
   const { handleEmailValidation, handlePasswordValidation } = useValidation();
 
-  const [error, setError] = useState({
-    email: { valid: true, text: '' },
-    password: { valid: true, text: '' },
-  });
+  // const [error, setError] = useState({
+  //   email: { valid: true, text: '' },
+  //   password: { valid: true, text: '' },
+  // });
+
   const [authError, setAuthError] = useState(false);
   const token = localStorage.getItem('token');
 
@@ -71,6 +72,7 @@ export default function Login() {
         <Link to="/forgotPassword">Esqueci minha senha</Link>
         <Link to="/signup">Criar conta</Link>
       </form>
+
       {!error.email.valid && (<span>{error.email.text}</span>)}
       {!error.password.valid && (<span>{error.password.text}</span>)}
       {authError && <span>Email ou senha inválidos.</span>}

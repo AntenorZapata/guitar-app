@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Router, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
@@ -24,6 +24,12 @@ export default function App() {
     dispatch(getGuitars());
   }, [dispatch]);
 
+  const [error, setError] = useState({
+    email: { valid: true, text: '' },
+    password: { valid: true, text: '' },
+    name: { valid: true, text: '' },
+  });
+
   return (
     <div>
       <Router history={history}>
@@ -31,10 +37,34 @@ export default function App() {
           <PrivateRoute exact path="/config" component={Config} />
           <PrivateRoute exact path="/favs" component={Favorites} />
           <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/forgotPassword" component={ForgotPassword} />
-          <Route exact path="/passwordReset/:token" component={ResetPassword} />
+          <Route
+            exact
+            path="/login"
+            render={() => (
+              <Login error={error} setError={setError} />
+            )}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={() => (
+              <Signup error={error} setError={setError} />
+            )}
+          />
+          <Route
+            exact
+            path="/forgotPassword"
+            render={() => (
+              <ForgotPassword error={error} setError={setError} />
+            )}
+          />
+          <Route
+            exact
+            path="/passwordReset/:token"
+            render={(props) => (
+              <ResetPassword {...props} error={error} setError={setError} />
+            )}
+          />
           <PrivateRoute path="*" component={Login} />
         </Switch>
       </Router>

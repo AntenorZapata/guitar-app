@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { loginAction, forgotAction, clearErrors } from '../actions';
+import useValidation from '../hooks/useValidation';
 
 const forgotUrl = 'http://localhost:3001/api/v1/users/forgotPassword/';
 
-export default function ForgotPassword() {
+export default function ForgotPassword({ error, setError }) {
   const [state, setState] = useState({ email: '' });
   // const [error, setError] = useState(false);
   const { forgotPassword } = useSelector((err) => err.errors);
+  const { handleEmailValidation } = useValidation();
   // const user = useSelector((data) => data.user);
   // const history = useHistory();
 
@@ -31,14 +33,6 @@ export default function ForgotPassword() {
 
   return (
     <div>
-      {forgotPassword && (
-      <div>
-        <p>
-          Não existe cadastro com o e-mail informado.
-        </p>
-        <Link to="/signup">Crie sua conta.</Link>
-      </div>
-      )}
       <form onSubmit={hendleSubmit}>
         <label htmlFor="email">
           Email
@@ -47,11 +41,21 @@ export default function ForgotPassword() {
             name="email"
             value={state.email}
             onChange={handleValueInput}
+            className={!error.email.valid ? 'email-invalid' : 'email-valid'}
+            onBlur={(e) => handleEmailValidation(e, error, setError)}
             required
           />
         </label>
         <button type="submit">Redefinir Minha senha</button>
       </form>
+      {forgotPassword && (
+      <div>
+        <p>
+          Não existe cadastro com o e-mail informado.
+        </p>
+        <Link to="/signup">Criar conta</Link>
+      </div>
+      )}
       <ToastContainer autoClose={2000} position="top-center" />
     </div>
   );
