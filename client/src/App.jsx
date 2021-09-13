@@ -13,12 +13,16 @@ import Favorites from './pages/Favorites';
 import Details from './pages/Details';
 import './App.css';
 
-// import Form from './components/form/Form';
+import Form from './components/form/Form';
 
-// import { getGuitars } from './actions';
+import { getGuitars } from './actions';
 
 export default function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getGuitars());
+  }, []);
 
   const [error, setError] = useState({
     email: { valid: true, text: '' },

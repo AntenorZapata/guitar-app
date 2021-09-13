@@ -20,6 +20,7 @@ import {
   RESET,
   SIGNUP_ERR,
   GET_GUITAR,
+  CLEAR_GUITAR,
 } from './types';
 
 // Actions Creators
@@ -90,6 +91,10 @@ export const getById = (id) => async (dispatch) => {
     return err.response.data.message;
   }
 };
+
+export const clearGuitar = () => ({
+  type: CLEAR_GUITAR,
+});
 
 export const clearErrors = () => ({
   type: CLEAR_ERRORS,

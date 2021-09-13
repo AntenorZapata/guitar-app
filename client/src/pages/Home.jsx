@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import GuitarDeck from '../components/guitarDeck/GuitarDeck';
-import { getGuitars } from '../actions';
+import { getGuitars, clearGuitar } from '../actions';
 
 function Home() {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ function Home() {
   const guitars = useSelector((state) => state.guitars.result);
 
   useEffect(() => {
-    dispatch(getGuitars());
+    dispatch(clearGuitar());
   }, []);
 
   const handleLogout = () => {
@@ -25,7 +25,7 @@ function Home() {
         {token
         && (
         <Link to="/">
-          <button type="button" onClick={(handleLogout)}>Sair</button>
+          <button type="button" onClick={handleLogout}>Sair</button>
         </Link>
         )}
       </nav>

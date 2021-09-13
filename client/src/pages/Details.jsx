@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getById } from '../actions';
 
 function Details({ match: { params: { id } } }) {
-  const guitars = useSelector((state) => state.guitars);
+  const guitar = useSelector((state) => state.guitars.guitar);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -12,7 +12,7 @@ function Details({ match: { params: { id } } }) {
 
   return (
     <div>
-      <h1>details</h1>
+      <h1>{guitar.player}</h1>
     </div>
   );
 }

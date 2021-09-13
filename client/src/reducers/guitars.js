@@ -1,4 +1,6 @@
-import { CREATE_GUITAR, FETCH_ALL, GET_GUITAR } from '../actions/types';
+import {
+  CREATE_GUITAR, FETCH_ALL, GET_GUITAR, CLEAR_GUITAR,
+} from '../actions/types';
 
 const initialState = {
   allGuitars: [],
@@ -20,6 +22,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         guitar: action.payload,
+      };
+
+    case CLEAR_GUITAR:
+      return {
+        ...state,
+        guitar: {},
       };
 
     default:
