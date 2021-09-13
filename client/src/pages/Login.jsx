@@ -10,11 +10,6 @@ export default function Login({ error, setError }) {
   const [state, setState] = useState({ email: '', password: '' });
   const { handleEmailValidation, handlePasswordValidation } = useValidation();
 
-  // const [error, setError] = useState({
-  //   email: { valid: true, text: '' },
-  //   password: { valid: true, text: '' },
-  // });
-
   const [authError, setAuthError] = useState(false);
   const token = localStorage.getItem('token');
 
@@ -72,7 +67,6 @@ export default function Login({ error, setError }) {
         <Link to="/forgotPassword">Esqueci minha senha</Link>
         <Link to="/signup">Criar conta</Link>
       </form>
-
       {!error.email.valid && (<span>{error.email.text}</span>)}
       {!error.password.valid && (<span>{error.password.text}</span>)}
       {authError && <span>Email ou senha inválidos.</span>}

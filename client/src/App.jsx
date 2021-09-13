@@ -75,8 +75,7 @@ export default function App() {
           <PrivateRoute path="*" component={Login} />
         </Switch>
       </Router>
-      {/* <GuitarCard />
-      <Form /> */}
+      {/* <Form /> */}
     </div>
   );
 }
