@@ -10,19 +10,15 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import Config from './pages/Config';
 import history from './services/history';
 import Favorites from './pages/Favorites';
+import Details from './pages/Details';
 import './App.css';
 
-import GuitarCard from './components/guitarCard/GuitarCard';
-import Form from './components/form/Form';
+// import Form from './components/form/Form';
 
-import { getGuitars } from './actions';
+// import { getGuitars } from './actions';
 
 export default function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getGuitars());
-  }, [dispatch]);
+  // const dispatch = useDispatch();
 
   const [error, setError] = useState({
     email: { valid: true, text: '' },
@@ -63,6 +59,13 @@ export default function App() {
             path="/passwordReset/:token"
             render={(props) => (
               <ResetPassword {...props} error={error} setError={setError} />
+            )}
+          />
+          <Route
+            exacttoken
+            path="/guitarDetails/:id"
+            render={(props) => (
+              <Details {...props} />
             )}
           />
           <PrivateRoute path="*" component={Login} />

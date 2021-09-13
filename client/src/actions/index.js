@@ -7,6 +7,7 @@ import {
   forgotPassword,
   signupUser,
   resetPass,
+  getGuitarById,
 } from '../api';
 import {
   FETCH_ALL,
@@ -18,15 +19,16 @@ import {
   CLEAR_ERRORS, SIGNUP,
   RESET,
   SIGNUP_ERR,
+  GET_GUITAR,
 } from './types';
 
 // Actions Creators
 export const getGuitars = () => async (dispatch) => {
   try {
     const { data } = await fetchGuitars();
-    dispatch({ type: FETCH_ALL, payload: data });
+    dispatch({ type: FETCH_ALL, payload: data.result });
   } catch (err) {
-    console.log(err.response.data.message);
+    return err.response.data.message;
   }
 };
 
@@ -76,6 +78,15 @@ export const resetAction = (password, token) => async (dispatch) => {
     dispatch({ type: RESET, payload: data.token });
   } catch (err) {
     dispatch({ type: RESET_ERR, payload: err.response.data.message });
+    return err.response.data.message;
+  }
+};
+
+export const getById = (id) => async (dispatch) => {
+  try {
+    const { data } = await getGuitarById(id);
+    dispatch({ type: GET_GUITAR, payload: data.guitar });
+  } catch (err) {
     return err.response.data.message;
   }
 };

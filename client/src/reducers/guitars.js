@@ -1,12 +1,26 @@
-import { CREATE_GUITAR, FETCH_ALL } from '../actions/types';
+import { CREATE_GUITAR, FETCH_ALL, GET_GUITAR } from '../actions/types';
 
-const reducer = (state = [], action) => {
+const initialState = {
+  allGuitars: [],
+  guitar: {},
+};
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ALL:
-      return action.payload;
+      return {
+        ...state,
+        allGuitars: [...action.payload],
+      };
 
     case CREATE_GUITAR:
       return [...state, action.payload];
+
+    case GET_GUITAR:
+      return {
+        ...state,
+        guitar: action.payload,
+      };
 
     default:
       return state;

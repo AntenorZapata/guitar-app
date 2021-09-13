@@ -88,3 +88,20 @@
   border: 2px solid red;
   outline: none;
 }
+
+
+.guitar-card {
+  border: 1px solid black;
+  width: 10rem;
+  margin: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+}
+
+.guitar-card-link {
+  display: block;
+  width: 10rem;
+
+}

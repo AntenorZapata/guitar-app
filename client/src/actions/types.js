@@ -8,6 +8,7 @@ export const SIGNUP = 'SIGNUP';
 export const SIGNUP_ERR = 'SIGNUP_ERR';
 export const RESET = 'RESET';
 export const RESET_ERR = 'RESET_ERR';
+export const GET_GUITAR = 'GET_GUITAR';
 
 // export const FETCH_CURRENCY = 'FETCH_CURRENCY';
 // export const ADD_EXPENSE = 'ADD_EXPENSE';

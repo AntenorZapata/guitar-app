@@ -1,6 +1,6 @@
 export default function useValidation() {
   const handleEmailValidation = ({ target: { value } }, error, setError) => {
-    const pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    const pattern = /\S+@\S+\.\S+/;
 
     if (!value.match(pattern)) {
       setError({ ...error, email: { valid: false, text: 'Por favor insira um endereço de e-mail válido' } });
