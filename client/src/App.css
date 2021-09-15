@@ -131,8 +131,24 @@ h4 {
   text-align: center;
   height: 40rem;
   display: flex;
+  justify-content: center;
 }
 
-table td {
-  padding: .5rem;
+/* .guitar-table {
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+
+
+table {
+  border: 1px solid rgb(74, 72, 83);
+  table-layout: fixed;
+}
+
+th,
+td {
+  border: 1px solid black;
+  width: 100px;
+  overflow: hidden;
+  padding: .5rem 0;
+  word-break: break-all;
 }
