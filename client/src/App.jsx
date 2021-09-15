@@ -8,21 +8,20 @@ import ResetPassword from './pages/ResetPassword';
 import Home from './pages/Home';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Config from './pages/Config';
-import history from './services/history';
+import history from './service/history';
 import Favorites from './pages/Favorites';
 import Details from './pages/Details';
 import './App.css';
 
-import Form from './components/form/Form';
-
 import { getGuitars } from './actions';
+import AdminPainel from './pages/AdminPainel';
 
 export default function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getGuitars());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getGuitars());
+  // }, []);
 
   const [error, setError] = useState({
     email: { valid: true, text: '' },
@@ -72,10 +71,10 @@ export default function App() {
               <Details {...props} />
             )}
           />
+          <PrivateRoute path="/admin" component={AdminPainel} />
           <PrivateRoute path="*" component={Login} />
         </Switch>
       </Router>
-      {/* <Form /> */}
     </div>
   );
 }

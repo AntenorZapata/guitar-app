@@ -13,7 +13,7 @@ app.use(cors());
 
 app.use('/api/v1/guitars', guitarRouter);
 app.use('/api/v1/users', userRouter);
-app.use('/api/v1/reviews', reviewRouter);
+app.use(' ', reviewRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
