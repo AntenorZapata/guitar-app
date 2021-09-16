@@ -21,6 +21,8 @@ export const createGuitar = (guitar, token) => axios.post(url, guitar, { headers
 
 export const updateGuitar = (guitar, token) => axios.put(`http://localhost:3001/api/v1/guitars/${guitar._id}`, guitar, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
 
+export const deleteGuitar = (id, token) => axios.delete(`http://localhost:3001/api/v1/guitars/${id}`, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
+
 export const login = (user) => axios.post(userUrl, user, config);
 
 export const forgotPassword = (email) => axios.post(forgotUrl, email, config);

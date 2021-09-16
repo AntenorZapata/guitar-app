@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { v4 as uuidv4 } from 'uuid';
-import { createGuitarData, updateGuitarData } from '../../actions';
+import { createGuitarData, deleteGuitarData, updateGuitarData } from '../../actions';
 import fields from '../../service/formFields';
 import GuitarTable from '../table/GuitarTable';
 import useSort from '../../hooks/useSort';
@@ -27,8 +27,6 @@ export default function form() {
   const dispatch = useDispatch();
 
   const guitars = useSelector((state) => state.guitars.allGuitars);
-  console.log(guitars);
-
   const { sortNumber, sortName } = useSort();
 
   const [guitarTable, setGuitarTable] = useState([]);
@@ -71,10 +69,12 @@ export default function form() {
     setState(guitar);
   };
 
-  const handleDeleteRow = (id) => {
-    const guitar = guitarTable.find((gt) => gt._id === id);
-    const newState = guitarTable.filter((el) => el !== guitar);
-    setGuitarTable(newState);
+  const handleDeleteRow = async (id) => {
+    // const guitar = guitarTable.find((gt) => gt._id === id);
+    // const newState = guitarTable.filter((el) => el !== guitar);
+    // setGuitarTable(newState);
+
+    await dispatch(deleteGuitarData(id));
   };
 
   const handleSort = (e) => {

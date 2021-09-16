@@ -9,6 +9,7 @@ import {
   resetPass,
   getGuitarById,
   updateGuitar,
+  deleteGuitar,
 } from '../api';
 import {
   FETCH_ALL,
@@ -49,6 +50,17 @@ export const updateGuitarData = (guitar) => async (dispatch) => {
   try {
     const token = localStorage.getItem('token');
     await updateGuitar(guitar, token);
+    const { data } = await fetchGuitars();
+    dispatch({ type: FETCH_ALL, payload: data.result });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const deleteGuitarData = (id) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem('token');
+    await deleteGuitar(id, token);
     const { data } = await fetchGuitars();
     dispatch({ type: FETCH_ALL, payload: data.result });
   } catch (err) {
