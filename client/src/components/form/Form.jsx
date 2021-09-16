@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { v4 as uuidv4 } from 'uuid';
-import { createGuitarData } from '../../actions';
+import { createGuitarData, updateGuitarData } from '../../actions';
 import fields from '../../service/formFields';
 import GuitarTable from '../table/GuitarTable';
+import useSort from '../../hooks/useSort';
 
 const initialState = {
   brand: '',
@@ -24,43 +26,23 @@ const initialState = {
 export default function form() {
   const dispatch = useDispatch();
 
-  // Estado Teste
-  const [guitarTable, setGuitarTable] = useState([
-    {
-      id: uuidv4(),
-      brand: 'stratocaster',
-      model: 'fender',
-      year: 2020,
-      summary: 'muito boa',
-      description: 'maravilhosa',
-      player: 'david gilmour',
-      songs: 'TUdo bem, eu não nasci ontem',
-      price: 1999,
-      imageCover: 'guitarrona.png',
-      images: 'alguem.jpg, fuiEu.png',
-      link: 'www.google.com',
-      tags: 'cordas, pedaleira',
-      likeCount: 1,
-    },
-    {
-      id: uuidv4(),
-      brand: 'ibanez',
-      model: 'fly V',
-      year: 1990,
-      description: 'pense numa guitarra',
-      summary: 'guitarra boa demais',
-      player: 'ralf loren',
-      songs: 'Amor de mãe, feliz',
-      price: 4500,
-      imageCover: 'capa.jpg',
-      images: 'tudo.jpg, essa.png',
-      link: 'www.youtube.com',
-      tags: 'amor, carro, britadeira',
-      likeCount: 10,
-    },
-  ]);
+  const guitars = useSelector((state) => state.guitars.allGuitars);
+  console.log(guitars);
+
+  const { sortNumber, sortName } = useSort();
+
+  const [guitarTable, setGuitarTable] = useState([]);
   const [state, setState] = useState(initialState);
-  const [order, setOrder] = useState(false);
+  const [order, setOrder] = useState(true);
+
+  useEffect(() => {
+    setGuitarTable(guitars);
+  }, [guitars]);
+
+  useEffect(() => {
+    setState(initialState);
+    setOrder(!order);
+  }, [guitarTable]);
 
   const handleValue = ({ target }) => {
     const { name } = target;
@@ -72,68 +54,44 @@ export default function form() {
     });
   };
 
-  const handleSubmit = (e) => {
+  // criar o reducer
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const guitar = guitarTable.find((gt) => gt.id === state.id);
-    let newState = [];
-    if (guitar) newState = guitarTable.filter((el) => el !== guitar);
-    const id = uuidv4();
-    setGuitarTable((prev, _props) => (!guitar ? [...prev, { id, ...state }]
-      : [{ id, ...state }, ...newState]));
-    // dispatch(createGuitarData(state));
+    const guitar = await guitarTable.find((gt) => gt._id === state._id);
+
+    if (guitar) {
+      await dispatch(updateGuitarData(state));
+    } else {
+      await dispatch(createGuitarData(state));
+    }
   };
 
-  useEffect(() => {
-    setState(initialState);
-  }, [guitarTable]);
-
   const handleEditTable = (id) => {
-    const guitar = guitarTable.find((gt) => gt.id === id);
+    const guitar = guitarTable.find((gt) => gt._id === id);
     setState(guitar);
   };
 
   const handleDeleteRow = (id) => {
-    const guitar = guitarTable.find((gt) => gt.id === id);
+    const guitar = guitarTable.find((gt) => gt._id === id);
     const newState = guitarTable.filter((el) => el !== guitar);
     setGuitarTable(newState);
   };
 
-  // Componentizar o sort
-
   const handleSort = (e) => {
-    let newState = [];
+    let stateSort = [];
     const numbers = ['year', 'price', 'likeCount'];
     const mySubString = e.target.outerHTML.substring(
       e.target.outerHTML.indexOf('"') + 1,
       e.target.outerHTML.lastIndexOf('"'),
     );
-
     if (mySubString === 'id') return null;
-
     if (numbers.includes(mySubString)) {
-      newState = [...guitarTable]
-        .sort((a, b) => {
-          if (a[mySubString] > b[mySubString]) {
-            return parseInt(b[mySubString], 10) - parseInt(a[mySubString], 10);
-          }
-          return parseInt(a[mySubString], 10) - parseInt(b[mySubString], 10);
-        });
+      stateSort = sortNumber(guitarTable, mySubString, order);
     } else {
-      newState = [...guitarTable].sort((a, b) => {
-        const valueA = a[mySubString].toUpperCase();
-        const valueB = b[mySubString].toUpperCase();
-
-        if (valueA < valueB) return order ? -1 : 1;
-        if (valueA > valueB) return !order ? 1 : -1;
-        return 0;
-      });
+      stateSort = sortName(guitarTable, mySubString, order);
     }
-    setGuitarTable(newState);
+    setGuitarTable(stateSort);
   };
-
-  useEffect(() => {
-    setOrder(!order);
-  }, []);
 
   return (
     <div className="form-table">

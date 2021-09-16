@@ -1,5 +1,5 @@
 import {
-  CREATE_GUITAR, FETCH_ALL, GET_GUITAR, CLEAR_GUITAR,
+  CREATE_GUITAR, FETCH_ALL, GET_GUITAR, CLEAR_GUITAR, UPDATE_GUITAR,
 } from '../actions/types';
 
 const initialState = {
@@ -16,7 +16,19 @@ const reducer = (state = initialState, action) => {
       };
 
     case CREATE_GUITAR:
-      return [...state, action.payload];
+      return {
+        ...state,
+        allGuitars: [...state.allGuitars, action.payload],
+      };
+
+    case UPDATE_GUITAR:
+      // eslint-disable-next-line no-case-declarations
+      const guitar = state.allGuitars.find((gt) => gt._id === action.payload._id);
+
+      return {
+        ...state,
+        allGuitars: [guitar],
+      };
 
     case GET_GUITAR:
       return {

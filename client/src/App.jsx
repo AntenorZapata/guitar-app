@@ -19,9 +19,9 @@ import AdminPainel from './pages/AdminPainel';
 export default function App() {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getGuitars());
-  // }, []);
+  useEffect(() => {
+    dispatch(getGuitars());
+  }, []);
 
   const [error, setError] = useState({
     email: { valid: true, text: '' },
@@ -72,7 +72,7 @@ export default function App() {
             )}
           />
           <PrivateRoute path="/admin" component={AdminPainel} />
-          <PrivateRoute path="*" component={Login} />
+          <Route path="*" exact component={Home} />
         </Switch>
       </Router>
     </div>

@@ -8,6 +8,7 @@ import {
   signupUser,
   resetPass,
   getGuitarById,
+  updateGuitar,
 } from '../api';
 import {
   FETCH_ALL,
@@ -21,6 +22,7 @@ import {
   SIGNUP_ERR,
   GET_GUITAR,
   CLEAR_GUITAR,
+  UPDATE_GUITAR,
 } from './types';
 
 // Actions Creators
@@ -35,8 +37,20 @@ export const getGuitars = () => async (dispatch) => {
 
 export const createGuitarData = (guitar) => async (dispatch) => {
   try {
-    const { data } = await createGuitar(guitar);
-    dispatch({ type: CREATE_GUITAR, payload: data });
+    const token = localStorage.getItem('token');
+    const { data } = await createGuitar(guitar, token);
+    dispatch({ type: CREATE_GUITAR, payload: data.guitar });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const updateGuitarData = (guitar) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem('token');
+    await updateGuitar(guitar, token);
+    const { data } = await fetchGuitars();
+    dispatch({ type: FETCH_ALL, payload: data.result });
   } catch (err) {
     return err.response.data.message;
   }
