@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { createGuitarData } from '../../actions';
 import fields from '../../service/formFields';
 import GuitarTable from '../table/GuitarTable';
+import useSort from '../../hooks/useSort';
 
 const initialState = {
   brand: '',
@@ -23,6 +24,8 @@ const initialState = {
 
 export default function form() {
   const dispatch = useDispatch();
+
+  const { sortNumber, sortName } = useSort();
 
   // Estado Teste
   const [guitarTable, setGuitarTable] = useState([
@@ -75,7 +78,6 @@ export default function form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const guitar = guitarTable.find((gt) => gt.id === state.id);
     let newState = [];
     if (guitar) newState = guitarTable.filter((el) => el !== guitar);
@@ -87,6 +89,7 @@ export default function form() {
 
   useEffect(() => {
     setState(initialState);
+    setOrder(!order);
   }, [guitarTable]);
 
   const handleEditTable = (id) => {
@@ -100,10 +103,8 @@ export default function form() {
     setGuitarTable(newState);
   };
 
-  // Componentizar o sort
-
   const handleSort = (e) => {
-    let newState = [];
+    let stateSort = [];
     const numbers = ['year', 'price', 'likeCount'];
     const mySubString = e.target.outerHTML.substring(
       e.target.outerHTML.indexOf('"') + 1,
@@ -113,30 +114,16 @@ export default function form() {
     if (mySubString === 'id') return null;
 
     if (numbers.includes(mySubString)) {
-      newState = [...guitarTable].sort((a, b) => {
-        if (order) {
-          return +a[mySubString] - +b[mySubString];
-        }
-        return +b[mySubString] - +a[mySubString];
-      });
+      stateSort = sortNumber(guitarTable, mySubString, order);
     } else {
-      newState = [...guitarTable].sort((a, b) => {
-        const valueA = Array.isArray(a[mySubString])
-          ? a[mySubString].join('').toUpperCase() : a[mySubString].toUpperCase();
-        const valueB = Array.isArray(b[mySubString])
-          ? b[mySubString].join('').toUpperCase() : b[mySubString].toUpperCase();
-
-        if (valueA < valueB) return order ? 1 : -1;
-        if (valueA > valueB) return order ? -1 : 1;
-        return 0;
-      });
+      stateSort = sortName(guitarTable, mySubString, order);
     }
-    setGuitarTable(newState);
+    setGuitarTable(stateSort);
   };
 
-  useEffect(() => {
-    setOrder(!order);
-  }, [guitarTable]);
+  // useEffect(() => {
+
+  // }, [guitarTable]);
 
   return (
     <div className="form-table">
