@@ -71,7 +71,7 @@ export default function App() {
               <Details {...props} />
             )}
           />
-          <PrivateRoute path="/admin" component={AdminPainel} />
+          <Route path="/admin" component={AdminPainel} />
           <PrivateRoute path="*" component={Login} />
         </Switch>
       </Router>

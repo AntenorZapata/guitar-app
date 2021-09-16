@@ -34,8 +34,8 @@ export default function form() {
       summary: 'muito boa',
       description: 'maravilhosa',
       player: 'david gilmour',
-      songs: 'TUdo bem, eu não nasci ontem',
-      price: 1999,
+      songs: ['TUdo bem', 'eu não nasci ontem'],
+      price: 4553,
       imageCover: 'guitarrona.png',
       images: 'alguem.jpg, fuiEu.png',
       link: 'www.google.com',
@@ -46,21 +46,22 @@ export default function form() {
       id: uuidv4(),
       brand: 'ibanez',
       model: 'fly V',
-      year: 1990,
+      year: 1992,
       description: 'pense numa guitarra',
       summary: 'guitarra boa demais',
-      player: 'ralf loren',
-      songs: 'Amor de mãe, feliz',
-      price: 4500,
+      player: 'balf loren',
+      songs: ['bmor de mãe', 'feliz'],
+      price: 3500,
       imageCover: 'capa.jpg',
       images: 'tudo.jpg, essa.png',
       link: 'www.youtube.com',
       tags: 'amor, carro, britadeira',
       likeCount: 10,
     },
+
   ]);
   const [state, setState] = useState(initialState);
-  const [order, setOrder] = useState(false);
+  const [order, setOrder] = useState(true);
 
   const handleValue = ({ target }) => {
     const { name } = target;
@@ -74,12 +75,13 @@ export default function form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const guitar = guitarTable.find((gt) => gt.id === state.id);
     let newState = [];
     if (guitar) newState = guitarTable.filter((el) => el !== guitar);
     const id = uuidv4();
-    setGuitarTable((prev, _props) => (!guitar ? [...prev, { id, ...state }]
-      : [{ id, ...state }, ...newState]));
+    setGuitarTable((prev, _props) => (!guitar
+      ? [...prev, { id, ...state }] : [{ id, ...state }, ...newState]));
     // dispatch(createGuitarData(state));
   };
 
@@ -111,20 +113,21 @@ export default function form() {
     if (mySubString === 'id') return null;
 
     if (numbers.includes(mySubString)) {
-      newState = [...guitarTable]
-        .sort((a, b) => {
-          if (a[mySubString] > b[mySubString]) {
-            return parseInt(b[mySubString], 10) - parseInt(a[mySubString], 10);
-          }
-          return parseInt(a[mySubString], 10) - parseInt(b[mySubString], 10);
-        });
+      newState = [...guitarTable].sort((a, b) => {
+        if (order) {
+          return +a[mySubString] - +b[mySubString];
+        }
+        return +b[mySubString] - +a[mySubString];
+      });
     } else {
       newState = [...guitarTable].sort((a, b) => {
-        const valueA = a[mySubString].toUpperCase();
-        const valueB = b[mySubString].toUpperCase();
+        const valueA = Array.isArray(a[mySubString])
+          ? a[mySubString].join('').toUpperCase() : a[mySubString].toUpperCase();
+        const valueB = Array.isArray(b[mySubString])
+          ? b[mySubString].join('').toUpperCase() : b[mySubString].toUpperCase();
 
-        if (valueA < valueB) return order ? -1 : 1;
-        if (valueA > valueB) return !order ? 1 : -1;
+        if (valueA < valueB) return order ? 1 : -1;
+        if (valueA > valueB) return order ? -1 : 1;
         return 0;
       });
     }
@@ -133,7 +136,7 @@ export default function form() {
 
   useEffect(() => {
     setOrder(!order);
-  }, []);
+  }, [guitarTable]);
 
   return (
     <div className="form-table">

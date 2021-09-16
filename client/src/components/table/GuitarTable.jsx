@@ -36,8 +36,9 @@ function GuitarTable({
             const arr = Object.values(gt);
             return (
               <tr key={gt.id}>
-                {arr.map((el) => (
-                  <td key={el}>{el}</td>
+                {arr.map((el, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <td key={index}>{el}</td>
                 ))}
                 <td>
                   <button onClick={() => handleEditTable(gt.id)} type="button">
