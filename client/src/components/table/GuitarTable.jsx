@@ -24,38 +24,36 @@ function GuitarTable({
   handleSort,
 }) {
   return (
-    <div>
-      <table border="1" className="guitar-table">
-        <tbody>
-          <tr>
-            {titles.map((title) => (
-              <th key={title.id} name={title.state} onClick={handleSort}>{title.value}</th>
-            ))}
-          </tr>
-          {guitarTable.map((gt) => {
-            const arr = Object.values(gt);
-            return (
-              <tr key={gt.id}>
-                {arr.map((el) => (
-                  <td key={el}>{el}</td>
-                ))}
-                <td>
-                  <button onClick={() => handleEditTable(gt.id)} type="button">
-                    edit
-                  </button>
-                </td>
-                <td>
-                  <button onClick={() => handleDeleteRow(gt.id)} type="button">
-                    delete
-                  </button>
-                </td>
-              </tr>
+    <table border="1" className="guitar-table">
+      <tbody>
+        <tr>
+          {titles.map((title) => (
+            <th key={title.id} name={title.state} onClick={handleSort}>{title.value}</th>
+          ))}
+        </tr>
+        {guitarTable.map((gt) => {
+          const arr = Object.values(gt);
+          return (
+            <tr key={gt.id}>
+              {arr.map((el) => (
+                <td key={el}>{el}</td>
+              ))}
+              <td>
+                <button onClick={() => handleEditTable(gt.id)} type="button">
+                  edit
+                </button>
+              </td>
+              <td>
+                <button onClick={() => handleDeleteRow(gt.id)} type="button">
+                  delete
+                </button>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
 
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
   );
 }
 
