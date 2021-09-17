@@ -63,8 +63,9 @@ export default function GuitarTable({
             </th>
           </tr>
           <tr>
+            <th />
             {filters
-            && titles.map((el, index) => (
+            && titles.slice(1).map((el, index) => (
               <th key={el.id}>
                 <input
                   type="text"
