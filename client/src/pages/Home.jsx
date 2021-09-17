@@ -16,7 +16,7 @@ function Home() {
   const handleLogout = () => {
     localStorage.clear();
   };
-
+  // criar component header
   return (
     <div>
       <nav>

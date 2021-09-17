@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createGuitarData, deleteGuitarData, updateGuitarData } from '../../actions';
 import fields from '../../service/formFields';
@@ -21,8 +22,10 @@ const initialState = {
   likeCount: 0,
 };
 
-export default function form() {
+export default function Form() {
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   const guitars = useSelector((state) => state.guitars.allGuitars);
   const { sortNumber, sortName } = useSort();
@@ -53,10 +56,16 @@ export default function form() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const guitar = await guitarTable.find((gt) => gt._id === state._id);
+    let err = '';
     if (guitar) {
-      await dispatch(updateGuitarData(state));
+      err = await dispatch(updateGuitarData(state));
     } else {
-      await dispatch(createGuitarData(state));
+      err = await dispatch(createGuitarData(state));
+    }
+
+    if (err) {
+      localStorage.clear();
+      history.push('/login');
     }
   };
 
