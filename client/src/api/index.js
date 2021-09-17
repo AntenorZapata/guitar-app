@@ -7,8 +7,6 @@ const userUrl = 'http://localhost:3001/api/v1/users/login';
 const forgotUrl = 'http://localhost:3001/api/v1/users/forgotPassword';
 const signupUrl = 'http://localhost:3001/api/v1/users/signup';
 
-// const getGuitarById = 'http://localhost:3001/api/v1/guitars/:id';
-
 const config = {
   Headers: {
     'Content-Type': 'application/json',

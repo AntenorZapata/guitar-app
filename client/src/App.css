@@ -152,3 +152,7 @@ td {
   padding: .5rem 0;
   word-break: break-all;
 }
+
+tr input {
+  width: 4rem;
+}

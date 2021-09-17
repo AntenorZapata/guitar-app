@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import titles from '../../service/tableTitles';
 
 export default function GuitarTable({
@@ -6,25 +6,58 @@ export default function GuitarTable({
   handleDeleteRow,
   handleEditTable,
   handleSort,
+  setGuitarTable,
 }) {
+  const [filters, setFilters] = useState(false);
+  const [valueFilter, setValueFilter] = useState(guitarTable);
+
+  useEffect(() => {
+    setValueFilter(guitarTable);
+  }, [guitarTable]);
+
+  const handleGuitarFilter = (e, el) => {
+    const { state } = el;
+    const { target: { value } } = e;
+
+    if (value !== '') {
+      const results = guitarTable.filter((gt) => gt[state].toLowerCase()
+        .startsWith(value.toLowerCase()));
+      setValueFilter(results);
+    } else {
+      setValueFilter(guitarTable);
+    }
+  };
+
   return (
     <div>
-      <table border="1" className="guitar-table">
+      <table rules="none" border="1" className="guitar-table">
+
         <thead>
           <tr>
             {titles.map((title) => (
-              <th key={title.id} name={title.state} onClick={handleSort}>{title.value}</th>
+              <th
+                key={title.id}
+                name={title.state}
+                onClick={handleSort}
+              >
+                {title.value}
+              </th>
+            ))}
+            <th><button type="button" onClick={() => setFilters(!filters)}>Filtros</button></th>
+          </tr>
+          <tr>
+            {filters
+            && titles.map((el, index) => (
+              <th key={el.id}>
+                <input type="text" onChange={(e) => handleGuitarFilter(e, el)} />
+              </th>
             ))}
           </tr>
+
         </thead>
         <tbody>
-          {guitarTable.map((gt) => (
+          {valueFilter && valueFilter.length > 0 ? (valueFilter.map((gt) => (
             <tr key={gt._id}>
-              {/* render table dynamically
-              const arr = Object.values(gt); */}
-              {/* {arr.map((el) => (
-                  <td>{el}</td>
-                ))} */}
               <td>{gt._id}</td>
               <td>{gt.brand}</td>
               <td>{gt.model}</td>
@@ -50,9 +83,15 @@ export default function GuitarTable({
                 </button>
               </td>
             </tr>
-          ))}
+          ))) : null }
         </tbody>
       </table>
     </div>
   );
 }
+
+// {/* render table dynamically
+//   const arr = Object.values(gt); */}
+//   {/* {arr.map((el) => (
+//       <td>{el}</td>
+//     ))} */}

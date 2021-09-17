@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
-import { v4 as uuidv4 } from 'uuid';
 import { createGuitarData, deleteGuitarData, updateGuitarData } from '../../actions';
 import fields from '../../service/formFields';
 import GuitarTable from '../table/GuitarTable';
@@ -52,11 +50,9 @@ export default function form() {
     });
   };
 
-  // criar o reducer
   const handleSubmit = async (e) => {
     e.preventDefault();
     const guitar = await guitarTable.find((gt) => gt._id === state._id);
-
     if (guitar) {
       await dispatch(updateGuitarData(state));
     } else {
@@ -70,10 +66,6 @@ export default function form() {
   };
 
   const handleDeleteRow = async (id) => {
-    // const guitar = guitarTable.find((gt) => gt._id === id);
-    // const newState = guitarTable.filter((el) => el !== guitar);
-    // setGuitarTable(newState);
-
     await dispatch(deleteGuitarData(id));
   };
 
@@ -118,6 +110,7 @@ export default function form() {
           handleDeleteRow={handleDeleteRow}
           handleEditTable={handleEditTable}
           handleSort={handleSort}
+          setGuitarTable={setGuitarTable}
         />
       </div>
     </div>
