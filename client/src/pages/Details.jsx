@@ -1,26 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
-import { getById } from '../actions';
+import Header from '../components/header/Header';
+import { getById, getReviews, getReviewById } from '../actions';
 
 function Details({ match: { params: { id } } }) {
   const guitar = useSelector((state) => state.guitars.guitar);
-  const [rev, setRev] = useState('');
+  const reviews = useSelector((state) => state.guitars.reviewById);
+  const user = useSelector((state) => state.user);
+
+  // const [rev, setRev] = useState('');
   const dispatch = useDispatch();
 
   useEffect(async () => {
     dispatch(getById(id));
-
-    const reviews = await axios.get('http://localhost:3001/api/v1/reviews');
-    setRev(reviews.data.reviews);
+    dispatch(getReviewById(id));
   }, []);
 
-  // Cria essa lógica no backend
+  const handleAddReview = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div>
-      <h1>{guitar.player}</h1>
-      {rev.length ? rev.map((revi) => (
+      <Header />
+      <form onSubmit={handleAddReview}>
+        <label htmlFor="review">
+          Adicione um Review
+          <input type="text" id="review" />
+        </label>
+        <button type="submit"> Adicionar</button>
+      </form>
+      <h1>{guitar.model}</h1>
+      {reviews.length ? reviews.map((revi) => (
         revi.guitar === id && <p key={revi._id}>{revi.review}</p>
       )) : null}
     </div>

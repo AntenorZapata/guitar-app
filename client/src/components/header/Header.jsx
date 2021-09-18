@@ -12,10 +12,11 @@ function Header() {
     <>
       <nav>
         <Link to="/">Home</Link>
-
         <Link to={token ? '/favs' : '/login'}>{token ? 'Favoritos' : 'Login'}</Link>
         <Link to={token ? '/config' : '/signup'}>{token ? 'Minha Conta' : 'Crie sua conta'}</Link>
-        <Link to={token ? '/admin' : null}>{token ? 'Admin' : null}</Link>
+        <Link to="/admin">{token ? 'Admin' : null}</Link>
+        <Link to="/about">{token ? 'Sobre' : null}</Link>
+
         {token
         && (
         <Link to="/">

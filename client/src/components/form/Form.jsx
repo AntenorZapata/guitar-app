@@ -55,7 +55,7 @@ export default function Form() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const guitar = await guitarTable.find((gt) => gt._id === state._id);
+    const guitar = guitarTable.find((gt) => gt._id === state._id);
     let err = '';
     if (guitar) {
       err = await dispatch(updateGuitarData(state));

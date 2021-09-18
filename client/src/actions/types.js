@@ -11,3 +11,5 @@ export const RESET_ERR = 'RESET_ERR';
 export const GET_GUITAR = 'GET_GUITAR';
 export const CLEAR_GUITAR = 'CLEAR_GUITAR';
 export const UPDATE_GUITAR = 'UPDATE_GUITAR';
+export const GET_REVIEWS = 'GET_REVIEWS';
+export const GET_REVIEWS_BY_ID = 'GET_REVIEWS_BY_ID';

@@ -11,6 +11,7 @@ import Config from './pages/Config';
 import history from './service/history';
 import Favorites from './pages/Favorites';
 import Details from './pages/Details';
+import About from './pages/About';
 import './App.css';
 
 import { getGuitars } from './actions';
@@ -71,6 +72,7 @@ export default function App() {
               <Details {...props} />
             )}
           />
+          <PrivateRoute path="/about" component={About} />
           <PrivateRoute path="/admin" component={AdminPainel} />
           <Route path="*" exact component={Home} />
         </Switch>

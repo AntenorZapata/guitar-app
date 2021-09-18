@@ -6,10 +6,13 @@ const {
   update,
   remove,
 } = require('../controllers/guitarController');
+const reviewRouter = require('./reviewRouter');
 const { validateGuitar, validateId } = require('../middlewares/validateGuitar');
 const { validateToken, restrictTo } = require('../middlewares/auth');
 
 const router = express.Router();
+
+router.use('/:id/reviews', reviewRouter);
 
 router.route('/').get(getAll).post(validateToken, restrictTo('admin'), validateGuitar, create);
 

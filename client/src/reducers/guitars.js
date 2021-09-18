@@ -1,10 +1,12 @@
 import {
-  CREATE_GUITAR, FETCH_ALL, GET_GUITAR, CLEAR_GUITAR, UPDATE_GUITAR,
+  CREATE_GUITAR, FETCH_ALL, GET_GUITAR, CLEAR_GUITAR, GET_REVIEWS, GET_REVIEWS_BY_ID,
 } from '../actions/types';
 
 const initialState = {
   allGuitars: [],
   guitar: {},
+  reviews: [],
+  reviewById: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,13 +23,16 @@ const reducer = (state = initialState, action) => {
         allGuitars: [...state.allGuitars, action.payload],
       };
 
-    case UPDATE_GUITAR:
-      // eslint-disable-next-line no-case-declarations
-      const guitar = state.allGuitars.find((gt) => gt._id === action.payload._id);
-
+    case GET_REVIEWS:
       return {
         ...state,
-        allGuitars: [guitar],
+        reviews: [...action.payload],
+      };
+
+    case GET_REVIEWS_BY_ID:
+      return {
+        ...state,
+        reviewById: action.payload,
       };
 
     case GET_GUITAR:

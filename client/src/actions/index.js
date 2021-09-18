@@ -9,7 +9,9 @@ import {
   resetPass,
   getGuitarById,
   updateGuitar,
+  fetchReviews,
   deleteGuitar,
+  fetchReviewById,
 } from '../api';
 import {
   FETCH_ALL,
@@ -24,6 +26,8 @@ import {
   GET_GUITAR,
   CLEAR_GUITAR,
   UPDATE_GUITAR,
+  GET_REVIEWS,
+  GET_REVIEWS_BY_ID,
 } from './types';
 
 // Actions Creators
@@ -113,6 +117,24 @@ export const getById = (id) => async (dispatch) => {
   try {
     const { data } = await getGuitarById(id);
     dispatch({ type: GET_GUITAR, payload: data.guitar });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const getReviews = () => async (dispatch) => {
+  try {
+    const { data } = await fetchReviews();
+    dispatch({ type: GET_REVIEWS, payload: data.reviews });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const getReviewById = (id) => async (dispatch) => {
+  try {
+    const { data } = await fetchReviewById(id);
+    dispatch({ type: GET_REVIEWS_BY_ID, payload: data.reviews });
   } catch (err) {
     return err.response.data.message;
   }

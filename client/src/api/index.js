@@ -6,6 +6,7 @@ const urlUpdate = 'http://localhost:3001/api/v1/guitars/:id';
 const userUrl = 'http://localhost:3001/api/v1/users/login';
 const forgotUrl = 'http://localhost:3001/api/v1/users/forgotPassword';
 const signupUrl = 'http://localhost:3001/api/v1/users/signup';
+const reviewUrl = 'http://localhost:3001/api/v1/reviews';
 
 const config = {
   Headers: {
@@ -14,6 +15,10 @@ const config = {
 };
 
 export const fetchGuitars = () => axios.get(url);
+
+export const fetchReviews = () => axios.get(reviewUrl);
+
+export const fetchReviewById = (id) => axios.get(`http://localhost:3001/api/v1/guitars/${id}/reviews`);
 
 export const createGuitar = (guitar, token) => axios.post(url, guitar, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
 
