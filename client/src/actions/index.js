@@ -13,6 +13,7 @@ import {
   deleteGuitar,
   fetchReviewById,
   createReview,
+  deleteReview,
 } from '../api';
 import {
   FETCH_ALL,
@@ -147,6 +148,16 @@ export const getReviews = () => async (dispatch) => {
 export const getReviewById = (id) => async (dispatch) => {
   try {
     const { data } = await fetchReviewById(id);
+    dispatch({ type: GET_REVIEWS_BY_ID, payload: data.reviews });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const deleteReviewAction = (id, token, gtId) => async (dispatch) => {
+  try {
+    await deleteReview(id, token);
+    const { data } = await fetchReviewById(gtId);
     dispatch({ type: GET_REVIEWS_BY_ID, payload: data.reviews });
   } catch (err) {
     return err.response.data.message;
