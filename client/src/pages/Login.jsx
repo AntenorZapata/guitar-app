@@ -21,7 +21,6 @@ export default function Login({ error, setError }) {
   }, []);
 
   const handleValueInput = (e) => {
-    e.preventDefault();
     setAuthError(false);
     const { name } = e.target;
     setState({ ...state, [name]: e.target.value });

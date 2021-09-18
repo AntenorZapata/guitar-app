@@ -13,3 +13,4 @@ export const CLEAR_GUITAR = 'CLEAR_GUITAR';
 export const UPDATE_GUITAR = 'UPDATE_GUITAR';
 export const GET_REVIEWS = 'GET_REVIEWS';
 export const GET_REVIEWS_BY_ID = 'GET_REVIEWS_BY_ID';
+export const CREATE_REVIEW = 'CREATE_REVIEW';

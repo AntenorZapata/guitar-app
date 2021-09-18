@@ -1,12 +1,12 @@
 import {
-  CREATE_GUITAR, FETCH_ALL, GET_GUITAR, CLEAR_GUITAR, GET_REVIEWS, GET_REVIEWS_BY_ID,
+  CREATE_GUITAR, FETCH_ALL, GET_GUITAR, CLEAR_GUITAR, GET_REVIEWS, GET_REVIEWS_BY_ID, CREATE_REVIEW,
 } from '../actions/types';
 
 const initialState = {
   allGuitars: [],
   guitar: {},
   reviews: [],
-  reviewById: {},
+  reviewById: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,6 +27,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         reviews: [...action.payload],
+      };
+
+    case CREATE_REVIEW:
+      return {
+        ...state,
+        reviewById: [...state.reviewById, action.payload],
       };
 
     case GET_REVIEWS_BY_ID:

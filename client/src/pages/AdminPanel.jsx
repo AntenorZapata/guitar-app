@@ -25,7 +25,7 @@ const initialState = {
   likeCount: 0,
 };
 
-function AdminPainel() {
+function AdminPanel() {
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -117,4 +117,4 @@ function AdminPainel() {
   );
 }
 
-export default AdminPainel;
+export default AdminPanel;

@@ -15,7 +15,7 @@ import About from './pages/About';
 import './App.css';
 
 import { getGuitars } from './actions';
-import AdminPainel from './pages/AdminPainel';
+import AdminPanel from './pages/AdminPanel';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -73,7 +73,7 @@ export default function App() {
             )}
           />
           <PrivateRoute path="/about" component={About} />
-          <PrivateRoute path="/admin" component={AdminPainel} />
+          <PrivateRoute path="/admin" component={AdminPanel} />
           <Route path="*" exact component={Home} />
         </Switch>
       </Router>

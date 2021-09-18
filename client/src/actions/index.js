@@ -12,6 +12,7 @@ import {
   fetchReviews,
   deleteGuitar,
   fetchReviewById,
+  createReview,
 } from '../api';
 import {
   FETCH_ALL,
@@ -28,6 +29,7 @@ import {
   UPDATE_GUITAR,
   GET_REVIEWS,
   GET_REVIEWS_BY_ID,
+  CREATE_REVIEW,
 } from './types';
 
 // Actions Creators
@@ -76,6 +78,8 @@ export const loginAction = (user) => async (dispatch) => {
   try {
     const { data } = await login(user);
     localStorage.setItem('token', data.token);
+    const userCurr = { email: data.email, name: data.name };
+    localStorage.setItem('user', JSON.stringify(userCurr));
     dispatch({ type: LOGIN, payload: data });
   } catch (err) {
     return err.response.data.message;
@@ -117,6 +121,15 @@ export const getById = (id) => async (dispatch) => {
   try {
     const { data } = await getGuitarById(id);
     dispatch({ type: GET_GUITAR, payload: data.guitar });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const createReviewAction = (id, review, token) => async (dispatch) => {
+  try {
+    const { data } = await createReview(id, review, token);
+    dispatch({ type: CREATE_REVIEW, payload: data.rev });
   } catch (err) {
     return err.response.data.message;
   }

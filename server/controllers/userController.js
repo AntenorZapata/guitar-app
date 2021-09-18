@@ -9,7 +9,7 @@ const sendEmail = require('../utils/email');
 const sendToken = async (user, statusCode, res) => {
   const token = await user.getSignedToken();
   return res.status(statusCode).json({
-    success: 'success', token, email: user.email, _id: user._id,
+    success: 'success', token, name: user.name, email: user.email, _id: user._id,
   });
 };
 
