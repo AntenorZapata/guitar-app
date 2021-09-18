@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signupAction, clearErrors } from '../actions';
 import useValidation from '../hooks/useValidation';
+import Header from '../components/header/Header';
 
 export default function Signup() {
   const history = useHistory();
@@ -43,6 +44,7 @@ export default function Signup() {
 
   return (
     <div>
+      <Header />
       <form onSubmit={hendleSubmit}>
         <label htmlFor="name">
           Nome

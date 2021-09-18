@@ -1,63 +1,113 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import titles from '../../service/tableTitles';
 
-const titles = [
-  { id: 1, value: 'Id', state: 'id' },
-  { id: 2, value: 'Marca', state: 'brand' },
-  { id: 4, value: 'Modelo', state: 'model' },
-  { id: 3, value: 'Ano', state: 'year' },
-  { id: 5, value: 'Resumo', state: 'summary' },
-  { id: 6, value: 'Descrição', state: 'description' },
-  { id: 7, value: 'Guitarrista', state: 'player' },
-  { id: 8, value: 'Músicas', state: 'songs' },
-  { id: 9, value: 'Preço', state: 'price' },
-  { id: 10, value: 'Imagem da Capa', state: 'imageCover' },
-  { id: 11, value: 'Imagens', state: 'images' },
-  { id: 12, value: 'Link', state: 'link' },
-  { id: 13, value: 'Tags', state: 'tags' },
-  { id: 14, value: 'Likes', state: 'likeCount' },
-];
-
-function GuitarTable({
+export default function GuitarTable({
   guitarTable,
   handleDeleteRow,
   handleEditTable,
   handleSort,
 }) {
+  const [filters, setFilters] = useState(false);
+  const [valueFilter, setValueFilter] = useState([]);
+
+  useEffect(() => {
+    setValueFilter(guitarTable);
+  }, [guitarTable]);
+
+  const handleGuitarFilter = (e, el) => {
+    const { state } = el;
+    const { target: { value } } = e;
+
+    if (value !== '') {
+      const results = guitarTable.filter((gt) => {
+        if (Array.isArray(gt[state])) {
+          const field = gt[state].join('');
+          return field.toLowerCase().startsWith(value.toLowerCase());
+        }
+        if (typeof gt[state] === 'number') {
+          return gt[state].toString().startsWith(value.toLowerCase());
+        }
+        return gt[state].toLowerCase().startsWith(value.toLowerCase());
+      });
+      setValueFilter(results);
+    } else {
+      setValueFilter(guitarTable);
+    }
+  };
+
   return (
     <div>
-      <table border="1" className="guitar-table">
-        <tbody>
+      <table
+        rules="none"
+        border="1"
+        className="guitar-table"
+      >
+        <thead>
           <tr>
             {titles.map((title) => (
-              <th key={title.id} name={title.state} onClick={handleSort}>{title.value}</th>
+              <th
+                key={title.id}
+                name={title.state}
+                onClick={handleSort}
+              >
+                {title.value}
+              </th>
+            ))}
+            <th>
+              <button
+                type="button"
+                onClick={() => setFilters(!filters)}
+              >
+                Filtros
+              </button>
+            </th>
+          </tr>
+          <tr>
+            <th />
+            {filters
+            && titles.slice(1).map((el, index) => (
+              <th key={el.id}>
+                <input
+                  type="text"
+                  onChange={(e) => handleGuitarFilter(e, el)}
+                />
+              </th>
             ))}
           </tr>
-          {guitarTable.map((gt) => {
-            const arr = Object.values(gt);
-            return (
-              <tr key={gt.id}>
-                {arr.map((el, index) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <td key={index}>{el}</td>
-                ))}
+
+        </thead>
+        <tbody>
+          {valueFilter && valueFilter.length > 0
+            ? (valueFilter.map((gt) => (
+              <tr key={gt._id}>
+                <td>{gt._id}</td>
+                <td>{gt.brand}</td>
+                <td>{gt.model}</td>
+                <td>{gt.year}</td>
+                <td>{gt.summary}</td>
+                <td>{gt.description}</td>
+                <td>{gt.player}</td>
+                <td>{gt.songs}</td>
+                <td>{gt.price}</td>
+                <td>{gt.imageCover}</td>
+                <td>{gt.images}</td>
+                <td>{gt.link}</td>
+                <td>{gt.tags}</td>
+                <td>{gt.likeCount}</td>
                 <td>
-                  <button onClick={() => handleEditTable(gt.id)} type="button">
+                  <button onClick={() => handleEditTable(gt._id)} type="button">
                     edit
                   </button>
                 </td>
                 <td>
-                  <button onClick={() => handleDeleteRow(gt.id)} type="button">
+                  <button onClick={() => handleDeleteRow(gt._id)} type="button">
                     delete
                   </button>
                 </td>
               </tr>
-
-            );
-          })}
+            ))) : <tr><td>Not Found</td></tr> }
         </tbody>
       </table>
     </div>
   );
 }
-
-export default GuitarTable;

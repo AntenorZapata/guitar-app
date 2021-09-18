@@ -3,32 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import GuitarDeck from '../components/guitarDeck/GuitarDeck';
 import { getGuitars, clearGuitar } from '../actions';
+import Header from '../components/header/Header';
 
 function Home() {
   const dispatch = useDispatch();
-  const token = localStorage.getItem('token');
   const guitars = useSelector((state) => state.guitars.result);
 
   useEffect(() => {
     dispatch(clearGuitar());
   }, []);
 
-  const handleLogout = () => {
-    localStorage.clear();
-  };
-
   return (
     <div>
-      <nav>
-        <Link to={token ? '/favs' : '/login'}>{token ? 'Favoritos' : 'Login'}</Link>
-        <Link to={token ? '/config' : '/signup'}>{token ? 'Minha Conta' : 'Crie sua conta'}</Link>
-        {token
-        && (
-        <Link to="/">
-          <button type="button" onClick={handleLogout}>Sair</button>
-        </Link>
-        )}
-      </nav>
+      <Header />
       <GuitarDeck />
     </div>
   );

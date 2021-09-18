@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from '../components/header/Header';
 
-function Favorites() {
+function About() {
   return (
     <div>
       <Header />
-      <h1>favorite</h1>
+      <h1>about</h1>
     </div>
   );
 }
 
-export default Favorites;
+export default About;

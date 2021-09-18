@@ -1,10 +1,12 @@
 import axios from 'axios';
 
 const url = 'http://localhost:3001/api/v1/guitars';
+const urlUpdate = 'http://localhost:3001/api/v1/guitars/:id';
+
 const userUrl = 'http://localhost:3001/api/v1/users/login';
 const forgotUrl = 'http://localhost:3001/api/v1/users/forgotPassword';
 const signupUrl = 'http://localhost:3001/api/v1/users/signup';
-// const getGuitarById = 'http://localhost:3001/api/v1/guitars/:id';
+const reviewUrl = 'http://localhost:3001/api/v1/reviews';
 
 const config = {
   Headers: {
@@ -14,7 +16,17 @@ const config = {
 
 export const fetchGuitars = () => axios.get(url);
 
-export const createGuitar = (guitar) => axios.post(url, guitar, config);
+export const fetchReviews = () => axios.get(reviewUrl);
+
+export const fetchReviewById = (id) => axios.get(`http://localhost:3001/api/v1/guitars/${id}/reviews`);
+
+export const createReview = (id, review, token) => axios.post(`http://localhost:3001/api/v1/guitars/${id}/reviews`, review, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
+
+export const createGuitar = (guitar, token) => axios.post(url, guitar, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
+
+export const updateGuitar = (guitar, token) => axios.put(`http://localhost:3001/api/v1/guitars/${guitar._id}`, guitar, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
+
+export const deleteGuitar = (id, token) => axios.delete(`http://localhost:3001/api/v1/guitars/${id}`, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
 
 export const login = (user) => axios.post(userUrl, user, config);
 

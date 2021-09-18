@@ -8,6 +8,11 @@ import {
   signupUser,
   resetPass,
   getGuitarById,
+  updateGuitar,
+  fetchReviews,
+  deleteGuitar,
+  fetchReviewById,
+  createReview,
 } from '../api';
 import {
   FETCH_ALL,
@@ -21,6 +26,9 @@ import {
   SIGNUP_ERR,
   GET_GUITAR,
   CLEAR_GUITAR,
+  UPDATE_GUITAR,
+  GET_REVIEWS,
+  GET_REVIEWS_BY_ID,
 } from './types';
 
 // Actions Creators
@@ -35,8 +43,31 @@ export const getGuitars = () => async (dispatch) => {
 
 export const createGuitarData = (guitar) => async (dispatch) => {
   try {
-    const { data } = await createGuitar(guitar);
-    dispatch({ type: CREATE_GUITAR, payload: data });
+    const token = localStorage.getItem('token');
+    const { data } = await createGuitar(guitar, token);
+    dispatch({ type: CREATE_GUITAR, payload: data.guitar });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const updateGuitarData = (guitar) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem('token');
+    await updateGuitar(guitar, token);
+    const { data } = await fetchGuitars();
+    dispatch({ type: FETCH_ALL, payload: data.result });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const deleteGuitarData = (id) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem('token');
+    await deleteGuitar(id, token);
+    const { data } = await fetchGuitars();
+    dispatch({ type: FETCH_ALL, payload: data.result });
   } catch (err) {
     return err.response.data.message;
   }
@@ -46,6 +77,8 @@ export const loginAction = (user) => async (dispatch) => {
   try {
     const { data } = await login(user);
     localStorage.setItem('token', data.token);
+    const userCurr = { email: data.email, name: data.name };
+    localStorage.setItem('user', JSON.stringify(userCurr));
     dispatch({ type: LOGIN, payload: data });
   } catch (err) {
     return err.response.data.message;
@@ -87,6 +120,34 @@ export const getById = (id) => async (dispatch) => {
   try {
     const { data } = await getGuitarById(id);
     dispatch({ type: GET_GUITAR, payload: data.guitar });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const createReviewAction = (id, review, token) => async (dispatch) => {
+  try {
+    await createReview(id, review, token);
+    const { data } = await fetchReviewById(id);
+    dispatch({ type: GET_REVIEWS_BY_ID, payload: data.reviews });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const getReviews = () => async (dispatch) => {
+  try {
+    const { data } = await fetchReviews();
+    dispatch({ type: GET_REVIEWS, payload: data.reviews });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const getReviewById = (id) => async (dispatch) => {
+  try {
+    const { data } = await fetchReviewById(id);
+    dispatch({ type: GET_REVIEWS_BY_ID, payload: data.reviews });
   } catch (err) {
     return err.response.data.message;
   }

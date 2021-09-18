@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction, clearErrors } from '../actions';
 import useValidation from '../hooks/useValidation';
+import Header from '../components/header/Header';
 
 export default function Login({ error, setError }) {
   const history = useHistory();
@@ -20,7 +21,6 @@ export default function Login({ error, setError }) {
   }, []);
 
   const handleValueInput = (e) => {
-    e.preventDefault();
     setAuthError(false);
     const { name } = e.target;
     setState({ ...state, [name]: e.target.value });
@@ -38,6 +38,7 @@ export default function Login({ error, setError }) {
 
   return (
     <div>
+      <Header />
       <form onSubmit={hendleSubmit}>
         <label htmlFor="email">
           Email
