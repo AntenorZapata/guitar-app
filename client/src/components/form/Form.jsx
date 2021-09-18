@@ -112,7 +112,6 @@ export default function form() {
     );
 
     if (mySubString === 'id') return null;
-
     if (numbers.includes(mySubString)) {
       stateSort = sortNumber(guitarTable, mySubString, order);
     } else {
@@ -120,10 +119,6 @@ export default function form() {
     }
     setGuitarTable(stateSort);
   };
-
-  // useEffect(() => {
-
-  // }, [guitarTable]);
 
   return (
     <div className="form-table">
