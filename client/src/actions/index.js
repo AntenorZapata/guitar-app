@@ -29,7 +29,6 @@ import {
   UPDATE_GUITAR,
   GET_REVIEWS,
   GET_REVIEWS_BY_ID,
-  CREATE_REVIEW,
 } from './types';
 
 // Actions Creators
@@ -128,8 +127,9 @@ export const getById = (id) => async (dispatch) => {
 
 export const createReviewAction = (id, review, token) => async (dispatch) => {
   try {
-    const { data } = await createReview(id, review, token);
-    dispatch({ type: CREATE_REVIEW, payload: data.rev });
+    await createReview(id, review, token);
+    const { data } = await fetchReviewById(id);
+    dispatch({ type: GET_REVIEWS_BY_ID, payload: data.reviews });
   } catch (err) {
     return err.response.data.message;
   }

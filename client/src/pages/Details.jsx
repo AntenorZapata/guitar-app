@@ -5,6 +5,8 @@ import {
   getById, getReviews, getReviewById, createReviewAction,
 } from '../actions';
 
+const initialState = { review: '', rating: '1' };
+
 function Details({ match: { params: { id } } }) {
   const token = localStorage.getItem('token') || '';
   const userLocal = JSON.parse(localStorage.getItem('user')) || null;
@@ -12,26 +14,28 @@ function Details({ match: { params: { id } } }) {
   if (userLocal) email = userLocal.email;
   const guitar = useSelector((state) => state.guitars.guitar);
   const reviews = useSelector((state) => state.guitars.reviewById);
-  const [review, setReview] = useState({ rating: '', review: '' });
-  // const user = useSelector((state) => state.user);
+  const [review, setReview] = useState(initialState);
   const dispatch = useDispatch();
 
-  // const [rev, setRev] = useState('');
+  useEffect(() => {
+    dispatch(getById(id));
+    dispatch(getReviewById(id));
+  }, []);
 
   const handleReviewValues = (e) => {
     const { name } = e.target;
     setReview({ ...review, [name]: e.target.value });
   };
 
-  useEffect(async () => {
-    dispatch(getById(id));
-    dispatch(getReviewById(id));
-  }, [reviews]);
-
   const handleAddReview = async (e) => {
     e.preventDefault();
+    setReview(initialState);
     const res = await dispatch(createReviewAction(id, review, token));
     console.log(res);
+  };
+
+  const handleDeleteReview = (reviewId) => {
+    console.log(reviewId);
   };
 
   return (
@@ -72,7 +76,14 @@ function Details({ match: { params: { id } } }) {
       {reviews.length ? reviews.map((revi) => (
         <div key={revi.id}>
           <p key={revi._id}>{revi.review}</p>
-          {email === revi.user.email && <button type="button">deletar</button>}
+          {email === revi.user.email && (
+          <button
+            onClick={() => handleDeleteReview(revi._id)}
+            type="button"
+          >
+            deletar
+          </button>
+          )}
         </div>
       )) : null}
     </div>

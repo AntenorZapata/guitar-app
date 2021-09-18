@@ -1,4 +1,4 @@
-const { createReview, getAllReviews } = require('../service/reviewService');
+const { createReview, getAllReviews, deleteRewiewService } = require('../service/reviewService');
 // const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
@@ -27,7 +27,17 @@ const create = catchAsync(async (req, res) => {
   });
 });
 
+const deleteReview = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const review = await deleteRewiewService(id);
+  res.status(200).json({
+    status: 'success',
+    review,
+  });
+});
+
 module.exports = {
   create,
   getAll,
+  deleteReview,
 };
