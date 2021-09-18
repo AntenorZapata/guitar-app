@@ -26,6 +26,7 @@ const initialState = {
 };
 
 function AdminPanel() {
+  const user = JSON.parse(localStorage.getItem('user')) || null;
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -36,6 +37,7 @@ function AdminPanel() {
   const [guitarTable, setGuitarTable] = useState([]);
   const [state, setState] = useState(initialState);
   const [order, setOrder] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setGuitarTable(guitars);
@@ -65,10 +67,9 @@ function AdminPanel() {
     } else {
       err = await dispatch(createGuitarData(state));
     }
-
     if (err) {
-      localStorage.clear();
-      history.push('/login');
+      setError(true);
+      setState(initialState);
     }
   };
 
@@ -78,7 +79,11 @@ function AdminPanel() {
   };
 
   const handleDeleteRow = async (id) => {
-    await dispatch(deleteGuitarData(id));
+    const res = await dispatch(deleteGuitarData(id));
+    if (res) {
+      setError(true);
+      setState(initialState);
+    }
   };
 
   const handleSort = (e) => {
@@ -100,6 +105,26 @@ function AdminPanel() {
   return (
     <>
       <Header />
+      <div className="user-data">
+        <p>
+          Nome:
+          {user.name}
+        </p>
+        <p>
+          Email:
+          {` ${user.email}`}
+        </p>
+        <p>
+          Cargo:
+          {user.role === 'user' && 'Visitante'}
+        </p>
+        {user.role !== 'admin' && (
+        <p className={error ? 'unauthorized' : ''}>
+          Apenas administradores têm permissão para adicionar, editar ou deletar uma guitarra.
+        </p>
+        )}
+
+      </div>
       <div className="admin-painel">
         <Form handleSubmit={handleSubmit} state={state} handleValue={handleValue} />
         <div>
@@ -113,6 +138,7 @@ function AdminPanel() {
           />
         </div>
       </div>
+
     </>
   );
 }

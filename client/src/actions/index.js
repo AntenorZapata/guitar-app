@@ -78,7 +78,7 @@ export const loginAction = (user) => async (dispatch) => {
   try {
     const { data } = await login(user);
     localStorage.setItem('token', data.token);
-    const userCurr = { email: data.email, name: data.name };
+    const userCurr = { email: data.email, name: data.name, role: data.role };
     localStorage.setItem('user', JSON.stringify(userCurr));
     dispatch({ type: LOGIN, payload: data });
   } catch (err) {

@@ -134,3 +134,15 @@ tr input {
   display: flex;
   justify-content: space-between;
 }
+
+.user-data {
+  border: 1px solid black;
+  width: 16rem;
+  margin: .4rem 8rem;
+  padding: .4rem;
+  flex-wrap: wrap;
+}
+
+.unauthorized {
+  color: red;
+}
