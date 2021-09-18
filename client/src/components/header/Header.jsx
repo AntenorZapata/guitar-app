@@ -9,7 +9,7 @@ function Header() {
   const token = localStorage.getItem('token');
 
   return (
-    <>
+    <div className="navbar">
       <nav>
         <Link to="/">Home</Link>
         <Link to={token ? '/favs' : '/login'}>{token ? 'Favoritos' : 'Login'}</Link>
@@ -24,7 +24,7 @@ function Header() {
         </Link>
         )}
       </nav>
-    </>
+    </div>
   );
 }
 

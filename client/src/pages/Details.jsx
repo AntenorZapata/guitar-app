@@ -7,9 +7,9 @@ function Details({ match: { params: { id } } }) {
   const guitar = useSelector((state) => state.guitars.guitar);
   const reviews = useSelector((state) => state.guitars.reviewById);
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   // const [rev, setRev] = useState('');
-  const dispatch = useDispatch();
 
   useEffect(async () => {
     dispatch(getById(id));
