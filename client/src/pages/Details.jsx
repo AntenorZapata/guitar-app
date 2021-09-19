@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/header/Header';
 import {
   getById, getReviews, getReviewById, createReviewAction,
+  deleteReviewAction,
 } from '../actions';
 
 const initialState = { review: '', rating: '1' };
@@ -22,6 +23,8 @@ function Details({ match: { params: { id } } }) {
     dispatch(getReviewById(id));
   }, []);
 
+  // console.log(reviews);
+
   const handleReviewValues = (e) => {
     const { name } = e.target;
     setReview({ ...review, [name]: e.target.value });
@@ -34,8 +37,9 @@ function Details({ match: { params: { id } } }) {
     console.log(res);
   };
 
-  const handleDeleteReview = (reviewId) => {
-    console.log(reviewId);
+  const handleDeleteReview = async (reviewId) => {
+    const res = await dispatch(deleteReviewAction(reviewId, token, id));
+    console.log(res);
   };
 
   return (

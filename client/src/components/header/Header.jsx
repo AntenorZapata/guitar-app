@@ -21,10 +21,10 @@ function Header() {
         {token
         && (
           <span>
-            <p>
+            {/* <p>
               Olá,
               {user.name && ` ${user.name.charAt(0).toUpperCase()}${user.name.slice(1)}`}
-            </p>
+            </p> */}
             <Link to="/">
               <button type="button" onClick={handleLogout}>Sair</button>
             </Link>
