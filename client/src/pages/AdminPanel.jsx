@@ -116,11 +116,11 @@ function AdminPanel() {
         </p>
         <p>
           Cargo:
-          {user.role === 'user' && 'Visitante'}
+          {user.role === 'user' ? 'Visitante' : 'admin'}
         </p>
         {user.role !== 'admin' && (
         <p className={error ? 'unauthorized' : ''}>
-          Apenas administradores têm permissão para adicionar, editar ou deletar uma guitarra.
+          Apenas administradores têm permissão para adicionar, editar ou remover uma guitarra.
         </p>
         )}
 
