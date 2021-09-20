@@ -1,6 +1,7 @@
 const Favorite = require('../models/favoritesModel');
 const catchAsync = require('../utils/catchAsync');
 
+// Refactor - mandar pra camada service
 const create = catchAsync(async (req, res) => {
   const {
     guitar, user,

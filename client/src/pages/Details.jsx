@@ -19,8 +19,10 @@ function Details({ match: { params: { id } } }) {
   const guitar = useSelector((state) => state.guitars.guitar);
   const reviews = useSelector((state) => state.guitars.reviewById);
   const favorites = useSelector((state) => state.guitars.allFavorites);
+  const { _id: favId } = useSelector((state) => state.guitars.favorites);
 
   const [review, setReview] = useState(initialState);
+  const [favorite, setFavorite] = useState(false);
   const [fav, setFav] = useState(false);
   const dispatch = useDispatch();
 
@@ -47,16 +49,18 @@ function Details({ match: { params: { id } } }) {
     console.log(res);
   };
 
-  console.log(favorites);
-
   const handleFavorite = async () => {
     if (!fav) {
       await dispatch(createFavoriteAction(email, id, token));
     } else {
-      // await dispatch(deleteFavoriteAction(favId, token));
+      await dispatch(deleteFavoriteAction(favId, token));
     }
     setFav(!fav);
   };
+
+  useEffect(() => {
+    favorites.map((el) => (el.guitar === id ? setFavorite(true) : null));
+  }, [favorite]);
 
   return (
     <div>
@@ -66,7 +70,7 @@ function Details({ match: { params: { id } } }) {
         <MdFavorite
           onClick={handleFavorite}
           type="button"
-          className={!fav ? 'heart' : 'black-heart'}
+          className={favorite ? 'black-heart' : 'heart'}
         />
       </div>
       {token && (

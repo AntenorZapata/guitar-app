@@ -17,6 +17,7 @@ import {
   createFavorite,
   deleteFavorite,
   getFavoriteByEmail,
+  getFavoriteById,
 } from '../api';
 import {
   FETCH_ALL,
@@ -36,6 +37,7 @@ import {
   CREATE_FAV,
   DELETE_FAV,
   GET_FAV_BY_EMAIL,
+  GET_FAV_BY_ID,
 } from './types';
 
 // Actions Creators
@@ -144,9 +146,10 @@ export const createReviewAction = (id, review, token) => async (dispatch) => {
 
 export const createFavoriteAction = (email, guitar, token) => async (dispatch) => {
   try {
-    const { data } = await createFavorite(email, guitar, token);
-    // const { data } = await fetchReviewById(id);
-    dispatch({ type: CREATE_FAV, payload: data.newFavorite });
+    const response = await createFavorite(email, guitar, token);
+    const { data } = await getFavoriteByEmail(email, token);
+    const payData = { all: [...data.favorites], new: { ...response.data.newFavorite } };
+    dispatch({ type: GET_FAV_BY_EMAIL, payload: payData });
   } catch (err) {
     return err.response.data.message;
   }
@@ -164,8 +167,16 @@ export const deleteFavoriteAction = (id, token) => async (dispatch) => {
 export const getFavoriteByEmailAction = (email, token) => async (dispatch) => {
   try {
     const { data } = await getFavoriteByEmail(email, token);
-
     dispatch({ type: GET_FAV_BY_EMAIL, payload: data.favorites });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const getFavoriteByGuitarId = (id, token) => async (dispatch) => {
+  try {
+    const { data } = await getFavoriteById(id, token);
+    dispatch({ type: GET_FAV_BY_ID, payload: data.favorites });
   } catch (err) {
     return err.response.data.message;
   }

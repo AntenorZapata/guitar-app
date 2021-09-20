@@ -1,6 +1,6 @@
 import {
   CREATE_GUITAR, FETCH_ALL, GET_GUITAR, CLEAR_GUITAR, GET_REVIEWS, GET_REVIEWS_BY_ID,
-  CREATE_FAV, DELETE_FAV, GET_FAV_BY_EMAIL,
+  CREATE_FAV, DELETE_FAV, GET_FAV_BY_EMAIL, GET_FAV_BY_ID,
 } from '../actions/types';
 
 const initialState = {
@@ -12,6 +12,8 @@ const initialState = {
   allFavorites: [],
 
 };
+
+// Refactor - criar um reducer pros favoritos e reviews
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -54,7 +56,14 @@ const reducer = (state = initialState, action) => {
     case GET_FAV_BY_EMAIL:
       return {
         ...state,
-        allFavorites: [...action.payload],
+        allFavorites: [...action.payload.all],
+        favorites: action.payload.new,
+      };
+
+    case GET_FAV_BY_ID:
+      return {
+        ...state,
+        favorites: action.payload,
       };
 
     case GET_GUITAR:

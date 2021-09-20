@@ -30,6 +30,8 @@ export const deleteFavorite = (id, token) => axios.delete(`http://localhost:3001
 
 export const getFavoriteByEmail = (email, token) => axios.get(`http://localhost:3001/api/v1/users/${email}/favorites`, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
 
+export const getFavoriteById = (id, token) => axios.get(`http://localhost:3001/api/v1/guitars/${id}/favorites`, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
+
 export const createGuitar = (guitar, token) => axios.post(url, guitar, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
 
 export const updateGuitar = (guitar, token) => axios.put(`http://localhost:3001/api/v1/guitars/${guitar._id}`, guitar, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });

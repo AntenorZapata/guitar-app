@@ -16,3 +16,4 @@ export const GET_REVIEWS_BY_ID = 'GET_REVIEWS_BY_ID';
 export const CREATE_FAV = 'CREATE_FAV';
 export const DELETE_FAV = 'DELETE_FAV';
 export const GET_FAV_BY_EMAIL = 'GET_FAV_BY_EMAIL';
+export const GET_FAV_BY_ID = 'GET_FAV_BY_ID';
