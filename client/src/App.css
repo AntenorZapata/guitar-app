@@ -16,8 +16,6 @@
   box-shadow: 0 0 10px #719ECE;
 }
 
-
-
 .pass-invalid {
   border: 2px solid red;
 }
@@ -145,4 +143,15 @@ tr input {
 
 .unauthorized {
   color: red;
+}
+
+.details-title {
+  display: flex; 
+  height: 5rem;
+  text-align: center;
+  align-items: center; 
+}
+
+.details-title button {
+  margin-left: 2rem;
 }

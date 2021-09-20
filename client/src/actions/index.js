@@ -14,6 +14,7 @@ import {
   fetchReviewById,
   createReview,
   deleteReview,
+  createFavorite,
 } from '../api';
 import {
   FETCH_ALL,
@@ -30,6 +31,7 @@ import {
   UPDATE_GUITAR,
   GET_REVIEWS,
   GET_REVIEWS_BY_ID,
+  CREATE_FAV,
 } from './types';
 
 // Actions Creators
@@ -131,6 +133,16 @@ export const createReviewAction = (id, review, token) => async (dispatch) => {
     await createReview(id, review, token);
     const { data } = await fetchReviewById(id);
     dispatch({ type: GET_REVIEWS_BY_ID, payload: data.reviews });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const createFavoriteAction = (email, guitar, token) => async (dispatch) => {
+  try {
+    const { data } = await createFavorite(email, guitar, token);
+    // const { data } = await fetchReviewById(id);
+    dispatch({ type: CREATE_FAV, payload: data.newFavorite });
   } catch (err) {
     return err.response.data.message;
   }

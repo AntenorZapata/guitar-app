@@ -24,6 +24,8 @@ export const deleteReview = (id, token) => axios.delete(`http://localhost:3001/a
 
 export const createReview = (id, review, token) => axios.post(`http://localhost:3001/api/v1/guitars/${id}/reviews`, review, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
 
+export const createFavorite = (user, guitar, token) => axios.post('http://localhost:3001/api/v1/favorites', { user, guitar }, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
+
 export const createGuitar = (guitar, token) => axios.post(url, guitar, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
 
 export const updateGuitar = (guitar, token) => axios.put(`http://localhost:3001/api/v1/guitars/${guitar._id}`, guitar, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });

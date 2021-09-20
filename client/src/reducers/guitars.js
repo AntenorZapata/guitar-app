@@ -1,5 +1,6 @@
 import {
   CREATE_GUITAR, FETCH_ALL, GET_GUITAR, CLEAR_GUITAR, GET_REVIEWS, GET_REVIEWS_BY_ID,
+  CREATE_FAV,
 } from '../actions/types';
 
 const initialState = {
@@ -7,6 +8,7 @@ const initialState = {
   guitar: {},
   reviews: [],
   reviewById: [],
+  favorites: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -33,6 +35,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         reviewById: action.payload,
+      };
+
+    case CREATE_FAV:
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
       };
 
     case GET_GUITAR:

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { GrFavorite } from 'react-icons/gr';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/header/Header';
 import {
   getById, getReviews, getReviewById, createReviewAction,
-  deleteReviewAction,
+  deleteReviewAction, createFavoriteAction,
 } from '../actions';
 
 const initialState = { review: '', rating: '1' };
@@ -40,10 +41,18 @@ function Details({ match: { params: { id } } }) {
     console.log(res);
   };
 
+  const handleFavorite = async () => {
+    const a = await dispatch(createFavoriteAction(email, id, token));
+    console.log(a);
+  };
+
   return (
     <div>
       <Header />
-      <h1>{guitar.model}</h1>
+      <div className="details-title">
+        <h1>{guitar.model}</h1>
+        <GrFavorite onClick={handleFavorite} type="button">favorite</GrFavorite>
+      </div>
       {token && (
       <form onSubmit={handleAddReview}>
         <label htmlFor="review">
