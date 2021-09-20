@@ -39,6 +39,7 @@ import {
   GET_FAV_BY_EMAIL,
   GET_FAV_BY_ID,
   CLEAR_REVIEWS,
+  GET_FAVORITES_PAGE,
 } from './types';
 
 // Actions Creators
@@ -186,6 +187,15 @@ export const getFavoriteByGuitarId = (id, token) => async (dispatch) => {
     return err.response.data.message;
   }
 };
+
+// export const setFavoritesPage = (id) => async (dispatch) => {
+//   try {
+//     const { data } = await getGuitarById(id);
+//     dispatch({ type: GET_FAVORITES_PAGE, payload: data.guitar });
+//   } catch (err) {
+//     return err.response.data.message;
+//   }
+// };
 
 export const getReviews = () => async (dispatch) => {
   try {

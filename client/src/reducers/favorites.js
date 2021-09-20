@@ -1,10 +1,11 @@
 import {
-  CREATE_FAV, DELETE_FAV, GET_FAV_BY_EMAIL, GET_FAV_BY_ID,
+  CREATE_FAV, DELETE_FAV, GET_FAV_BY_EMAIL, GET_FAV_BY_ID, GET_FAVORITES_PAGE,
 } from '../actions/types';
 
 const initialState = {
   favorites: {},
   allFavorites: [],
+  favoritesPage: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -32,6 +33,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         favorites: action.payload,
+      };
+
+    case GET_FAVORITES_PAGE:
+      return {
+        ...state,
+        favoritesPage: [...state.favoritesPage, action.payload],
       };
 
     default:

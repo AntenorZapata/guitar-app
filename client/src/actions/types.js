@@ -18,3 +18,4 @@ export const DELETE_FAV = 'DELETE_FAV';
 export const GET_FAV_BY_EMAIL = 'GET_FAV_BY_EMAIL';
 export const GET_FAV_BY_ID = 'GET_FAV_BY_ID';
 export const CLEAR_REVIEWS = 'CLEAR_REVIEWS';
+export const GET_FAVORITES_PAGE = 'GET_FAVORITES_PAGE';
