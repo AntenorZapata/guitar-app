@@ -23,8 +23,6 @@ function Details({ match: { params: { id } } }) {
     dispatch(getReviewById(id));
   }, []);
 
-  // console.log(reviews);
-
   const handleReviewValues = (e) => {
     const { name } = e.target;
     setReview({ ...review, [name]: e.target.value });

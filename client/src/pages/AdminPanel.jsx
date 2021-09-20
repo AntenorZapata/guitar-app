@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createGuitarData, deleteGuitarData, updateGuitarData } from '../actions';
-import fields from '../service/formFields';
+// import fields from '../service/formFields';
 import GuitarTable from '../components/table/GuitarTable';
 import useSort from '../hooks/useSort';
 
@@ -26,10 +26,10 @@ const initialState = {
 };
 
 function AdminPanel() {
+  const history = useHistory();
+
   const user = JSON.parse(localStorage.getItem('user')) || null;
   const dispatch = useDispatch();
-
-  const history = useHistory();
 
   const guitars = useSelector((state) => state.guitars.allGuitars);
   const { sortNumber, sortName } = useSort();
@@ -123,7 +123,6 @@ function AdminPanel() {
           Apenas administradores têm permissão para adicionar, editar ou remover uma guitarra.
         </p>
         )}
-
       </div>
       <div className="admin-painel">
         <Form handleSubmit={handleSubmit} state={state} handleValue={handleValue} />
