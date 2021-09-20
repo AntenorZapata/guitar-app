@@ -14,7 +14,6 @@ const favoriteSchema = new mongoose.Schema(
     },
     user: {
       type: String,
-      ref: 'User',
       required: [true, 'Favorite must belong to a user'],
     },
   },
@@ -24,14 +23,14 @@ const favoriteSchema = new mongoose.Schema(
   },
 );
 
-favoriteSchema.pre(/^find/, function (next) {
-  this.populate({
-    path: 'user',
-    select: 'email',
-  });
+// favoriteSchema.pre(/^find/, function (next) {
+//   this.populate({
+//     path: 'user',
+//     select: 'email',
+//   });
 
-  next();
-});
+//   next();
+// });
 
 const Favorite = mongoose.model('Favorite', favoriteSchema);
 
