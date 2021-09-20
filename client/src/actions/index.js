@@ -125,7 +125,7 @@ export const resetAction = (password, token) => async (dispatch) => {
   }
 };
 
-export const getById = (id) => async (dispatch) => {
+export const getGuitarByIdAction = (id) => async (dispatch) => {
   try {
     const { data } = await getGuitarById(id);
     dispatch({ type: GET_GUITAR, payload: data.guitar });
@@ -149,7 +149,7 @@ export const createFavoriteAction = (email, guitar, token) => async (dispatch) =
     const response = await createFavorite(email, guitar, token);
     const { data } = await getFavoriteByEmail(email, token);
     const payData = { all: [...data.favorites], new: { ...response.data.newFavorite } };
-    dispatch({ type: GET_FAV_BY_EMAIL, payload: payData });
+    dispatch({ type: CREATE_FAV, payload: payData });
   } catch (err) {
     return err.response.data.message;
   }
@@ -169,7 +169,7 @@ export const getFavoriteByEmailAction = (email, token) => async (dispatch) => {
     const { data } = await getFavoriteByEmail(email, token);
     dispatch({ type: GET_FAV_BY_EMAIL, payload: data.favorites });
   } catch (err) {
-    return err.response.data.message;
+    return err;
   }
 };
 

@@ -3,7 +3,7 @@ import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/header/Header';
 import {
-  getById, getReviews, getReviewById, createReviewAction,
+  getGuitarByIdAction, getReviews, getReviewById, createReviewAction,
   deleteReviewAction, createFavoriteAction, deleteFavoriteAction,
   getFavoriteByEmailAction,
 } from '../actions';
@@ -15,22 +15,21 @@ function Details({ match: { params: { id } } }) {
   const userLocal = JSON.parse(localStorage.getItem('user')) || null;
   let email = '';
   if (userLocal) email = userLocal.email;
-  // User só um useSelector - refactor
-  const guitar = useSelector((state) => state.guitars.guitar);
-  const reviews = useSelector((state) => state.guitars.reviewById);
-  const favorites = useSelector((state) => state.guitars.allFavorites);
-  const { _id: favId } = useSelector((state) => state.guitars.favorites);
+  const guitarState = useSelector((state) => state.guitars);
 
   const [review, setReview] = useState(initialState);
-  const [favorite, setFavorite] = useState(false);
-  const [fav, setFav] = useState(false);
+  const [favId, setFavId] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getById(id));
+    dispatch(getGuitarByIdAction(id));
     dispatch(getReviewById(id));
-    dispatch(getFavoriteByEmailAction(email, token));
+    if (token) dispatch(getFavoriteByEmailAction(email, token));
   }, []);
+
+  useEffect(() => {
+    if (token) guitarState.allFavorites.map((el) => el.guitar === id && setFavId(el._id));
+  }, [guitarState.allFavorites]);
 
   const handleReviewValues = (e) => {
     const { name } = e.target;
@@ -50,27 +49,23 @@ function Details({ match: { params: { id } } }) {
   };
 
   const handleFavorite = async () => {
-    if (!fav) {
+    if (!favId) {
       await dispatch(createFavoriteAction(email, id, token));
     } else {
       await dispatch(deleteFavoriteAction(favId, token));
     }
-    setFav(!fav);
+    setFavId('');
   };
-
-  useEffect(() => {
-    favorites.map((el) => (el.guitar === id ? setFavorite(true) : null));
-  }, [favorite]);
 
   return (
     <div>
       <Header />
       <div className="details-title">
-        <h1>{guitar.model}</h1>
+        <h1>{guitarState.guitar.model}</h1>
         <MdFavorite
           onClick={handleFavorite}
           type="button"
-          className={favorite ? 'black-heart' : 'heart'}
+          className={favId ? 'black-heart' : 'heart'}
         />
       </div>
       {token && (
@@ -104,7 +99,7 @@ function Details({ match: { params: { id } } }) {
         <button type="submit"> Adicionar</button>
       </form>
       )}
-      {reviews.length ? reviews.map((revi) => (
+      {guitarState.reviews.length ? guitarState.reviews.map((revi) => (
         <div key={revi.id}>
           <p key={revi._id}>{revi.review}</p>
           {email === revi.user.email && (

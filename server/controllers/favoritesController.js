@@ -1,13 +1,8 @@
-const Favorite = require('../models/favoritesModel');
 const catchAsync = require('../utils/catchAsync');
+const { createFavorite, getAllFavorites, removeFavorite } = require('../service/favoriteService');
 
-// Refactor - mandar pra camada service
 const create = catchAsync(async (req, res) => {
-  const {
-    guitar, user,
-  } = req.body;
-
-  const newFavorite = await Favorite.create(req.body);
+  const newFavorite = await createFavorite(req.body);
 
   res.status(200).json({
     status: 'success',
@@ -20,13 +15,14 @@ const getAll = catchAsync(async (req, res) => {
   if (req.params.email) filter = { user: req.params.email };
   if (req.params.id) filter = { guitar: req.params.id };
 
-  const favorites = await Favorite.find(filter);
+  const favorites = await getAllFavorites(filter);
+
   return res.status(200).json({ status: 'success', favorites });
 });
 
 const deleteFavorite = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const response = await Favorite.findByIdAndDelete(id);
+  const response = await removeFavorite(id);
   return res.status(200).json({ status: 'success', response });
 });
 

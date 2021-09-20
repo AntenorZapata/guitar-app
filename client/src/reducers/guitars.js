@@ -44,7 +44,8 @@ const reducer = (state = initialState, action) => {
     case CREATE_FAV:
       return {
         ...state,
-        favorites: action.payload,
+        allFavorites: [...action.payload.all],
+        favorites: action.payload.new,
       };
 
     case DELETE_FAV:
@@ -56,8 +57,7 @@ const reducer = (state = initialState, action) => {
     case GET_FAV_BY_EMAIL:
       return {
         ...state,
-        allFavorites: [...action.payload.all],
-        favorites: action.payload.new,
+        allFavorites: [...action.payload],
       };
 
     case GET_FAV_BY_ID:
