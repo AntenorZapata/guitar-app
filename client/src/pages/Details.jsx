@@ -16,6 +16,8 @@ function Details({ match: { params: { id } } }) {
   let email = '';
   if (userLocal) email = userLocal.email;
   const guitarState = useSelector((state) => state.guitars);
+  const favorites = useSelector((state) => state.favorites.allFavorites);
+  const reviews = useSelector((state) => state.reviews.reviewById);
 
   const [review, setReview] = useState(initialState);
   const [favId, setFavId] = useState('');
@@ -28,8 +30,8 @@ function Details({ match: { params: { id } } }) {
   }, []);
 
   useEffect(() => {
-    if (token) guitarState.allFavorites.map((el) => el.guitar === id && setFavId(el._id));
-  }, [guitarState.allFavorites]);
+    if (token) favorites.map((el) => el.guitar === id && setFavId(el._id));
+  }, [favorites]);
 
   const handleReviewValues = (e) => {
     const { name } = e.target;
@@ -99,7 +101,7 @@ function Details({ match: { params: { id } } }) {
         <button type="submit"> Adicionar</button>
       </form>
       )}
-      {guitarState.reviews.length ? guitarState.reviews.map((revi) => (
+      {reviews.length ? reviews.map((revi) => (
         <div key={revi.id}>
           <p key={revi._id}>{revi.review}</p>
           {email === revi.user.email && (

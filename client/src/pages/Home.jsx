@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import GuitarDeck from '../components/guitarDeck/GuitarDeck';
-import { getGuitars, clearGuitar } from '../actions';
+import { getGuitars, clearGuitar, clearReviews } from '../actions';
 import Header from '../components/header/Header';
 
 function Home() {
@@ -11,6 +11,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(clearGuitar());
+    dispatch(clearReviews());
   }, []);
 
   return (

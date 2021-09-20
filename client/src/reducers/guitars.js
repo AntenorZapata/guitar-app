@@ -6,10 +6,10 @@ import {
 const initialState = {
   allGuitars: [],
   guitar: {},
-  reviews: [],
-  reviewById: [],
-  favorites: {},
-  allFavorites: [],
+  // reviews: [],
+  // reviewById: [],
+  // favorites: {},
+  // allFavorites: [],
 
 };
 
@@ -29,42 +29,42 @@ const reducer = (state = initialState, action) => {
         allGuitars: [...state.allGuitars, action.payload],
       };
 
-    case GET_REVIEWS:
-      return {
-        ...state,
-        reviews: [...action.payload],
-      };
+      // case GET_REVIEWS:
+      //   return {
+      //     ...state,
+      //     reviews: [...action.payload],
+      //   };
 
-    case GET_REVIEWS_BY_ID:
-      return {
-        ...state,
-        reviewById: action.payload,
-      };
+      // case GET_REVIEWS_BY_ID:
+      //   return {
+      //     ...state,
+      //     reviewById: action.payload,
+      //   };
 
-    case CREATE_FAV:
-      return {
-        ...state,
-        allFavorites: [...action.payload.all],
-        favorites: action.payload.new,
-      };
+      // case CREATE_FAV:
+      //   return {
+      //     ...state,
+      //     allFavorites: [...action.payload.all],
+      //     favorites: action.payload.new,
+      //   };
 
-    case DELETE_FAV:
-      return {
-        ...state,
-        favorites: {},
-      };
+      // case DELETE_FAV:
+      //   return {
+      //     ...state,
+      //     favorites: {},
+      //   };
 
-    case GET_FAV_BY_EMAIL:
-      return {
-        ...state,
-        allFavorites: [...action.payload],
-      };
+      // case GET_FAV_BY_EMAIL:
+      //   return {
+      //     ...state,
+      //     allFavorites: [...action.payload],
+      //   };
 
-    case GET_FAV_BY_ID:
-      return {
-        ...state,
-        favorites: action.payload,
-      };
+      // case GET_FAV_BY_ID:
+      //   return {
+      //     ...state,
+      //     favorites: action.payload,
+      //   };
 
     case GET_GUITAR:
       return {
