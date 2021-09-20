@@ -11,8 +11,6 @@ const ResetPassword = (props) => {
 
   const { match: { params: { token } }, error, setError } = props;
 
-  console.log(props);
-
   const handleValueInput = (e) => {
     e.preventDefault();
     const { name } = e.target;

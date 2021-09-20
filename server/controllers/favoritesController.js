@@ -14,14 +14,11 @@ const create = catchAsync(async (req, res) => {
   });
 });
 
-// const getAll = async (req, res) => {
-//   const resp = await Favorite.find();
-//   return res.status(200).json(resp);
-// };
-
 const getAll = catchAsync(async (req, res) => {
   let filter = {};
   if (req.params.email) filter = { user: req.params.email };
+  if (req.params.id) filter = { guitar: req.params.id };
+
   const favorites = await Favorite.find(filter);
   return res.status(200).json({ status: 'success', favorites });
 });

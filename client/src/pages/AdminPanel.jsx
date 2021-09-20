@@ -29,6 +29,7 @@ function AdminPanel() {
   const history = useHistory();
 
   const user = JSON.parse(localStorage.getItem('user')) || null;
+
   const dispatch = useDispatch();
 
   const guitars = useSelector((state) => state.guitars.allGuitars);
@@ -108,17 +109,17 @@ function AdminPanel() {
       <div className="user-data">
         <p>
           Nome:
-          {user.name}
+          {user && user.name}
         </p>
         <p>
           Email:
-          {` ${user.email}`}
+          {` ${user && user.email}`}
         </p>
         <p>
           Cargo:
-          {user.role === 'user' ? 'Visitante' : 'admin'}
+          {user && user.role === 'user' ? 'Visitante' : 'admin'}
         </p>
-        {user.role !== 'admin' && (
+        {user && user.role !== 'admin' && (
         <p className={error ? 'unauthorized' : ''}>
           Apenas administradores têm permissão para adicionar, editar ou remover uma guitarra.
         </p>

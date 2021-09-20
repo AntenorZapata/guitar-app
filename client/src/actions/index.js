@@ -15,6 +15,8 @@ import {
   createReview,
   deleteReview,
   createFavorite,
+  deleteFavorite,
+  getFavoriteByEmail,
 } from '../api';
 import {
   FETCH_ALL,
@@ -32,6 +34,8 @@ import {
   GET_REVIEWS,
   GET_REVIEWS_BY_ID,
   CREATE_FAV,
+  DELETE_FAV,
+  GET_FAV_BY_EMAIL,
 } from './types';
 
 // Actions Creators
@@ -143,6 +147,25 @@ export const createFavoriteAction = (email, guitar, token) => async (dispatch) =
     const { data } = await createFavorite(email, guitar, token);
     // const { data } = await fetchReviewById(id);
     dispatch({ type: CREATE_FAV, payload: data.newFavorite });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const deleteFavoriteAction = (id, token) => async (dispatch) => {
+  try {
+    const { data } = await deleteFavorite(id, token);
+    dispatch({ type: DELETE_FAV, payload: null });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const getFavoriteByEmailAction = (email, token) => async (dispatch) => {
+  try {
+    const { data } = await getFavoriteByEmail(email, token);
+
+    dispatch({ type: GET_FAV_BY_EMAIL, payload: data.favorites });
   } catch (err) {
     return err.response.data.message;
   }

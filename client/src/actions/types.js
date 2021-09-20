@@ -14,3 +14,5 @@ export const UPDATE_GUITAR = 'UPDATE_GUITAR';
 export const GET_REVIEWS = 'GET_REVIEWS';
 export const GET_REVIEWS_BY_ID = 'GET_REVIEWS_BY_ID';
 export const CREATE_FAV = 'CREATE_FAV';
+export const DELETE_FAV = 'DELETE_FAV';
+export const GET_FAV_BY_EMAIL = 'GET_FAV_BY_EMAIL';

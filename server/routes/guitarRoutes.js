@@ -7,12 +7,14 @@ const {
   remove,
 } = require('../controllers/guitarController');
 const reviewRouter = require('./reviewRouter');
+const favoritesRouter = require('./favoritesRouter');
 const { validateGuitar, validateId } = require('../middlewares/validateGuitar');
 const { validateToken, restrictTo } = require('../middlewares/auth');
 
 const router = express.Router();
 
 router.use('/:id/reviews', reviewRouter);
+router.use('/:id/favorites', favoritesRouter);
 
 router.route('/').get(getAll).post(validateToken, restrictTo('admin'), validateGuitar, create);
 
