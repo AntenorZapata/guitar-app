@@ -47,8 +47,6 @@ export default function Login({ error, setError }) {
             onBlur={(e) => handleEmailValidation(e, error, setError)}
             value={state.email}
             name="email"
-            required
-            id="email"
             className={!error.email.valid ? 'email-invalid' : 'email-valid'}
             onChange={handleValueInput}
           />
@@ -64,7 +62,12 @@ export default function Login({ error, setError }) {
             onChange={handleValueInput}
           />
         </label>
-        <button disabled={!error.email.valid || state.password.length < 8} type="submit">Entrar</button>
+        <button
+          disabled={!error.email.valid || state.password.length < 8}
+          type="submit"
+        >
+          Entrar
+        </button>
         <Link to="/forgotPassword">Esqueci minha senha</Link>
         <Link to="/signup">Criar conta</Link>
       </form>

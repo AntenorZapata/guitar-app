@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import fields from '../../service/formFields';
-import FirstStep from './FirstStep';
-import SecondStep from './SecondStep';
-import ThirdStep from './ThirdStep';
+import FormSteps from './FormSteps';
 
 export default function Form(props) {
   const { handleSubmit, step, setStep } = props;
@@ -15,15 +13,38 @@ export default function Form(props) {
     }
   };
 
+  const handleInputValidation = (e) => {
+    console.log(e);
+  };
+
   return (
     <div className="form-container">
       <button type="button" onClick={() => setStep(1)}>1</button>
       <button type="button" onClick={() => setStep(2)}>2</button>
       <button type="button" onClick={() => setStep(3)}>3</button>
       <form className="form" onSubmit={handleSubmit}>
-        {step === 1 && <FirstStep props={props} fields={fields} /> }
-        {step === 2 && <SecondStep props={props} fields={fields} />}
-        {step === 3 && <ThirdStep props={props} fields={fields} />}
+        {step === 1 && (
+        <FormSteps
+          props={props}
+          fields={fields.slice(0, 4)}
+          handleInput={handleInputValidation}
+        />
+        )}
+        {step === 2 && (
+        <FormSteps
+          props={props}
+          fields={fields.slice(4, 8)}
+          handleInput={handleInputValidation}
+        />
+        )}
+        {step === 3 && (
+        <FormSteps
+          props={props}
+          fields={fields.slice(8, 13)}
+          handleInput={handleInputValidation}
+          step={step}
+        />
+        )}
         <button
           type="button"
           onClick={handleFormSteps}
