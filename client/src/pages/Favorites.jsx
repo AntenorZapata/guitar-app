@@ -24,32 +24,16 @@ function Favorites() {
   useEffect(() => {
     if (token) {
       dispatch(getFavoriteByEmailAction(email, token));
-      // dispatch(getGuitars());
     }
   }, []);
-
-  useEffect(() => {
-    // eslint-disable-next-line array-callback-return
-    favorites.map((el) => {
-      // dispatch(setFavoritesPage(el.guitar));
-    });
-  }, [favorites]);
 
   return (
     <div>
       <Header />
       <h1>favorite</h1>
-      {
-        favoritesPage.length && favoritesPage.map((el) => <h1>{el.brand}</h1>)
-      }
-      {/* {guitars.length && guitars.map((el, index) => {
-        const fav = favorites[index];
-        console.log(fav);
-
-        return (
-          <div key={el._id}>{el._id === fav.guitar && <GuitarCard guitar={el} />}</div>
-        );
-      })} */}
+      {favorites.length ? favorites.map((gt) => (
+        <GuitarCard guitar={gt} favorite key={gt.guitar} />
+      )) : null}
     </div>
   );
 }

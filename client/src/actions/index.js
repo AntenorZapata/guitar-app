@@ -155,10 +155,10 @@ export const clearFavorites = () => ({
   type: CLEAR_FAVORITES,
 });
 
-export const createFavoriteAction = (email, guitar, token) => async (dispatch) => {
+export const createFavoriteAction = (fav, token) => async (dispatch) => {
   try {
-    const response = await createFavorite(email, guitar, token);
-    const { data } = await getFavoriteByEmail(email, token);
+    const response = await createFavorite(fav, token);
+    const { data } = await getFavoriteByEmail(fav.user, token);
     const payData = { all: [...data.favorites], new: { ...response.data.newFavorite } };
     dispatch({ type: CREATE_FAV, payload: payData });
   } catch (err) {

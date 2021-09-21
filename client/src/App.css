@@ -163,3 +163,10 @@ tr input {
   font-size: 1.5rem;
   color: black;
 }
+
+.favorite-card {
+  border: 1px solid black;
+  padding: 2rem;
+  width: 10rem;
+  height: 10rem;
+}
