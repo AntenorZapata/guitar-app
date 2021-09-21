@@ -26,12 +26,11 @@ const initialState = {
 };
 
 function AdminPanel() {
-  const history = useHistory();
+  // const history = useHistory();
 
-  const user = JSON.parse(localStorage.getItem('user')) || null;
+  // const user = JSON.parse(localStorage.getItem('user')) || null;
 
   const dispatch = useDispatch();
-
   const guitars = useSelector((state) => state.guitars.allGuitars);
   const { sortNumber, sortName } = useSort();
 
@@ -39,6 +38,7 @@ function AdminPanel() {
   const [state, setState] = useState(initialState);
   const [order, setOrder] = useState(true);
   const [error, setError] = useState(false);
+  const [step, setStep] = useState(1);
 
   useEffect(() => {
     setGuitarTable(guitars);
@@ -68,6 +68,7 @@ function AdminPanel() {
     } else {
       err = await dispatch(createGuitarData(state));
     }
+    setStep(1);
     if (err) {
       setError(true);
       setState(initialState);
@@ -112,7 +113,15 @@ function AdminPanel() {
         </p>
       </div>
       <div className="admin-painel">
-        <Form handleSubmit={handleSubmit} state={state} handleValue={handleValue} />
+        <div>
+          <Form
+            handleSubmit={handleSubmit}
+            state={state}
+            handleValue={handleValue}
+            step={step}
+            setStep={setStep}
+          />
+        </div>
         <div>
           <h4>tabela</h4>
           <GuitarTable

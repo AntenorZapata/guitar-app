@@ -1,40 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import fields from '../../service/formFields';
+import FirstStep from './FirstStep';
+import SecondStep from './SecondStep';
+import ThirdStep from './ThirdStep';
 
-const initialState = {
-  brand: '',
-  model: '',
-  year: '',
-  summary: '',
-  description: '',
-  player: '',
-  songs: [],
-  price: 0,
-  imageCover: '',
-  images: [],
-  link: '',
-  tags: [],
-  likeCount: 0,
-};
+export default function Form(props) {
+  const { handleSubmit, step, setStep } = props;
 
-export default function Form({ handleSubmit, handleValue, state }) {
+  const handleFormSteps = () => {
+    if (step === 3) {
+      setStep(1);
+    } else {
+      setStep((prev) => prev + 1);
+    }
+  };
+
   return (
-    <div>
+    <div className="form-container">
+      <button type="button" onClick={() => setStep(1)}>1</button>
+      <button type="button" onClick={() => setStep(2)}>2</button>
+      <button type="button" onClick={() => setStep(3)}>3</button>
       <form className="form" onSubmit={handleSubmit}>
-        {fields.map((field) => (
-          <div key={field.id}>
-            <label htmlFor={field.value}>{field.label}</label>
-            <input
-              type={field.type}
-              id={field.value}
-              name={field.value}
-              value={state[field.value]}
-              onChange={handleValue}
-              required
-            />
-          </div>
-        ))}
-        <button type="submit">Criar guitarra</button>
+        {step === 1 && <FirstStep props={props} fields={fields} /> }
+        {step === 2 && <SecondStep props={props} fields={fields} />}
+        {step === 3 && <ThirdStep props={props} fields={fields} />}
+        <button
+          type="button"
+          onClick={handleFormSteps}
+          className="form-step-button"
+        >
+          {step === 3 ? 'voltar' : 'próximo'}
+        </button>
       </form>
     </div>
   );
