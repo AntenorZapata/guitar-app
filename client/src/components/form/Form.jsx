@@ -5,11 +5,16 @@ import FormSteps from './FormSteps';
 export default function Form(props) {
   const { handleSubmit, step, setStep } = props;
 
-  const handleFormSteps = () => {
-    if (step === 3) {
-      setStep(1);
-    } else {
-      setStep((prev) => prev + 1);
+  const handleFormSteps = ({ target: { name } }) => {
+    if (name === 'back') {
+      setStep((prev) => prev - 1);
+    }
+    if (name === 'next') {
+      if (step === 3) {
+        setStep(1);
+      } else {
+        setStep((prev) => prev + 1);
+      }
     }
   };
 
@@ -23,35 +28,29 @@ export default function Form(props) {
       <button type="button" onClick={() => setStep(2)}>2</button>
       <button type="button" onClick={() => setStep(3)}>3</button>
       <form className="form" onSubmit={handleSubmit}>
-        {step === 1 && (
         <FormSteps
           props={props}
-          fields={fields.slice(0, 4)}
           handleInput={handleInputValidation}
         />
-        )}
-        {step === 2 && (
-        <FormSteps
-          props={props}
-          fields={fields.slice(4, 8)}
-          handleInput={handleInputValidation}
-        />
-        )}
-        {step === 3 && (
-        <FormSteps
-          props={props}
-          fields={fields.slice(8, 13)}
-          handleInput={handleInputValidation}
-          step={step}
-        />
-        )}
         <button
           type="button"
           onClick={handleFormSteps}
           className="form-step-button"
+          name="next"
+          disabled={step === 3}
         >
-          {step === 3 ? 'voltar' : 'próximo'}
+          próximo
         </button>
+        {step > 1 && (
+        <button
+          type="button"
+          name="back"
+          onClick={handleFormSteps}
+          className="form-step-button"
+        >
+          voltar
+        </button>
+        )}
       </form>
     </div>
   );

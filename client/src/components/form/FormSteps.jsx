@@ -1,13 +1,23 @@
 import React from 'react';
+import fields from '../../service/formFields';
 
 function FormSteps({
   props: {
     handleValue, state, handleInput, step,
-  }, fields,
+  },
 }) {
+  let newFields = [];
+  if (step === 1) {
+    newFields = fields.slice(0, 4);
+  } else if (step === 2) {
+    newFields = fields.slice(4, 8);
+  } else {
+    newFields = fields.slice(8, 13);
+  }
+
   return (
     <div>
-      {fields.map((field) => (
+      {newFields.map((field) => (
         <div key={field.id}>
           <label htmlFor={field.value}>{field.label}</label>
           <input
