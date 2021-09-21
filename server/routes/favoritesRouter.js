@@ -7,7 +7,7 @@ const { validateId } = require('../middlewares/validateGuitar');
 
 const router = express.Router({ mergeParams: true });
 
-router.route('/').get(validateToken, getAll).post(validateToken, create);
+router.route('/').get(validateToken, getAll).post(create);
 
 router.route('/:id').delete(validateToken, validateId, deleteFavorite);
 

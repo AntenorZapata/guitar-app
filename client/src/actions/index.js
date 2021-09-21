@@ -40,6 +40,7 @@ import {
   GET_FAV_BY_ID,
   CLEAR_REVIEWS,
   GET_FAVORITES_PAGE,
+  CLEAR_FAVORITES,
 } from './types';
 
 // Actions Creators
@@ -148,6 +149,10 @@ export const createReviewAction = (id, review, token) => async (dispatch) => {
 
 export const clearReviews = () => ({
   type: CLEAR_REVIEWS,
+});
+
+export const clearFavorites = () => ({
+  type: CLEAR_FAVORITES,
 });
 
 export const createFavoriteAction = (email, guitar, token) => async (dispatch) => {

@@ -2,15 +2,26 @@ const mongoose = require('mongoose');
 
 const favoriteSchema = new mongoose.Schema(
   {
-
     createdAt: {
       type: Date,
       default: Date.now(),
     },
-    guitar: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Guitar',
-      required: [true, 'Favorite must belong to a guitar'],
+    brand: {
+      type: String,
+      required: [true, 'A guitar must have a brand'],
+    },
+    model: {
+      type: String,
+      required: [true, 'A guitar must have a model'],
+      maxlength: [40, 'A guitar model must have less or equal 40 characters'],
+    },
+    imageCover: {
+      type: String,
+      required: [true, 'A guitar must have a image'],
+    },
+    year: {
+      type: Number,
+      required: [true, 'A guitar must have a year'],
     },
     user: {
       type: String,
