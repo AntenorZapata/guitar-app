@@ -31,8 +31,6 @@ function Favorites() {
     await dispatch(deleteFavoriteAction(id, token));
   };
 
-  console.log('de novo');
-
   return (
     <div>
       <Header />

@@ -107,23 +107,9 @@ function AdminPanel() {
     <>
       <Header />
       <div className="user-data">
-        <p>
-          Nome:
-          {user && user.name}
-        </p>
-        <p>
-          Email:
-          {` ${user && user.email}`}
-        </p>
-        <p>
-          Cargo:
-          {user && user.role === 'user' ? 'Visitante' : 'admin'}
-        </p>
-        {user && user.role !== 'admin' && (
         <p className={error ? 'unauthorized' : ''}>
           Apenas administradores têm permissão para adicionar, editar ou remover uma guitarra.
         </p>
-        )}
       </div>
       <div className="admin-painel">
         <Form handleSubmit={handleSubmit} state={state} handleValue={handleValue} />

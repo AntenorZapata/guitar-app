@@ -23,6 +23,8 @@ function GuitarCard({ guitar, favorite, handleDeleteFav }) {
         >
           <div className="guitar-card">
             <h3>{guitar.brand}</h3>
+            <h3>{guitar.price}</h3>
+
           </div>
         </Link>
       )}
