@@ -15,7 +15,7 @@ function Details({ match: { params: { id } } }) {
   const userLocal = JSON.parse(localStorage.getItem('user')) || null;
   let email = '';
   if (userLocal) email = userLocal.email;
-  const guitarState = useSelector((state) => state.guitars);
+  const guitar = useSelector((state) => state.guitars.guitar);
   const favorites = useSelector((state) => state.favorites.allFavorites);
   const reviews = useSelector((state) => state.reviews.reviewById);
 
@@ -51,8 +51,15 @@ function Details({ match: { params: { id } } }) {
   };
 
   const handleFavorite = async () => {
+    const {
+      brand, model, year, imageCover,
+    } = guitar;
+    const fav = {
+      guitar: id, brand, model, year, imageCover, user: email,
+    };
+
     if (!favId) {
-      await dispatch(createFavoriteAction(email, id, token));
+      await dispatch(createFavoriteAction(fav, token));
     } else {
       await dispatch(deleteFavoriteAction(favId, token));
     }
@@ -63,7 +70,7 @@ function Details({ match: { params: { id } } }) {
     <div>
       <Header />
       <div className="details-title">
-        <h1>{guitarState.guitar.model}</h1>
+        <h1>{guitar.model}</h1>
         <MdFavorite
           onClick={handleFavorite}
           type="button"

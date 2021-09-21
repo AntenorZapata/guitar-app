@@ -1,5 +1,5 @@
 import {
-  CREATE_FAV, DELETE_FAV, GET_FAV_BY_EMAIL, GET_FAV_BY_ID, GET_FAVORITES_PAGE,
+  CREATE_FAV, DELETE_FAV, GET_FAV_BY_EMAIL, GET_FAV_BY_ID, GET_FAVORITES_PAGE, CLEAR_FAVORITES,
 } from '../actions/types';
 
 const initialState = {
@@ -39,6 +39,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         favoritesPage: [...state.favoritesPage, action.payload],
+      };
+
+    case CLEAR_FAVORITES:
+      return {
+        ...state,
+        allFavorites: [],
       };
 
     default:

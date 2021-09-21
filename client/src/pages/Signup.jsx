@@ -38,7 +38,7 @@ export default function Signup() {
     if (res) {
       setAuthError(true);
     } else {
-      history.push('/');
+      history.push('/login');
     }
   };
 

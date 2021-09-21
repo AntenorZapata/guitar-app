@@ -40,6 +40,7 @@ import {
   GET_FAV_BY_ID,
   CLEAR_REVIEWS,
   GET_FAVORITES_PAGE,
+  CLEAR_FAVORITES,
 } from './types';
 
 // Actions Creators
@@ -88,7 +89,7 @@ export const loginAction = (user) => async (dispatch) => {
   try {
     const { data } = await login(user);
     localStorage.setItem('token', data.token);
-    const userCurr = { email: data.email, name: data.name, role: data.role };
+    const userCurr = { email: data.email, name: data.name };
     localStorage.setItem('user', JSON.stringify(userCurr));
     dispatch({ type: LOGIN, payload: data });
   } catch (err) {
@@ -109,7 +110,6 @@ export const forgotAction = (email) => async (dispatch) => {
 export const signupAction = (user) => async (dispatch) => {
   try {
     const { data } = await signupUser(user);
-    localStorage.setItem('token', data.token);
     dispatch({ type: SIGNUP, payload: data.token });
   } catch (err) {
     dispatch({ type: SIGNUP_ERR, payload: err.response.data.message });
@@ -150,10 +150,14 @@ export const clearReviews = () => ({
   type: CLEAR_REVIEWS,
 });
 
-export const createFavoriteAction = (email, guitar, token) => async (dispatch) => {
+export const clearFavorites = () => ({
+  type: CLEAR_FAVORITES,
+});
+
+export const createFavoriteAction = (fav, token) => async (dispatch) => {
   try {
-    const response = await createFavorite(email, guitar, token);
-    const { data } = await getFavoriteByEmail(email, token);
+    const response = await createFavorite(fav, token);
+    const { data } = await getFavoriteByEmail(fav.user, token);
     const payData = { all: [...data.favorites], new: { ...response.data.newFavorite } };
     dispatch({ type: CREATE_FAV, payload: payData });
   } catch (err) {
