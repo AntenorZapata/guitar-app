@@ -7,6 +7,7 @@ const favoriteSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
+
     guitar: {
       type: mongoose.Schema.ObjectId,
       ref: 'Guitar',

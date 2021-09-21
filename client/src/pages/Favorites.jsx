@@ -28,12 +28,15 @@ function Favorites() {
     }
   }, []);
 
-  useEffect(() => {
-    // eslint-disable-next-line array-callback-return
-    favorites.map((el) => {
-      // dispatch(setFavoritesPage(el.guitar));
-    });
-  }, [favorites]);
+  // useEffect(() => {
+  //   // eslint-disable-next-line array-callback-return
+  //   favorites.map((el) => {
+  //     // dispatch(setFavoritesPage(el.guitar));
+  //   });
+  // }, [favorites]);
+
+  console.log(favorites);
+  console.log(guitars);
 
   return (
     <div>
