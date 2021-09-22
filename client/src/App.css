@@ -118,14 +118,7 @@ tr input {
   width: 4rem;
 }
 
-.navbar {
-  width: 40%;
-}
-.navbar nav {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-}
+
 
 .admin-painel {
   height: 70%;
@@ -186,4 +179,36 @@ tr input {
 
 .link-red {
   color: red;
+}
+
+.navbar nav {
+  width: 40%;
+  display: flex;
+}
+.navbar nav ul {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+li {
+  list-style: none;
+}
+
+.user-data-config {
+  border: 1px solid black;
+  width: 16rem;
+  margin: .4rem 8rem;
+  height: 15rem;
+}
+
+.user-data-config form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 15rem;
+}
+
+input, label {
+  display:block;
 }

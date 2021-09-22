@@ -1,10 +1,13 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import React from 'react';
-
-function Navbar() {
+function SideBar() {
   const location = useLocation();
   const path = location.pathname;
+
+  const handleLogout = () => {
+    localStorage.clear();
+  };
   return (
     <nav>
       <ul>
@@ -33,16 +36,15 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Link
-            to="/userdata"
-            className={path === '/logout' ? 'link-red' : ''}
-          >
-            sair
-          </Link>
+          <span>
+            <Link to="/">
+              <button type="button" onClick={handleLogout}>Sair</button>
+            </Link>
+          </span>
         </li>
       </ul>
     </nav>
   );
 }
 
-export default Navbar;
+export default SideBar;
