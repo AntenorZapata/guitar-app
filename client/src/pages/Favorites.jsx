@@ -8,6 +8,7 @@ import {
   // deleteReviewAction, createFavoriteAction, deleteFavoriteAction,
   getFavoriteByEmailAction, deleteFavoriteAction,
 } from '../actions';
+import Navbar from '../components/navbar/Navbar';
 // import { getGuitarById } from '../api';
 
 function Favorites() {
@@ -34,7 +35,8 @@ function Favorites() {
   return (
     <div>
       <Header />
-      <h1>favorite</h1>
+      <h1>Minha Conta</h1>
+      <Navbar />
       {favorites.length ? favorites.map((gt) => (
         <GuitarCard guitar={gt} favorite key={gt.guitar} handleDeleteFav={handleDeleteFav} />
       )) : null}

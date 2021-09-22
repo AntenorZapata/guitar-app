@@ -4,6 +4,7 @@ import FormSteps from './FormSteps';
 
 export default function Form(props) {
   const { handleSubmit, step, setStep } = props;
+  const [error, setError] = useState('');
 
   const handleFormSteps = ({ target: { name } }) => {
     if (name === 'back') {
@@ -16,10 +17,13 @@ export default function Form(props) {
         setStep((prev) => prev + 1);
       }
     }
+    setError('');
   };
 
-  const handleInputValidation = (e) => {
-    console.log(e);
+  const handleInputValidation = ({ target: { value } }, label) => {
+    if (!value) {
+      setError(label);
+    }
   };
 
   return (
@@ -30,7 +34,8 @@ export default function Form(props) {
       <form className="form" onSubmit={handleSubmit}>
         <FormSteps
           props={props}
-          handleInput={handleInputValidation}
+          handleInputValidation={handleInputValidation}
+          error={error}
         />
         <button
           type="button"

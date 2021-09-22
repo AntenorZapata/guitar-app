@@ -14,6 +14,9 @@ import Details from './pages/Details';
 import About from './pages/About';
 import './App.css';
 
+import UserData from './pages/UserData';
+import Reviews from './pages/Reviews';
+
 import { getGuitars } from './actions';
 import AdminPanel from './pages/AdminPanel';
 
@@ -36,6 +39,9 @@ export default function App() {
         <Switch>
           <PrivateRoute exact path="/config" component={Config} />
           <PrivateRoute exact path="/favs" component={Favorites} />
+          {/* <PrivateRoute exact path="/userdata" component={UserData} /> */}
+          <PrivateRoute exact path="/reviews" component={Reviews} />
+
           <Route exact path="/" component={Home} />
           <Route
             exact

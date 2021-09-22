@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import fields from '../../service/formFields';
 
 function FormSteps({
   props: {
-    handleValue, state, handleInput, step,
-  },
+    handleValue, state, step,
+  }, handleInputValidation, error,
 }) {
-  let newFields = [];
-  if (step === 1) {
-    newFields = fields.slice(0, 4);
-  } else if (step === 2) {
-    newFields = fields.slice(4, 8);
-  } else {
-    newFields = fields.slice(8, 13);
-  }
+  const handleFields = () => {
+    let newFields = [];
+    if (step === 1) {
+      newFields = fields.slice(0, 4);
+    } else if (step === 2) {
+      newFields = fields.slice(4, 8);
+    } else {
+      newFields = fields.slice(8, 13);
+    }
+    return newFields;
+  };
 
   return (
     <div>
-      {newFields.map((field) => (
+      {handleFields().map((field) => (
         <div key={field.id}>
           <label htmlFor={field.value}>{field.label}</label>
           <input
@@ -26,7 +29,6 @@ function FormSteps({
             name={field.value}
             value={state[field.value]}
             onChange={handleValue}
-            onBlur={(e) => handleInput(e)}
             required
           />
         </div>

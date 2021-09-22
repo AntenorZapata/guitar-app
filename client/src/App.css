@@ -171,22 +171,19 @@ tr input {
   height: 10rem;
 }
 
-.form-step-button {
-  width: 5rem;
-  margin-top: 4rem;
-}
+
 
 .form-container form {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -5rem;
+  margin-top: -8rem;
 }
 
 .form-container {
   text-align: center;
 }
 
-.form-container button {
-  margin-top: 5rem;
+.link-red {
+  color: red;
 }
