@@ -1,10 +1,11 @@
 import {
-  GET_REVIEWS, GET_REVIEWS_BY_ID, CLEAR_REVIEWS,
+  GET_REVIEWS, GET_REVIEWS_BY_ID, CLEAR_REVIEWS, GET_REV_BY_EMAIL,
 } from '../actions/types';
 
 const initialState = {
   reviews: [],
   reviewById: [],
+  reviewsByUser: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,6 +26,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         reviewById: [],
+      };
+
+    case GET_REV_BY_EMAIL:
+      return {
+        ...state,
+        reviewsByUser: [...action.payload],
       };
     default:
       return state;

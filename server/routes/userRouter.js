@@ -1,6 +1,7 @@
 const express = require('express');
 
 const favoritesRouter = require('./favoritesRouter');
+const reviewRouter = require('./reviewRouter');
 const {
   getAll, register, login, forgotPassword,
   resetPassword,
@@ -20,6 +21,7 @@ router.route('/signup').post(
 );
 
 router.use('/:email/favorites', favoritesRouter);
+router.use('/:email/reviews', reviewRouter);
 
 router.route('/login').post(login);
 

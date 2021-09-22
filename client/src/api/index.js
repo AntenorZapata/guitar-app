@@ -18,7 +18,7 @@ export const fetchGuitars = () => axios.get(url);
 
 export const fetchReviews = () => axios.get(reviewUrl);
 
-export const fetchReviewById = (id) => axios.get(`http://localhost:3001/api/v1/guitars/${id}/reviews`);
+export const fetchReviewById = (id, token) => axios.get(`http://localhost:3001/api/v1/guitars/${id}/reviews`, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
 
 export const deleteReview = (id, token) => axios.delete(`http://localhost:3001/api/v1/reviews/${id}`, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
 
@@ -29,6 +29,8 @@ export const createFavorite = (fav, token) => axios.post('http://localhost:3001/
 export const deleteFavorite = (id, token) => axios.delete(`http://localhost:3001/api/v1/favorites/${id}`, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
 
 export const getFavoriteByEmail = (email, token) => axios.get(`http://localhost:3001/api/v1/users/${email}/favorites`, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
+
+export const getReviewByEmail = (email, token) => axios.get(`http://localhost:3001/api/v1/users/${email}/reviews`, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
 
 export const getFavoriteById = (id, token) => axios.get(`http://localhost:3001/api/v1/guitars/${id}/favorites`, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
 

@@ -25,7 +25,7 @@ function Details({ match: { params: { id } } }) {
 
   useEffect(() => {
     dispatch(getGuitarByIdAction(id));
-    dispatch(getReviewById(id));
+    dispatch(getReviewById(id, token));
     if (token) dispatch(getFavoriteByEmailAction(email, token));
   }, []);
 

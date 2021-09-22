@@ -18,6 +18,7 @@ import {
   deleteFavorite,
   getFavoriteByEmail,
   getFavoriteById,
+  getReviewByEmail,
 } from '../api';
 import {
   FETCH_ALL,
@@ -41,6 +42,7 @@ import {
   CLEAR_REVIEWS,
   GET_FAVORITES_PAGE,
   CLEAR_FAVORITES,
+  GET_REV_BY_EMAIL,
 } from './types';
 
 // Actions Creators
@@ -139,7 +141,7 @@ export const getGuitarByIdAction = (id) => async (dispatch) => {
 export const createReviewAction = (id, review, token) => async (dispatch) => {
   try {
     await createReview(id, review, token);
-    const { data } = await fetchReviewById(id);
+    const { data } = await fetchReviewById(id, token);
     dispatch({ type: GET_REVIEWS_BY_ID, payload: data.reviews });
   } catch (err) {
     return err.response.data.message;
@@ -210,10 +212,20 @@ export const getReviews = () => async (dispatch) => {
   }
 };
 
-export const getReviewById = (id) => async (dispatch) => {
+export const getReviewById = (id, token) => async (dispatch) => {
   try {
-    const { data } = await fetchReviewById(id);
+    const { data } = await fetchReviewById(id, token);
     dispatch({ type: GET_REVIEWS_BY_ID, payload: data.reviews });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const getReviewByEmailAction = (email, token) => async (dispatch) => {
+  try {
+    const { data } = await getReviewByEmail(email, token);
+
+    dispatch({ type: GET_REV_BY_EMAIL, payload: data.reviews });
   } catch (err) {
     return err.response.data.message;
   }
@@ -222,7 +234,7 @@ export const getReviewById = (id) => async (dispatch) => {
 export const deleteReviewAction = (id, token, gtId) => async (dispatch) => {
   try {
     await deleteReview(id, token);
-    const { data } = await fetchReviewById(gtId);
+    const { data } = await fetchReviewById(gtId, token);
     dispatch({ type: GET_REVIEWS_BY_ID, payload: data.reviews });
   } catch (err) {
     return err.response.data.message;

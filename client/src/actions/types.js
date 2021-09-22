@@ -20,3 +20,4 @@ export const GET_FAV_BY_ID = 'GET_FAV_BY_ID';
 export const CLEAR_REVIEWS = 'CLEAR_REVIEWS';
 export const GET_FAVORITES_PAGE = 'GET_FAVORITES_PAGE';
 export const CLEAR_FAVORITES = 'CLEAR_FAVORITES';
+export const GET_REV_BY_EMAIL = 'GET_REV_BY_EMAIL';

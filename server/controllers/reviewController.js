@@ -5,6 +5,8 @@ const catchAsync = require('../utils/catchAsync');
 const getAll = catchAsync(async (req, res) => {
   let filter = {};
   if (req.params.id) filter = { guitar: req.params.id };
+  if (req.params.email) filter = { user: req.user._id };
+
   const reviews = await getAllReviews(filter);
   return res.status(200).json({ status: 'success', reviews });
 });
