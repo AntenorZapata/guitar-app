@@ -14,13 +14,15 @@ function Reviews() {
 
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    const a = await dispatch(getReviewByEmailAction(email, token));
-  }, []);
-
   const handleDeleteReview = (revId, gtId) => {
     dispatch(deleteReviewAction(revId, token, gtId));
   };
+
+  useEffect(() => {
+    dispatch(getReviewByEmailAction(email, token));
+  }, []);
+
+  console.log('sim');
 
   return (
     <div>

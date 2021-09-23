@@ -34,7 +34,7 @@ export default function App() {
   });
 
   return (
-    <div>
+    <div className="App">
       <Router history={history}>
         <Switch>
           <PrivateRoute exact path="/config" component={Config} />

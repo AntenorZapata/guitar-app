@@ -1,0 +1,5 @@
+const MenuItems = [
+  {
+    title: 'Home',
+  },
+];

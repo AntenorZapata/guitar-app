@@ -224,7 +224,6 @@ export const getReviewById = (id, token) => async (dispatch) => {
 export const getReviewByEmailAction = (email, token) => async (dispatch) => {
   try {
     const { data } = await getReviewByEmail(email, token);
-
     dispatch({ type: GET_REV_BY_EMAIL, payload: data.reviews });
   } catch (err) {
     return err.response.data.message;
