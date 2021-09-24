@@ -11,16 +11,17 @@ import {
 const initialState = { review: '', rating: '1' };
 
 function Details({ match: { params: { id } } }) {
-  const token = localStorage.getItem('token') || '';
-  const userLocal = JSON.parse(localStorage.getItem('user')) || null;
-  let email = '';
-  if (userLocal) email = userLocal.email;
   const guitar = useSelector((state) => state.guitars.guitar);
   const favorites = useSelector((state) => state.favorites.allFavorites);
   const reviews = useSelector((state) => state.reviews.reviewById);
 
   const [review, setReview] = useState(initialState);
   const [favId, setFavId] = useState('');
+  const [token, setToken] = useState(() => localStorage.getItem('token'));
+  const [user, setEmail] = useState(() => JSON.parse(localStorage.getItem('user')));
+  let email = '';
+  if (user) email = user.email;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
