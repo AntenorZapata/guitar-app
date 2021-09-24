@@ -41,7 +41,7 @@ function Header() {
         </div>
         <ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
           <li>
-            <Link onClick={handleClicked} className={token ? 'nav-links' : 'links-off'} to="/">Home</Link>
+            <Link onClick={handleClicked} className="nav-links" to="/">Início</Link>
           </li>
           {!token && (
           <li>

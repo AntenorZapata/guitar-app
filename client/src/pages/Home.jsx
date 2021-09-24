@@ -63,9 +63,9 @@ function Home() {
   return (
     <div>
       <Header />
-      <section className="main__container">
-        <GuitarDeck guitars={guitarFiltered} />
-        {token
+      <main className="main__container">
+        <div className="filters-container">
+          {token
         && (
         <HomeFilters
           handleClearFilters={handleClearFilters}
@@ -73,8 +73,11 @@ function Home() {
           state={state}
         />
         )}
-
-      </section>
+        </div>
+        <div className="guitar-deck-container">
+          <GuitarDeck guitars={guitarFiltered} />
+        </div>
+      </main>
 
     </div>
   );

@@ -55,22 +55,6 @@
 }
 
 
-.guitar-card {
-  border: 1px solid black;
-  width: 10rem;
-  margin: 2rem;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-  display: block;
-}
-
-.guitar-card-link {
-  display: block;
-  width: 10rem;
-
-}
-
 .form {
   height: 40rem;
   display: flex;
@@ -219,14 +203,34 @@ input, label {
 .main__container {
     display: flex;
     background-color: rgba(255, 0, 0, 0.171);
-    width: 80%;
+    flex-direction: column;
+    max-width: 1200px;
     margin: auto;
-    height: 80vh;
+    height: 100vh;
+    padding-top: 4rem;
 }
 
-.guitar-deck, .home-filters {
+.filters-links {
   width: 50%;
   display: flex;
+  justify-content: space-between;
+}
+
+.filters-links p {
+  margin-right: 2rem;
+  cursor: pointer;
+}
+
+.filters-text {
+  width: 50%;
+  display: flex;
+  justify-content: end;
+}
+
+
+.home-filters  {
+  display: flex;
+  justify-content: space-between;
 }
 
 .radios-btns {
@@ -253,6 +257,31 @@ input, label {
   margin-top: 1rem;
 }
 
-.celar-filters {
+.clear-filters {
   margin-top: 1rem;
+}
+
+.guitar-deck-container {
+  height: 100%;
+  margin-top: 2rem;
+}
+
+.guitar-deck {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.guitar-card {
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+}
+
+.guitar-card-link {
+  display: block;
+  width: 10rem;
+
 }
