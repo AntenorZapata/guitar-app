@@ -7,20 +7,25 @@ import {
   deleteReviewAction, createFavoriteAction, deleteFavoriteAction,
   getFavoriteByEmailAction,
 } from '../actions';
+import StarRating from '../components/starRating/StarRating';
+import '../components/starRating/starRating.css';
 
 const initialState = { review: '', rating: '1' };
 
 function Details({ match: { params: { id } } }) {
-  const token = localStorage.getItem('token') || '';
-  const userLocal = JSON.parse(localStorage.getItem('user')) || null;
-  let email = '';
-  if (userLocal) email = userLocal.email;
   const guitar = useSelector((state) => state.guitars.guitar);
   const favorites = useSelector((state) => state.favorites.allFavorites);
   const reviews = useSelector((state) => state.reviews.reviewById);
 
   const [review, setReview] = useState(initialState);
   const [favId, setFavId] = useState('');
+  const [token, setToken] = useState(() => localStorage.getItem('token'));
+  const [user, setEmail] = useState(() => JSON.parse(localStorage.getItem('user')));
+  const [rating, setRating] = useState(3);
+
+  let email = '';
+  if (user) email = user.email;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -64,6 +69,10 @@ function Details({ match: { params: { id } } }) {
       await dispatch(deleteFavoriteAction(favId, token));
     }
     setFavId('');
+  };
+
+  const handleChange = (valuee) => {
+    setRating(valuee);
   };
 
   return (
@@ -121,6 +130,15 @@ function Details({ match: { params: { id } } }) {
           )}
         </div>
       )) : null}
+      <StarRating
+        count={5}
+        size={40}
+        value={rating}
+        activeColor="f00"
+        inactiveColor="#ddd"
+        onChange={handleChange}
+
+      />
     </div>
   );
 }

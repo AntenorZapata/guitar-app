@@ -5,9 +5,6 @@ function SideBar() {
   const location = useLocation();
   const path = location.pathname;
 
-  const handleLogout = () => {
-    localStorage.clear();
-  };
   return (
     <nav>
       <ul>
@@ -34,13 +31,6 @@ function SideBar() {
           >
             reviews
           </Link>
-        </li>
-        <li>
-          <span>
-            <Link to="/">
-              <button type="button" onClick={handleLogout}>Sair</button>
-            </Link>
-          </span>
         </li>
       </ul>
     </nav>

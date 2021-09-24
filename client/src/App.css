@@ -55,22 +55,6 @@
 }
 
 
-.guitar-card {
-  border: 1px solid black;
-  width: 10rem;
-  margin: 2rem;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-  display: block;
-}
-
-.guitar-card-link {
-  display: block;
-  width: 10rem;
-
-}
-
 .form {
   height: 40rem;
   display: flex;
@@ -169,8 +153,6 @@ tr input {
   height: 10rem;
 }
 
-
-
 .form-container form {
   display: flex;
   justify-content: center;
@@ -216,4 +198,90 @@ li {
 
 input, label {
   display:block;
+}
+
+.main__container {
+    display: flex;
+    background-color: rgba(255, 0, 0, 0.171);
+    flex-direction: column;
+    max-width: 1200px;
+    margin: auto;
+    height: 100vh;
+    padding-top: 4rem;
+}
+
+.filters-links {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters-links p {
+  margin-right: 2rem;
+  cursor: pointer;
+}
+
+.filters-text {
+  width: 50%;
+  display: flex;
+  justify-content: end;
+}
+
+
+.home-filters  {
+  display: flex;
+  justify-content: space-between;
+}
+
+.radios-btns {
+  display: flex;
+}
+
+.radios-btns input {
+  margin: 0 2rem;
+}
+
+.by-price {
+  display: flex;
+  justify-content: space-between;
+  margin-top: .5rem;
+  align-items: center;
+  width: 13rem;
+}
+
+.by-price input {
+  width: 5rem;
+}
+
+.by-price-container {
+  margin-top: 1rem;
+}
+
+.clear-filters {
+  margin-top: 1rem;
+}
+
+.guitar-deck-container {
+  height: 100%;
+  margin-top: 2rem;
+}
+
+.guitar-deck {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.guitar-card {
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+}
+
+.guitar-card-link {
+  display: block;
+  width: 10rem;
+
 }

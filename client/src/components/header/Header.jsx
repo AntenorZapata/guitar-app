@@ -16,17 +16,20 @@ function Header() {
     setClicked(!clicked);
   };
 
+  const handleLogout = () => {
+    localStorage.clear();
+    setClicked(!clicked);
+  };
+
   return (
     <div>
 
       <nav className="navBarItems">
         <Link className="home-title" to="/">
           <h1 className="navbar-logo">
-            <i className="fas fa-guitar" />
             Guitar Finder
           </h1>
         </Link>
-
         <div
           className="menu-icon"
           onClick={handleClicked}
@@ -37,14 +40,14 @@ function Header() {
           <i className={clicked ? 'fas fa-times' : 'fas fa-bars'} />
         </div>
         <ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
-          {/* <li>
-            <Link className="nav-links" to="/">Home</Link>
-          </li> */}
+          <li>
+            <Link onClick={handleClicked} className="nav-links" to="/">Início</Link>
+          </li>
           {!token && (
           <li>
             <Link className="nav-links" to="/login">Login</Link>
           </li>
-          ) }
+          )}
           <li>
             <Link onClick={handleClicked} className="nav-links" to={token ? '/config' : '/signup'}>{token ? 'Minha Conta' : 'Crie sua conta'}</Link>
           </li>
@@ -53,6 +56,9 @@ function Header() {
           </li>
           <li>
             <Link onClick={handleClicked} className={token ? 'nav-links' : 'links-off'} to="/about">Sobre</Link>
+          </li>
+          <li>
+            <Link onClick={handleLogout} className={token ? 'nav-links' : 'links-off'} to="/login">Sair</Link>
           </li>
         </ul>
 
