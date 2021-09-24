@@ -46,13 +46,13 @@ function Header() {
           </li>
           ) }
           <li>
-            <Link className="nav-links" to={token ? '/config' : '/signup'}>{token ? 'Minha Conta' : 'Crie sua conta'}</Link>
+            <Link onClick={handleClicked} className="nav-links" to={token ? '/config' : '/signup'}>{token ? 'Minha Conta' : 'Crie sua conta'}</Link>
           </li>
           <li>
-            <Link className={token ? 'nav-links' : 'links-off'} to="/admin">Admin</Link>
+            <Link onClick={handleClicked} className={token ? 'nav-links' : 'links-off'} to="/admin">Admin</Link>
           </li>
           <li>
-            <Link className={token ? 'nav-links' : 'links-off'} to="/about">Sobre</Link>
+            <Link onClick={handleClicked} className={token ? 'nav-links' : 'links-off'} to="/about">Sobre</Link>
           </li>
         </ul>
 
