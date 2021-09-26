@@ -3,13 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import GuitarDeck from '../components/guitarDeck/GuitarDeck';
 import {
-  getGuitars, clearGuitar, clearReviews, clearFavorites,
+  getGuitars, clearGuitar, clearReviews, clearFavorites, getCheapGuitarsAction,
+  getRareGuitarsAction, getTopFendersAction,
 } from '../actions';
 import Header from '../components/header/Header';
 import HomeFilters from '../components/homeFilters/HomeFilters';
+import useFilters from '../hooks/useFilters';
 
 const initialState = {
-  filter: '', search: '', min: 0, max: 0,
+  filter: '', search: '', min: '', max: '',
 };
 
 function Home() {
@@ -18,32 +20,13 @@ function Home() {
   const [token, setToken] = useState(() => localStorage.getItem('token'));
   const guitars = useSelector((gtState) => gtState.guitars.allGuitars);
   const [guitarFiltered, setGuitarFiltered] = useState([]);
+  const { filterGuitars } = useFilters();
 
-  const handleValue = ({ target }) => {
-    const names = ['min', 'max'];
-    const { name } = target;
-    const value = target.type === 'radio' ? target.id : target.value;
-    // const value = target.type !== 'radio' && target.value;
-    setState({ ...state, [name]: value });
-
-    if (value !== '' && target.type !== 'radio') {
-      const results = (guitarFiltered.length ? guitarFiltered : guitars).filter((gt) => {
-        if (name === 'min') {
-          return gt.price >= +value;
-        }
-        if (name === 'max') {
-          return state.min ? gt.price > +state.min && gt.price <= +value : gt.price <= +value;
-        }
-
-        if (state.filter && !names.includes(name)) {
-          return gt[state.filter].toLowerCase().startsWith(value.toLowerCase());
-        }
-        return guitarFiltered;
-      });
-      setGuitarFiltered(results);
-    } else {
-      setGuitarFiltered(guitars);
-    }
+  const handleValue = (e) => {
+    const fns = {
+      state, setState, guitarFiltered, setGuitarFiltered, guitars,
+    };
+    filterGuitars(e, fns);
   };
 
   const handleClearFilters = () => {
@@ -51,6 +34,19 @@ function Home() {
       ...state, search: '', min: '', max: '',
     });
     setGuitarFiltered(guitars);
+  };
+
+  const handleTopGuitars = async (e) => {
+    const { value } = e.target;
+    if (value === 'cheap') {
+      dispatch(getCheapGuitarsAction());
+    } else if (value === 'rare') {
+      dispatch(getRareGuitarsAction());
+    } else if (value === 'fender') {
+      dispatch(getTopFendersAction());
+    } else {
+      dispatch(getGuitars());
+    }
   };
 
   useEffect(() => {
@@ -71,6 +67,7 @@ function Home() {
           handleClearFilters={handleClearFilters}
           handleValue={handleValue}
           state={state}
+          handleTopGuitars={handleTopGuitars}
         />
         )}
         </div>

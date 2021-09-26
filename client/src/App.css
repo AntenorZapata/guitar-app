@@ -216,10 +216,6 @@ input, label {
   justify-content: space-between;
 }
 
-.filters-links p {
-  margin-right: 2rem;
-  cursor: pointer;
-}
 
 .filters-text {
   width: 50%;
@@ -284,4 +280,11 @@ input, label {
   display: block;
   width: 10rem;
 
+}
+
+.btn-top-filters {
+  border: none;
+  background-color: none;
+  height: 0;
+  cursor: pointer;
 }

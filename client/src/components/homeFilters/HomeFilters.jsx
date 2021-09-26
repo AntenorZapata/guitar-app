@@ -1,13 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-function HomeFilters({ handleValue, handleClearFilters, state }) {
+function HomeFilters({
+  handleValue, handleClearFilters, state, handleTopGuitars,
+}) {
   return (
     <div className="home-filters">
       <div className="filters-links">
-        <p>5 guitarras mais baratas</p>
-        <p>5 guitarras mais raras</p>
-        <p>5 melhores guitarras</p>
+        <button
+          type="button"
+          className="btn-top-filters"
+          onClick={handleTopGuitars}
+          value="cheap"
+
+        >
+          5 guitarras mais baratas
+        </button>
+        <button
+          type="button"
+          className="btn-top-filters"
+          onClick={handleTopGuitars}
+          value="rare"
+        >
+          5 guitarras mais raras
+        </button>
+        <button
+          type="button"
+          className="btn-top-filters"
+          onClick={handleTopGuitars}
+          value="fender"
+        >
+          5 Fender mais baratas
+        </button>
+        <button
+          type="button"
+          className="btn-top-filters"
+          onClick={handleTopGuitars}
+        >
+          Todas as guitarras
+        </button>
       </div>
       <div className="filters-text">
         <form onSubmit={(e) => { e.preventDefault(); }}>

@@ -2,6 +2,9 @@ import axios from 'axios';
 
 const url = 'http://localhost:3001/api/v1/guitars';
 const urlUpdate = 'http://localhost:3001/api/v1/guitars/:id';
+const cheapGuitars = 'http://localhost:3001/api/v1/guitars/top-5-cheap';
+const rareGuitars = 'http://localhost:3001/api/v1/guitars/top-5-rare';
+const fendersGuitars = 'http://localhost:3001/api/v1/guitars/top-5-fender';
 
 const userUrl = 'http://localhost:3001/api/v1/users/login';
 const forgotUrl = 'http://localhost:3001/api/v1/users/forgotPassword';
@@ -15,6 +18,12 @@ const config = {
 };
 
 export const fetchGuitars = () => axios.get(url);
+
+export const fetchCheapGuitars = () => axios.get(cheapGuitars);
+
+export const fetchRareGuitars = () => axios.get(rareGuitars);
+
+export const fetchTopFenders = () => axios.get(fendersGuitars);
 
 export const fetchReviews = () => axios.get(reviewUrl);
 

@@ -19,6 +19,9 @@ import {
   getFavoriteByEmail,
   getFavoriteById,
   getReviewByEmail,
+  fetchCheapGuitars,
+  fetchRareGuitars,
+  fetchTopFenders,
 } from '../api';
 import {
   FETCH_ALL,
@@ -43,6 +46,8 @@ import {
   GET_FAVORITES_PAGE,
   CLEAR_FAVORITES,
   GET_REV_BY_EMAIL,
+  GET_FILTERED_GUITARS,
+
 } from './types';
 
 // Actions Creators
@@ -194,15 +199,6 @@ export const getFavoriteByGuitarId = (id, token) => async (dispatch) => {
   }
 };
 
-// export const setFavoritesPage = (id) => async (dispatch) => {
-//   try {
-//     const { data } = await getGuitarById(id);
-//     dispatch({ type: GET_FAVORITES_PAGE, payload: data.guitar });
-//   } catch (err) {
-//     return err.response.data.message;
-//   }
-// };
-
 export const getReviews = () => async (dispatch) => {
   try {
     const { data } = await fetchReviews();
@@ -235,6 +231,33 @@ export const deleteReviewAction = (id, token, gtId) => async (dispatch) => {
     await deleteReview(id, token);
     const { data } = await fetchReviewById(gtId, token);
     dispatch({ type: GET_REVIEWS_BY_ID, payload: data.reviews });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const getCheapGuitarsAction = () => async (dispatch) => {
+  try {
+    const { data } = await fetchCheapGuitars();
+    dispatch({ type: GET_FILTERED_GUITARS, payload: data.result });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const getRareGuitarsAction = () => async (dispatch) => {
+  try {
+    const { data } = await fetchRareGuitars();
+    dispatch({ type: GET_FILTERED_GUITARS, payload: data.result });
+  } catch (err) {
+    return err.response.data.message;
+  }
+};
+
+export const getTopFendersAction = () => async (dispatch) => {
+  try {
+    const { data } = await fetchTopFenders();
+    dispatch({ type: GET_FILTERED_GUITARS, payload: data.result });
   } catch (err) {
     return err.response.data.message;
   }
