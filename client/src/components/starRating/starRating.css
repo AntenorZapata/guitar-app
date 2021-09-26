@@ -1,15 +1,33 @@
 .active-star {
     cursor: pointer;
-    color: #FFDF00;
+    color: #cab31c;
     width: 40px;
-    height: 40px;    
-    font-size: 40px
+    height: 40px;
+    font-size: 30px
 }
 
 .off-star {
     cursor: pointer;
     color:  #ddd;
     width: 40px;
-    height: 40px;    
-    font-size: 40px
+    height: 40px;
+    font-size: 30px
 }
+
+.star-rating {
+    margin-left: -0.3rem;
+    display: flex;
+}
+
+
+
+.star-rating input {
+    display: none;
+}
+
+.star {
+    cursor: pointer;
+    color: rgb(169, 169, 169);
+    font-size: 1.5rem;
+}
+

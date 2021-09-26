@@ -5,6 +5,7 @@ import { getReviewByEmailAction, deleteReviewAction } from '../actions';
 
 import Header from '../components/header/Header';
 import SideBar from '../components/sideBar/SideBar';
+import StarRating from '../components/starRating/StarRating';
 
 function Reviews() {
   const token = localStorage.getItem('token') || '';
@@ -31,6 +32,7 @@ function Reviews() {
       <SideBar />
       {reviews.length ? reviews.map((rev) => (
         <div key={rev._id}>
+          <StarRating starValue={rev.rating} />
           <p>{rev.review}</p>
           <button type="button" onClick={() => handleDeleteReview(rev._id, rev.guitar)}>deletar</button>
         </div>

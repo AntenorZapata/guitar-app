@@ -10,7 +10,7 @@ import {
 import StarRating from '../components/starRating/StarRating';
 import '../components/starRating/starRating.css';
 
-const initialState = { review: '', rating: '1' };
+const initialState = { review: '', rating: 3 };
 
 function Details({ match: { params: { id } } }) {
   const guitar = useSelector((state) => state.guitars.guitar);
@@ -27,7 +27,6 @@ function Details({ match: { params: { id } } }) {
   if (user) email = user.email;
 
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getGuitarByIdAction(id));
     dispatch(getReviewById(id, token));
@@ -47,7 +46,6 @@ function Details({ match: { params: { id } } }) {
     e.preventDefault();
     setReview(initialState);
     const res = await dispatch(createReviewAction(id, review, token));
-    console.log(res);
   };
 
   const handleDeleteReview = async (reviewId) => {
@@ -71,8 +69,8 @@ function Details({ match: { params: { id } } }) {
     setFavId('');
   };
 
-  const handleChange = (valuee) => {
-    setRating(valuee);
+  const handleChange = (ratingValue) => {
+    setReview({ ...review, rating: ratingValue });
   };
 
   return (
@@ -87,19 +85,29 @@ function Details({ match: { params: { id } } }) {
         />
       </div>
       {token && (
-      <form onSubmit={handleAddReview}>
-        <label htmlFor="review">
-          Adicione um Review
-          <input
-            type="text"
-            id="review"
-            name="review"
-            value={review.review}
-            required
-            onChange={handleReviewValues}
+        <section>
+          <StarRating
+            count={5}
+            starValue={review.rating}
+            activeColor="f00"
+            inactiveColor="#ddd"
+            onChange={handleChange}
+            bool
           />
-        </label>
-        <label htmlFor="rating">
+          <form onSubmit={handleAddReview}>
+            <label htmlFor="review">
+              Adicione um Review
+              <input
+                type="text"
+                id="review"
+                name="review"
+                value={review.review}
+                required
+                onChange={handleReviewValues}
+
+              />
+            </label>
+            {/* <label htmlFor="rating">
           Adicione uma nota
           <select
             id="review"
@@ -113,13 +121,18 @@ function Details({ match: { params: { id } } }) {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-        </label>
-        <button type="submit"> Adicionar</button>
-      </form>
+        </label> */}
+            <button type="submit"> Adicionar</button>
+          </form>
+        </section>
       )}
       {reviews.length ? reviews.map((revi) => (
         <div key={revi.id}>
           <p key={revi._id}>{revi.review}</p>
+          <StarRating
+            className="show-rating"
+            starValue={revi.rating}
+          />
           {email === revi.user.email && (
           <button
             onClick={() => handleDeleteReview(revi._id)}
@@ -130,15 +143,6 @@ function Details({ match: { params: { id } } }) {
           )}
         </div>
       )) : null}
-      <StarRating
-        count={5}
-        size={40}
-        value={rating}
-        activeColor="f00"
-        inactiveColor="#ddd"
-        onChange={handleChange}
-
-      />
     </div>
   );
 }
