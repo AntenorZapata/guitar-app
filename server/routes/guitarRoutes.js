@@ -7,6 +7,7 @@ const {
   remove,
   aliasTopGuitars,
   aliasTopFender,
+  aliasTopRare,
 
 } = require('../controllers/guitarController');
 const reviewRouter = require('./reviewRouter');
@@ -18,6 +19,10 @@ const router = express.Router();
 
 router.use('/:id/reviews', reviewRouter);
 router.use('/:id/favorites', favoritesRouter);
+
+router
+  .route('/top-5-rare')
+  .get(aliasTopRare, getAll);
 
 router
   .route('/top-5-cheap')

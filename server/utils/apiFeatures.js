@@ -30,16 +30,16 @@ class APIFeatures {
     return this;
   }
 
-  limitField() {
-    // 3) field limiting
-    if (this.queryString.fields) {
-      const fields = this.queryString.fields.split(',').join(' ');
-      this.query = this.query.select(fields);
-    } else {
-      this.query = this.query.select('-__v');
-    }
-    return this;
-  }
+  // limitField() {
+  //   // 3) field limiting
+  //   if (this.queryString.fields) {
+  //     const fields = this.queryString.fields.split(',').join(' ');
+  //     this.query = this.query.select(fields);
+  //   } else {
+  //     this.query = this.query.select('-__v');
+  //   }
+  //   return this;
+  // }
 
   paginate() {
     // 4) Pagination

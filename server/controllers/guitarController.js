@@ -13,7 +13,14 @@ const {
 const aliasTopGuitars = (req, res, next) => {
   req.query.limit = '5';
   req.query.sort = '-ratingsAverage, price';
-  req.query.fields = 'model, price, ratingsAverage, summary';
+  // req.query.fields = 'model, price, ratingsAverage, summary';
+  next();
+};
+
+const aliasTopRare = (req, res, next) => {
+  req.query.limit = '5';
+  req.query.sort = 'year';
+  // req.query.fields = 'model, price, ratingsAverage, summary';
   next();
 };
 
@@ -21,7 +28,7 @@ const aliasTopFender = (req, res, next) => {
   req.query.limit = '5';
   req.query.brand = 'fender';
   req.query.sort = 'price';
-  req.query.fields = 'brand, price';
+  // req.query.fields = 'brand, price';
   next();
 };
 
@@ -30,7 +37,6 @@ const getAll = catchAsync(async (req, res) => {
   const features = new APIFeatures(Guitar.find(), req.query)
     .filter()
     .sort()
-    .limitField()
     .paginate();
 
   const allGuitars = await features.query;
@@ -89,4 +95,5 @@ module.exports = {
   remove,
   aliasTopGuitars,
   aliasTopFender,
+  aliasTopRare,
 };
