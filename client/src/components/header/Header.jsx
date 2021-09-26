@@ -51,7 +51,6 @@ function Header() {
           <li>
             <Link onClick={handleClicked} className="nav-links" to={token ? '/config' : '/signup'}>{token ? 'Minha Conta' : 'Crie sua conta'}</Link>
           </li>
-
           <li>
             <Link onClick={handleClicked} className={token ? 'nav-links' : 'links-off'} to="/admin">Admin</Link>
           </li>

@@ -7,6 +7,8 @@ import {
   deleteReviewAction, createFavoriteAction, deleteFavoriteAction,
   getFavoriteByEmailAction,
 } from '../actions';
+import StarRating from '../components/starRating/StarRating';
+import '../components/starRating/starRating.css';
 
 const initialState = { review: '', rating: '1' };
 
@@ -19,6 +21,8 @@ function Details({ match: { params: { id } } }) {
   const [favId, setFavId] = useState('');
   const [token, setToken] = useState(() => localStorage.getItem('token'));
   const [user, setEmail] = useState(() => JSON.parse(localStorage.getItem('user')));
+  const [rating, setRating] = useState(3);
+
   let email = '';
   if (user) email = user.email;
 
@@ -65,6 +69,10 @@ function Details({ match: { params: { id } } }) {
       await dispatch(deleteFavoriteAction(favId, token));
     }
     setFavId('');
+  };
+
+  const handleChange = (valuee) => {
+    setRating(valuee);
   };
 
   return (
@@ -122,6 +130,15 @@ function Details({ match: { params: { id } } }) {
           )}
         </div>
       )) : null}
+      <StarRating
+        count={5}
+        size={40}
+        value={rating}
+        activeColor="f00"
+        inactiveColor="#ddd"
+        onChange={handleChange}
+
+      />
     </div>
   );
 }

@@ -1,0 +1,15 @@
+.active-star {
+    cursor: pointer;
+    color: #FFDF00;
+    width: 40px;
+    height: 40px;    
+    font-size: 40px
+}
+
+.off-star {
+    cursor: pointer;
+    color:  #ddd;
+    width: 40px;
+    height: 40px;    
+    font-size: 40px
+}
