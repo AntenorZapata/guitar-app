@@ -5,6 +5,9 @@ const {
   getById,
   update,
   remove,
+  aliasTopGuitars,
+  aliasTopFender,
+
 } = require('../controllers/guitarController');
 const reviewRouter = require('./reviewRouter');
 const favoritesRouter = require('./favoritesRouter');
@@ -15,6 +18,14 @@ const router = express.Router();
 
 router.use('/:id/reviews', reviewRouter);
 router.use('/:id/favorites', favoritesRouter);
+
+router
+  .route('/top-5-cheap')
+  .get(aliasTopGuitars, getAll);
+
+router
+  .route('/top-5-fender')
+  .get(aliasTopFender, getAll);
 
 router.route('/').get(getAll).post(validateToken, restrictTo('admin'), validateGuitar, create);
 

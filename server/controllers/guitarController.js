@@ -1,4 +1,6 @@
 const AppError = require('../utils/appError');
+const APIFeatures = require('../utils/apiFeatures');
+const Guitar = require('../models/guitarModel');
 const catchAsync = require('../utils/catchAsync');
 const {
   getAllGuitars,
@@ -8,9 +10,33 @@ const {
   removeGuitar,
 } = require('../service/guitarService');
 
+const aliasTopGuitars = (req, res, next) => {
+  req.query.limit = '5';
+  req.query.sort = '-ratingsAverage, price';
+  req.query.fields = 'model, price, ratingsAverage, summary';
+  next();
+};
+
+const aliasTopFender = (req, res, next) => {
+  req.query.limit = '5';
+  req.query.brand = 'fender';
+  req.query.sort = 'price';
+  req.query.fields = 'brand, price';
+  next();
+};
+
 const getAll = catchAsync(async (req, res) => {
-  const guitars = await getAllGuitars();
-  return res.status(200).json({ status: 'success', result: guitars });
+  // const guitar = await getAllGuitars();
+  const features = new APIFeatures(Guitar.find(), req.query)
+    .filter()
+    .sort()
+    .limitField()
+    .paginate();
+
+  const allGuitars = await features.query;
+
+  // const guitars = await getAllGuitars();
+  return res.status(200).json({ status: 'success', result: allGuitars });
 });
 
 const create = catchAsync(async (req, res) => {
@@ -61,4 +87,6 @@ module.exports = {
   errorHandler,
   update,
   remove,
+  aliasTopGuitars,
+  aliasTopFender,
 };

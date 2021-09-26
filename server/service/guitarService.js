@@ -1,11 +1,9 @@
 const Guitar = require('../models/guitarModel');
 const catchAsync = require('../utils/catchAsync');
 
-const getAllGuitars = async () => {
-  const guitar = await Guitar.find();
+const getAllGuitars = async () => Guitar;
 
-  return guitar;
-};
+// return guitar;
 
 const createGuitar = async (body) => {
   const res = await Guitar.create(body);
