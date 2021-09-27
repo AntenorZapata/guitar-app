@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import titles from '../../service/tableTitles';
 import useSort from '../../hooks/useSort';
+import paginateTable from '../../utils/paginateTable';
 
 export default function GuitarTable({
   guitarTable,
@@ -14,6 +15,7 @@ export default function GuitarTable({
   const [filters, setFilters] = useState(false);
   const [valueFilter, setValueFilter] = useState([]);
   const { handleSort } = useSort();
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     setValueFilter(guitarTable);
@@ -37,6 +39,16 @@ export default function GuitarTable({
       setValueFilter(results);
     } else {
       setValueFilter(guitarTable);
+    }
+  };
+
+  const handlePagination = (e) => {
+    const { name } = e.target;
+
+    if (name === 'next') {
+      setPage((prev) => prev + 1);
+    } else {
+      setPage((prev) => prev - 1);
     }
   };
 
@@ -84,7 +96,7 @@ export default function GuitarTable({
         </thead>
         <tbody>
           {valueFilter && valueFilter.length > 0
-            ? (valueFilter.map((gt) => (
+            ? (paginateTable(valueFilter)[page].map((gt) => (
               <tr key={gt._id}>
                 <td>{gt._id}</td>
                 <td>{gt.brand}</td>
@@ -114,6 +126,15 @@ export default function GuitarTable({
             ))) : <tr><td>Not Found</td></tr> }
         </tbody>
       </table>
+      <button
+        disabled={page === paginateTable(valueFilter).length - 1}
+        onClick={handlePagination}
+        type="button"
+        name="next"
+      >
+        Proximo
+      </button>
+      {page > 0 && <button type="button" name="back" onClick={handlePagination}>Voltar</button>}
     </div>
   );
 }
