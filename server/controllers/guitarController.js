@@ -25,9 +25,10 @@ const aliasTopRare = (req, res, next) => {
 };
 
 const aliasTopFender = (req, res, next) => {
+  // req.query.limit = '5';
+  // req.query.brand = 'fender';
   req.query.limit = '5';
-  req.query.brand = 'fender';
-  req.query.sort = 'price';
+  req.query.sort = 'likeCount';
   // req.query.fields = 'brand, price';
   next();
 };

@@ -61,7 +61,7 @@ function Home() {
         )}
         </div>
         <div className="guitar-deck-container">
-          <GuitarDeck guitars={paginate(guitars)} />
+          <GuitarDeck guitars={paginate(guitars, 9)} />
         </div>
       </main>
 

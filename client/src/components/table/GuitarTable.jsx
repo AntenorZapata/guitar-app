@@ -1,52 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import titles from '../../service/tableTitles';
 import useSort from '../../hooks/useSort';
-import paginateTable from '../../utils/paginateTable';
+import paginate from '../../utils/paginate';
+import useGuitarFilter from '../../hooks/useGuitarFilter';
+import useEditTable from '../../hooks/useEditTable';
 
 export default function GuitarTable({
   guitarTable,
-  handleDeleteRow,
-  handleEditTable,
   setState,
   order,
   setGuitarTable,
   initialState,
+  state,
 }) {
   const [filters, setFilters] = useState(false);
   const [valueFilter, setValueFilter] = useState([]);
   const { handleSort } = useSort();
   const [page, setPage] = useState(0);
+  const { handleGuitarFilter } = useGuitarFilter();
+  const { handleSubmit, handleDeleteRow, handleEditTable } = useEditTable();
 
   useEffect(() => {
     setValueFilter(guitarTable);
   }, [guitarTable]);
-
-  const handleGuitarFilter = (e, el) => {
-    const { state } = el;
-    const { target: { value } } = e;
-
-    if (value !== '') {
-      const results = guitarTable.filter((gt) => {
-        if (Array.isArray(gt[state])) {
-          const field = gt[state].join('');
-          return field.toLowerCase().startsWith(value.toLowerCase());
-        }
-        if (typeof gt[state] === 'number') {
-          return gt[state].toString().startsWith(value.toLowerCase());
-        }
-        return gt[state].toLowerCase().startsWith(value.toLowerCase());
-      });
-      setValueFilter(results);
-    } else {
-      setValueFilter(guitarTable);
-    }
-  };
-
-  // useEffect(() => {
-  //   if (paginateTable(valueFilter).length === 1) {
-  //     setPage(0);
-  //   }
-  // }, [valueFilter]);
 
   const handlePagination = (e) => {
     const { name } = e.target;
@@ -93,7 +69,8 @@ export default function GuitarTable({
               <th key={el.id}>
                 <input
                   type="text"
-                  onChange={(e) => handleGuitarFilter(e, el)}
+                  onChange={(e) => handleGuitarFilter(e, el,
+                    guitarTable, setValueFilter)}
                 />
               </th>
             ))}
@@ -102,7 +79,7 @@ export default function GuitarTable({
         </thead>
         <tbody>
           {valueFilter && valueFilter.length > 0
-            ? (paginateTable(valueFilter)[page].map((gt) => (
+            ? (paginate(valueFilter, 5)[page].map((gt) => (
               <tr key={gt._id}>
                 <td>{gt._id}</td>
                 <td>{gt.brand}</td>
@@ -119,12 +96,21 @@ export default function GuitarTable({
                 <td>{gt.tags}</td>
                 <td>{gt.likeCount}</td>
                 <td>
-                  <button onClick={() => handleEditTable(gt._id, guitarTable, setState)} type="button">
+                  <button
+                    onClick={() => handleEditTable(gt._id,
+                      guitarTable, setState, state, initialState)}
+                    type="button"
+                  >
                     edit
                   </button>
                 </td>
                 <td>
-                  <button onClick={() => handleDeleteRow(gt._id, setState, initialState)} type="button">
+                  <button
+                    onClick={() => handleDeleteRow(gt._id, {
+                      setState, initialState, page, setPage,
+                    }, paginate(valueFilter, 5))}
+                    type="button"
+                  >
                     delete
                   </button>
                 </td>
@@ -133,14 +119,22 @@ export default function GuitarTable({
         </tbody>
       </table>
       <button
-        disabled={page === paginateTable(valueFilter).length - 1}
+        disabled={page === paginate(valueFilter, 5).length - 1}
         onClick={handlePagination}
         type="button"
         name="next"
       >
         Proximo
       </button>
-      {page > 0 && <button type="button" name="back" onClick={handlePagination}>Voltar</button>}
+      {page > 0 && (
+      <button
+        type="button"
+        name="back"
+        onClick={handlePagination}
+      >
+        Voltar
+      </button>
+      )}
     </div>
   );
 }

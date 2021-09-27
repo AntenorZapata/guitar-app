@@ -3,7 +3,9 @@ import fields from '../../service/formFields';
 import FormSteps from './FormSteps';
 
 export default function Form(props) {
-  const { handleSubmit, step, setStep } = props;
+  const {
+    handleSubmit, step, setStep,
+  } = props;
   const [error, setError] = useState('');
 
   const handleFormSteps = ({ target: { name } }) => {
