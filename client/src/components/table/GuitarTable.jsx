@@ -42,6 +42,12 @@ export default function GuitarTable({
     }
   };
 
+  // useEffect(() => {
+  //   if (paginateTable(valueFilter).length === 1) {
+  //     setPage(0);
+  //   }
+  // }, [valueFilter]);
+
   const handlePagination = (e) => {
     const { name } = e.target;
 
