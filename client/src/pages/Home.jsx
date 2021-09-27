@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import paginate from '../utils/paginate';
 import GuitarDeck from '../components/guitarDeck/GuitarDeck';
 import {
   getGuitars, clearGuitar, clearReviews, clearFavorites, getCheapGuitarsAction,
@@ -61,7 +61,7 @@ function Home() {
         )}
         </div>
         <div className="guitar-deck-container">
-          <GuitarDeck guitars={guitarFiltered} />
+          <GuitarDeck guitars={paginate(guitars)} />
         </div>
       </main>
 
