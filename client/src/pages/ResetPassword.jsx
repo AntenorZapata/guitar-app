@@ -9,7 +9,13 @@ const ResetPassword = (props) => {
   const dispatch = useDispatch();
   const { handlePasswordValidation } = useValidation();
 
-  const { match: { params: { token } }, error, setError } = props;
+  const {
+    match: { params: { token } }, error, setError, initial,
+  } = props;
+
+  useEffect(() => {
+    setError(initial);
+  }, []);
 
   const handleValueInput = (e) => {
     e.preventDefault();

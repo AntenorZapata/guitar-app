@@ -23,15 +23,17 @@ import AdminPanel from './pages/AdminPanel';
 export default function App() {
   const dispatch = useDispatch();
 
+  const initialErrorState = {
+    email: { valid: true, text: '' },
+    password: { valid: true, text: '' },
+    name: { valid: true, text: '' },
+  };
+
   useEffect(() => {
     dispatch(getGuitars());
   }, []);
 
-  const [error, setError] = useState({
-    email: { valid: true, text: '' },
-    password: { valid: true, text: '' },
-    name: { valid: true, text: '' },
-  });
+  const [error, setError] = useState(initialErrorState);
 
   return (
     <div className="App">
@@ -47,28 +49,37 @@ export default function App() {
             exact
             path="/login"
             render={() => (
-              <Login error={error} setError={setError} />
+              <Login
+                error={error}
+                setError={setError}
+                initial={initialErrorState}
+              />
             )}
           />
           <Route
             exact
             path="/signup"
             render={() => (
-              <Signup error={error} setError={setError} />
+              <Signup error={error} setError={setError} initial={initialErrorState} />
             )}
           />
           <Route
             exact
             path="/forgotPassword"
             render={() => (
-              <ForgotPassword error={error} setError={setError} />
+              <ForgotPassword error={error} setError={setError} initial={initialErrorState} />
             )}
           />
           <Route
             exact
             path="/passwordReset/:token"
             render={(props) => (
-              <ResetPassword {...props} error={error} setError={setError} />
+              <ResetPassword
+                {...props}
+                error={error}
+                setError={setError}
+                initial={initialErrorState}
+              />
             )}
           />
           <Route

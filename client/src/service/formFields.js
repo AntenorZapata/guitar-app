@@ -24,7 +24,7 @@ const fields = [
     id: 8, label: 'Preço', type: 'number', value: 'price',
   },
   {
-    id: 9, label: 'Imagem de Capa', type: 'file', value: 'imageCover',
+    id: 9, label: 'Imagem de Capa', type: 'text', value: 'imageCover',
   },
   {
     id: 10, label: 'Imagens', type: 'text', value: 'images',

@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import titles from '../../service/tableTitles';
+import useSort from '../../hooks/useSort';
 
 export default function GuitarTable({
   guitarTable,
   handleDeleteRow,
   handleEditTable,
-  handleSort,
+  setState,
+  order,
+  setGuitarTable,
+  initialState,
 }) {
   const [filters, setFilters] = useState(false);
   const [valueFilter, setValueFilter] = useState([]);
+  const { handleSort } = useSort();
 
   useEffect(() => {
     setValueFilter(guitarTable);
@@ -48,7 +53,8 @@ export default function GuitarTable({
               <th
                 key={title.id}
                 name={title.state}
-                onClick={handleSort}
+                onClick={(e) => handleSort(e, guitarTable,
+                  order, setGuitarTable)}
               >
                 {title.value}
               </th>
@@ -95,12 +101,12 @@ export default function GuitarTable({
                 <td>{gt.tags}</td>
                 <td>{gt.likeCount}</td>
                 <td>
-                  <button onClick={() => handleEditTable(gt._id)} type="button">
+                  <button onClick={() => handleEditTable(gt._id, guitarTable, setState)} type="button">
                     edit
                   </button>
                 </td>
                 <td>
-                  <button onClick={() => handleDeleteRow(gt._id)} type="button">
+                  <button onClick={() => handleDeleteRow(gt._id, setState, initialState)} type="button">
                     delete
                   </button>
                 </td>

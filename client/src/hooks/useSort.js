@@ -26,5 +26,22 @@ export default function useSort() {
     });
     return newState;
   };
-  return { sortNumber, sortName };
+
+  const handleSort = (e, guitarTable, order, setGuitarTable) => {
+    let stateSort = [];
+    const numbers = ['year', 'price', 'likeCount'];
+    const mySubString = e.target.outerHTML.substring(
+      e.target.outerHTML.indexOf('"') + 1,
+      e.target.outerHTML.lastIndexOf('"'),
+    );
+    if (mySubString === 'id') return null;
+    if (numbers.includes(mySubString)) {
+      stateSort = sortNumber(guitarTable, mySubString, order);
+    } else {
+      stateSort = sortName(guitarTable, mySubString, order);
+    }
+    setGuitarTable(stateSort);
+  };
+
+  return { sortNumber, sortName, handleSort };
 }

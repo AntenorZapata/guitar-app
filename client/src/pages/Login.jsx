@@ -6,7 +6,7 @@ import { loginAction, clearErrors } from '../actions';
 import useValidation from '../hooks/useValidation';
 import Header from '../components/header/Header';
 
-export default function Login({ error, setError }) {
+export default function Login({ error, setError, initial }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const [state, setState] = useState({ email: '', password: '' });
@@ -16,6 +16,7 @@ export default function Login({ error, setError }) {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
+    setError(initial);
     if (token) {
       history.push('/');
     }

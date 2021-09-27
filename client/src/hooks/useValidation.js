@@ -25,5 +25,17 @@ export default function useValidation() {
     }
   };
 
-  return { handleEmailValidation, handlePasswordValidation, handleNameValidation };
+  const handleInputValidation = ({ target: { value } }, error, setError) => {
+    console.log(value);
+    // if (value.length < 4) {
+    //   setError({ ...error, name: { valid: false, text:
+    // 'O nome deve ter pelo menos 4 caracteres' } });
+    // }
+  };
+  return {
+    handleEmailValidation,
+    handlePasswordValidation,
+    handleNameValidation,
+    handleInputValidation,
+  };
 }

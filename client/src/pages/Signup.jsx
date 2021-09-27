@@ -5,21 +5,18 @@ import { signupAction, clearErrors } from '../actions';
 import useValidation from '../hooks/useValidation';
 import Header from '../components/header/Header';
 
-export default function Signup() {
+export default function Signup({ error, setError, initial }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const [state, setState] = useState({ email: '', password: '', name: '' });
   const { handleEmailValidation, handlePasswordValidation, handleNameValidation } = useValidation();
 
-  const [error, setError] = useState({
-    email: { valid: true, text: '' },
-    password: { valid: true, text: '' },
-    name: { valid: true, text: '' },
-  });
   const [authError, setAuthError] = useState(false);
   const token = localStorage.getItem('token');
 
   useEffect(() => {
+    setError(initial);
+
     if (token) {
       history.push('/');
     }

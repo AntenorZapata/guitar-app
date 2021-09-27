@@ -8,10 +8,14 @@ import useValidation from '../hooks/useValidation';
 
 const forgotUrl = 'http://localhost:3001/api/v1/users/forgotPassword/';
 
-export default function ForgotPassword({ error, setError }) {
+export default function ForgotPassword({ error, setError, initial }) {
   const [state, setState] = useState({ email: '' });
   const { forgotPassword } = useSelector((err) => err.errors);
   const { handleEmailValidation } = useValidation();
+
+  useEffect(() => {
+    setError(initial);
+  }, []);
 
   const dispatch = useDispatch();
 

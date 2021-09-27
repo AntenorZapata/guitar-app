@@ -4,7 +4,7 @@ import fields from '../../service/formFields';
 function FormSteps({
   props: {
     handleValue, state, step,
-  }, handleInputValidation, error,
+  }, error,
 }) {
   const handleFields = () => {
     let newFields = [];

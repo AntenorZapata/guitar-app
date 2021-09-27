@@ -20,12 +20,6 @@ export default function Form(props) {
     setError('');
   };
 
-  const handleInputValidation = ({ target: { value } }, label) => {
-    if (!value) {
-      setError(label);
-    }
-  };
-
   return (
     <div className="form-container">
       <button type="button" onClick={() => setStep(1)}>1</button>
@@ -34,7 +28,6 @@ export default function Form(props) {
       <form className="form" onSubmit={handleSubmit}>
         <FormSteps
           props={props}
-          handleInputValidation={handleInputValidation}
           error={error}
         />
         <button
