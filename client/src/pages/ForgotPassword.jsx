@@ -10,11 +10,8 @@ const forgotUrl = 'http://localhost:3001/api/v1/users/forgotPassword/';
 
 export default function ForgotPassword({ error, setError }) {
   const [state, setState] = useState({ email: '' });
-  // const [error, setError] = useState(false);
   const { forgotPassword } = useSelector((err) => err.errors);
   const { handleEmailValidation } = useValidation();
-  // const user = useSelector((data) => data.user);
-  // const history = useHistory();
 
   const dispatch = useDispatch();
 

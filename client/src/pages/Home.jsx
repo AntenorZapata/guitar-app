@@ -9,6 +9,7 @@ import {
 import Header from '../components/header/Header';
 import HomeFilters from '../components/homeFilters/HomeFilters';
 import useFilters from '../hooks/useFilters';
+import useTopGuitars from '../hooks/useTopGuitars';
 
 const initialState = {
   filter: '', search: '', min: '', max: '',
@@ -21,6 +22,7 @@ function Home() {
   const guitars = useSelector((gtState) => gtState.guitars.allGuitars);
   const [guitarFiltered, setGuitarFiltered] = useState([]);
   const { filterGuitars } = useFilters();
+  const { handleTopGuitars } = useTopGuitars();
 
   const handleValue = (e) => {
     const fns = {
@@ -34,19 +36,6 @@ function Home() {
       ...state, search: '', min: '', max: '',
     });
     setGuitarFiltered(guitars);
-  };
-
-  const handleTopGuitars = async (e) => {
-    const { value } = e.target;
-    if (value === 'cheap') {
-      dispatch(getCheapGuitarsAction());
-    } else if (value === 'rare') {
-      dispatch(getRareGuitarsAction());
-    } else if (value === 'fender') {
-      dispatch(getTopFendersAction());
-    } else {
-      dispatch(getGuitars());
-    }
   };
 
   useEffect(() => {

@@ -8,6 +8,8 @@ import {
 
 const initialState = { review: '', rating: 3 };
 
+// Component that handles the logic of the Details Page
+
 function useDetails() {
   const [review, setReview] = useState(initialState);
   const [token, setToken] = useState(() => localStorage.getItem('token'));
