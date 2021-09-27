@@ -6,8 +6,6 @@ import updateUserFields from '../service/updateUserFields';
 import { updateUserAction } from '../actions';
 
 function Config() {
-  // const fields = ['email', ''];
-  // const user = JSON.parse(localStorage.getItem('user')) || '';
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
 
@@ -44,7 +42,10 @@ function Config() {
     const newUser = JSON.parse(localStorage.getItem('user'));
     setUser(newUser);
     serUserData({
-      email: newUser.email, name: newUser.name, currPassword: '', newPassword: '',
+      email: newUser.email,
+      name: newUser.name,
+      currPassword: '',
+      newPassword: '',
     });
   }, [userState]);
 
@@ -72,49 +73,6 @@ function Config() {
           <button type="submit">Salvar Alterações</button>
         </form>
         {error && <p>{error}</p>}
-        {/* </form>
-        <form action="update-data" onSubmit={handleSubmit}>
-          <label htmlFor="email">
-            Email
-            <input
-              type="email"
-              name="email"
-              value={userData.email}
-              onChange={handleValueInput}
-              required
-            />
-          </label>
-          <label htmlFor="name">
-            Nome
-            <input
-              type="text"
-              name="name"
-              value={userData.name}
-              onChange={handleValueInput}
-            />
-          </label>
-          <label htmlFor="new-password">
-            Senha Atual
-            <input
-              type="text"
-              name="password"
-              value={userData.password}
-              onChange={handleValueInput}
-              required
-            />
-          </label>
-          <label htmlFor="password-confirmation">
-            Nova Senha
-            <input
-              type="text"
-              name="confirmPassword"
-              value={userData.confirmPassword}
-              onChange={handleValueInput}
-              required
-            />
-          </label> */}
-        {/* <button type="submit">Salvar Alterações</button> */}
-
       </div>
     </div>
   );

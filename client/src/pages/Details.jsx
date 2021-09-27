@@ -9,22 +9,16 @@ import {
 } from '../actions';
 import StarRating from '../components/starRating/StarRating';
 import '../components/starRating/starRating.css';
-
-const initialState = { review: '', rating: 3 };
+import useDetails from '../hooks/useDetails';
 
 function Details({ match: { params: { id } } }) {
   const guitar = useSelector((state) => state.guitars.guitar);
   const favorites = useSelector((state) => state.favorites.allFavorites);
   const reviews = useSelector((state) => state.reviews.reviewById);
-
-  const [review, setReview] = useState(initialState);
-  const [favId, setFavId] = useState('');
-  const [token, setToken] = useState(() => localStorage.getItem('token'));
-  const [user, setEmail] = useState(() => JSON.parse(localStorage.getItem('user')));
-  const [rating, setRating] = useState(3);
-
-  let email = '';
-  if (user) email = user.email;
+  const {
+    handleChange, handleFavorite, handleAddReview, handleReviewValues, handleDeleteReview,
+    setFavId, favId, token, review, email,
+  } = useDetails();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -37,49 +31,13 @@ function Details({ match: { params: { id } } }) {
     if (token) favorites.map((el) => el.guitar === id && setFavId(el._id));
   }, [favorites]);
 
-  const handleReviewValues = (e) => {
-    const { name } = e.target;
-    setReview({ ...review, [name]: e.target.value });
-  };
-
-  const handleAddReview = async (e) => {
-    e.preventDefault();
-    setReview(initialState);
-    const res = await dispatch(createReviewAction(id, review, token));
-  };
-
-  const handleDeleteReview = async (reviewId) => {
-    const res = await dispatch(deleteReviewAction(reviewId, token, id));
-    console.log(res);
-  };
-
-  const handleFavorite = async () => {
-    const {
-      brand, model, year, imageCover,
-    } = guitar;
-    const fav = {
-      guitar: id, brand, model, year, imageCover, user: email,
-    };
-
-    if (!favId) {
-      await dispatch(createFavoriteAction(fav, token));
-    } else {
-      await dispatch(deleteFavoriteAction(favId, token));
-    }
-    setFavId('');
-  };
-
-  const handleChange = (ratingValue) => {
-    setReview({ ...review, rating: ratingValue });
-  };
-
   return (
     <div>
       <Header />
       <div className="details-title">
         <h1>{guitar.model}</h1>
         <MdFavorite
-          onClick={handleFavorite}
+          onClick={() => handleFavorite(id)}
           type="button"
           className={favId ? 'black-heart' : 'heart'}
         />
@@ -94,7 +52,7 @@ function Details({ match: { params: { id } } }) {
             onChange={handleChange}
             bool
           />
-          <form onSubmit={handleAddReview}>
+          <form onSubmit={(e) => handleAddReview(e, id)}>
             <label htmlFor="review">
               Adicione um Review
               <input
@@ -104,24 +62,8 @@ function Details({ match: { params: { id } } }) {
                 value={review.review}
                 required
                 onChange={handleReviewValues}
-
               />
             </label>
-            {/* <label htmlFor="rating">
-          Adicione uma nota
-          <select
-            id="review"
-            name="rating"
-            value={review.rating}
-            onChange={handleReviewValues}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </label> */}
             <button type="submit"> Adicionar</button>
           </form>
         </section>
@@ -135,7 +77,7 @@ function Details({ match: { params: { id } } }) {
           />
           {email === revi.user.email && (
           <button
-            onClick={() => handleDeleteReview(revi._id)}
+            onClick={() => handleDeleteReview(revi._id, id)}
             type="button"
           >
             deletar

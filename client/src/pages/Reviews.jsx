@@ -23,8 +23,6 @@ function Reviews() {
     dispatch(getReviewByEmailAction(email, token));
   }, []);
 
-  console.log('sim');
-
   return (
     <div>
       <Header />
