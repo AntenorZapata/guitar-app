@@ -83,6 +83,10 @@ const validateUserUpdate = (req, res, next) => {
     );
   }
 
+  if (currPassword === newPassword) {
+    return res.status(400).json({ message: 'Please enter a password different from the previous one.' });
+  }
+
   if (!verifyEmail(email)) {
     return res.status(400).json({ message: 'Please enter a valid email address.' });
   }

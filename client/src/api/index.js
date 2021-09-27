@@ -10,6 +10,7 @@ const userUrl = 'http://localhost:3001/api/v1/users/login';
 const forgotUrl = 'http://localhost:3001/api/v1/users/forgotPassword';
 const signupUrl = 'http://localhost:3001/api/v1/users/signup';
 const reviewUrl = 'http://localhost:3001/api/v1/reviews';
+const updateUserUrl = 'http://localhost:3001/api/v1/users/updateUser';
 
 const config = {
   Headers: {
@@ -54,6 +55,8 @@ export const login = (user) => axios.post(userUrl, user, config);
 export const forgotPassword = (email) => axios.post(forgotUrl, email, config);
 
 export const signupUser = (user) => axios.post(signupUrl, user, config);
+
+export const updateUser = (user, token) => axios.patch(updateUserUrl, user, { headers: { 'Content-Type': 'application/json', authorization: `${token}` } });
 
 export const resetPass = (password, token) => axios.post(`http://localhost:3001/api/v1/users/resetPassword/${token}`, password, config);
 

@@ -22,6 +22,7 @@ import {
   fetchCheapGuitars,
   fetchRareGuitars,
   fetchTopFenders,
+  updateUser,
 } from '../api';
 import {
   FETCH_ALL,
@@ -130,6 +131,20 @@ export const resetAction = (password, token) => async (dispatch) => {
     dispatch({ type: RESET, payload: data.token });
   } catch (err) {
     dispatch({ type: RESET_ERR, payload: err.response.data.message });
+    return err.response.data.message;
+  }
+};
+
+export const updateUserAction = (user, token) => async (dispatch) => {
+  try {
+    const { data } = await updateUser(user, token);
+    localStorage.clear();
+    localStorage.setItem('token', data.token);
+    const userCurr = { email: data.email, name: data.name };
+    localStorage.setItem('user', JSON.stringify(userCurr));
+    dispatch({ type: LOGIN, payload: data });
+  } catch (err) {
+    dispatch({ type: SIGNUP_ERR, payload: err.response.data.message });
     return err.response.data.message;
   }
 };

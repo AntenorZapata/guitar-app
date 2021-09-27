@@ -114,14 +114,14 @@ const updateUser = catchAsync(async (req, res, next) => {
   }
   const filteredBody = filterObj(req.body, 'name', 'email');
 
-  await User.findByIdAndUpdate(req.user.id, filteredBody, {
+  const newUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
     new: true,
     runValidators: true,
   });
 
   req.user.password = req.body.newPassword;
   await req.user.save();
-  sendToken(req.user, 200, res);
+  sendToken(newUser, 200, res);
 });
 
 module.exports = {
