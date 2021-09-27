@@ -72,9 +72,33 @@ const validateUserData = (req, res, next) => {
   next();
 };
 
+const validateUserUpdate = (req, res, next) => {
+  const {
+    name, email, currPassword, newPassword,
+  } = req.body;
+
+  if (!name || !email || !currPassword || !newPassword) {
+    return next(
+      new AppError('Invalid data for user update', 422),
+    );
+  }
+
+  if (!verifyEmail(email)) {
+    return res.status(400).json({ message: 'Please enter a valid email address.' });
+  }
+
+  if (currPassword.length < 8 || newPassword.length < 8) {
+    return res.status(400).json({ message: 'Password must have at least 8 characters.' });
+  }
+
+  next();
+};
+
 module.exports = {
   restrictTo,
   validateToken,
   validateUser,
   validateUserData,
+  validateUserUpdate,
+
 };

@@ -1,10 +1,19 @@
 const {
-  getAllUsers, registerUser, loginUser, forgotPass, resetPass,
+  getAllUsers, registerUser, loginUser, forgotPass, resetPass, updateUserService,
 } = require('../service/userService');
+const User = require('../models/userModel');
 
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const sendEmail = require('../utils/email');
+
+const filterObj = (obj, ...allowedFields) => {
+  const newObj = {};
+  Object.keys(obj).forEach((el) => {
+    if (allowedFields.includes(el)) newObj[el] = obj[el];
+  });
+  return newObj;
+};
 
 const sendToken = async (user, statusCode, res) => {
   const token = await user.getSignedToken();
@@ -97,10 +106,29 @@ const resetPassword = catchAsync(async (req, res, next) => {
   return sendToken(user, 200, res);
 });
 
+const updateUser = catchAsync(async (req, res, next) => {
+  const user = await updateUserService(req.user, req.body);
+
+  if (!user) {
+    return next(new AppError('Your current password is wrong', 401));
+  }
+  const filteredBody = filterObj(req.body, 'name', 'email');
+
+  await User.findByIdAndUpdate(req.user.id, filteredBody, {
+    new: true,
+    runValidators: true,
+  });
+
+  req.user.password = req.body.newPassword;
+  await req.user.save();
+  sendToken(req.user, 200, res);
+});
+
 module.exports = {
   getAll,
   register,
   login,
   forgotPassword,
   resetPassword,
+  updateUser,
 };

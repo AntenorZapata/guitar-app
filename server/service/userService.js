@@ -43,9 +43,17 @@ const resetPass = async (token) => {
   return user;
 };
 
+const updateUserService = async (user, body) => {
+  const { currPassword } = body;
+  const userCurr = await User.findById(user.id).select('+password');
+  const checkPass = await user.correctPassword(currPassword, userCurr.password);
+  return checkPass;
+};
+
 module.exports = {
   registerUser,
   loginUser,
   forgotPass,
   resetPass,
+  updateUserService,
 };
