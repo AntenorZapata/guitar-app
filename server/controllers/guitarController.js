@@ -26,7 +26,7 @@ const aliasTopRare = (req, res, next) => {
 
 const aliasTopFender = (req, res, next) => {
   req.query.limit = '5';
-  req.query.brand = 'fender';
+  req.query.brand = 'Fender';
   req.query.sort = 'price';
   // req.query.fields = 'brand, price';
   next();
