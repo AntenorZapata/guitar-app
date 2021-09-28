@@ -10,6 +10,7 @@ import Header from '../components/header/Header';
 import HomeFilters from '../components/homeFilters/HomeFilters';
 import useFilters from '../hooks/useFilters';
 import useTopGuitars from '../hooks/useTopGuitars';
+import './Home.css';
 
 const initialState = {
   filter: '', search: '', min: '', max: '',
