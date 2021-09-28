@@ -10,25 +10,33 @@ function useEditTable() {
     state, setStep, setState, initialState,
   }) => {
     e.preventDefault();
+
     const guitar = guitarTable.find((gt) => gt._id === state._id);
     let err = '';
     if (guitar) {
-      err = await dispatch(updateGuitarData(state));
+      err = dispatch(updateGuitarData(state));
     } else {
-      err = await dispatch(createGuitarData(state));
+      err = dispatch(createGuitarData(state));
     }
     setStep(1);
-    if (err) {
+    setState(initialState);
+  };
+
+  const handleEditTable = (id,
+    guitarTable, setState, state, initialState) => {
+    const guitar = guitarTable.find((gt) => gt._id === id);
+    if (state === guitar) {
       setState(initialState);
+    } else {
+      setState(guitar);
     }
   };
 
-  const handleEditTable = (id, guitarTable, setState) => {
-    const guitar = guitarTable.find((gt) => gt._id === id);
-    setState(guitar);
-  };
-
-  const handleDeleteRow = async (id, setState, initialState) => {
+  const handleDeleteRow = async (id, {
+    setState, initialState, page, setPage,
+  }, value) => {
+    if (value[page].length === 1
+    ) setPage(0);
     const res = await dispatch(deleteGuitarData(id));
     if (res) {
       setState(initialState);

@@ -20,11 +20,12 @@ export default function GuitarDeck({ guitars }) {
       <div className="btns-page">
         {guitars.map((btn, index) => (
           <button
+            key={index}
             type="button"
             className="btn-page"
             onClick={() => handleBtnPage(index)}
           >
-            {index}
+            {index + 1}
           </button>
         ))}
       </div>

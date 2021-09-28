@@ -28,7 +28,7 @@ const initialState = {
 
 function AdminPanel() {
   const guitars = useSelector((state) => state.guitars.allGuitars);
-  const { handleSubmit, handleDeleteRow, handleEditTable } = useEditTable();
+  const { handleSubmit } = useEditTable();
 
   const history = useHistory();
   const [token, setToken] = useState(() => localStorage.getItem('token'));
@@ -67,7 +67,8 @@ function AdminPanel() {
       <Header />
       <div className="user-data">
         <p>
-          Apenas administradores têm permissão para adicionar, editar ou remover uma guitarra.
+          Apenas administradores têm permissão para
+          adicionar, editar ou remover uma guitarra.
         </p>
       </div>
       <div className="admin-painel">
@@ -90,10 +91,9 @@ function AdminPanel() {
           <h4>tabela</h4>
           <GuitarTable
             guitarTable={guitarTable}
-            handleDeleteRow={handleDeleteRow}
-            handleEditTable={handleEditTable}
             initialState={initialState}
             setState={setState}
+            state={state}
             order={order}
             setGuitarTable={setGuitarTable}
           />

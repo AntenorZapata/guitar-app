@@ -1,5 +1,5 @@
-function paginate(guitars) {
-  const itemsPerPage = 9;
+function paginate(guitars, numberOfPages) {
+  const itemsPerPage = numberOfPages;
   const pages = Math.ceil(guitars.length / itemsPerPage);
 
   const newGuitars = Array.from({ length: pages }, (_, index) => {
