@@ -65,11 +65,17 @@ function AdminPanel() {
   return (
     <>
       <Header />
-      <div className="user-data">
-        <p>
-          Apenas administradores têm permissão para
-          adicionar, editar ou remover uma guitarra.
-        </p>
+      <div className="popup-left-content">
+        <ul>
+          <li>
+            <div className="content-popup">
+              <p>
+                Apenas administradores têm permissão para
+                adicionar, editar ou remover uma guitarra.
+              </p>
+            </div>
+          </li>
+        </ul>
       </div>
       <div className="admin-painel">
         <div>

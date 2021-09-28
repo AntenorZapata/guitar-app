@@ -36,7 +36,7 @@ export default function App() {
   const [error, setError] = useState(initialErrorState);
 
   return (
-    <div className="App">
+    <div>
       <Router history={history}>
         <Switch>
           <PrivateRoute exact path="/config" component={Config} />
