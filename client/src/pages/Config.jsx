@@ -65,6 +65,7 @@ function Config() {
                   name={field.name}
                   value={userData[field.name]}
                   onChange={handleValueInput}
+                  placeholder={field.label.includes('Senha') ? 'senha de 8 digitos' : ''}
                   required
                 />
               </label>
