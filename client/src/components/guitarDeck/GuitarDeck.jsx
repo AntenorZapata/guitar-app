@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import GuitarCard from '../guitarCard/GuitarCard';
+import './GuitarDeck.css';
 
 export default function GuitarDeck({ guitars }) {
   // const guitars = useSelector((state) => state.guitars.allGuitars);
@@ -12,7 +13,7 @@ export default function GuitarDeck({ guitars }) {
 
   return (
     <>
-      <div className="guitar-deck">
+      <div className="card-container">
         {guitars
         && guitars.length > 0
         && guitars[page].map((gt) => <GuitarCard guitar={gt} key={gt._id} />)}

@@ -63,19 +63,19 @@ body {
 
 .card-container {
   max-width: 120rem;
-  margin: 0 auto;
+  margin: 2rem auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 7rem;
+
 }
 
 @media screen and (max-width: 960px) {
 	.card-container {
 		max-width: 100rem;
-		margin: 0 auto;
+		margin: 4rem auto;
 		display: grid;
-		grid-template-columns: repeat(1, 1fr);
-		grid-gap: 7rem;
+		grid-template-columns: repeat(1, 1fr);    	
 	}
 
 }
@@ -84,8 +84,10 @@ body {
   /* border-radius: 3px;
   overflow: hidden;
   -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.1); */
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	overflow: hidden;
+ 
   /* background-color: #fff;
   -webkit-transition: 0.3s all;
   transition: 0.3s all;

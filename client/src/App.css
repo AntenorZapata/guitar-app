@@ -5,6 +5,10 @@
   padding:0;
 }
 
+body {
+  height: 100vh;
+}
+
 
 .email-invalid {
   border: 2px solid red;
@@ -54,6 +58,7 @@
   border: 2px solid red;
   outline: none;
 }
+
 
 
 /* .form {
