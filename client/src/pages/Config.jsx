@@ -12,13 +12,13 @@ function Config() {
   const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('user')) || '');
   const [token, setToken] = useState(() => localStorage.getItem('token'));
   const [error, setError] = useState('');
-  const [userData, serUserData] = useState({
+  const [userData, setUserData] = useState({
     email: user.email, name: user.name, currPassword: '', newPassword: '',
   });
 
   const handleValueInput = (e) => {
     const { name } = e.target;
-    serUserData({ ...userData, [name]: e.target.value });
+    setUserData({ ...userData, [name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -41,7 +41,7 @@ function Config() {
   useEffect(() => {
     const newUser = JSON.parse(localStorage.getItem('user'));
     setUser(newUser);
-    serUserData({
+    setUserData({
       email: newUser.email,
       name: newUser.name,
       currPassword: '',
@@ -65,7 +65,8 @@ function Config() {
                   name={field.name}
                   value={userData[field.name]}
                   onChange={handleValueInput}
-                  placeholder={field.label.includes('Senha') ? 'senha de 8 digitos' : ''}
+                  placeholder={field.label.includes('Senha')
+                    ? 'senha de 8 digitos' : ''}
                   required
                 />
               </label>
