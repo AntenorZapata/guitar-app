@@ -40,7 +40,7 @@ function GuitarCard({ guitar, favorite, handleDeleteFav }) {
             </div>
 
             <div className="card__details">
-              <h4 className="card__sub-heading">Easy 5-day tour</h4>
+              <h4 className="card__sub-heading">{guitar.tags}</h4>
               <p className="card__text">
                 {guitar.summary}
               </p>
