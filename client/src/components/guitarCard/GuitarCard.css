@@ -49,7 +49,6 @@ body {
   );
 }
 
-
 .heading-tertirary {
   font-size: 2.75rem;
   text-align: right;
@@ -59,7 +58,6 @@ body {
   width: 70%;
   z-index: 10;
 }
-
 
 .card-container {
   max-width: 120rem;
