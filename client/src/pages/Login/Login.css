@@ -1,0 +1,168 @@
+/* background: linear-gradient( */
+/* 90deg, rgba(110, 94, 254, 0.671), rgba(73, 63, 252, 1)); */
+.login__container {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	z-index: -1;
+}
+
+.form__title img {
+	width: 5rem;
+}
+
+
+.img__container {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background: url('../../imgs/home.jpg');
+  background-size: cover;
+  margin-top: 1rem;
+}
+
+.img__container::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url('../../imgs/splash.jpg');
+	background-size: 2400px;
+	background-position: center;
+	mix-blend-mode: screen;
+}
+
+.contentBx {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	height: 100%;
+
+}
+
+.form__container {
+width: 40%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 6rem 2rem;
+border-radius: 5px;
+height: 100%;
+box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+background-color: rgb(255, 255, 255);
+}
+
+.form__container form {
+	z-index: 1;
+}
+
+.input-box {
+	margin-bottom: 20px;
+}
+
+.form__title {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: -2rem;
+}
+
+
+.form__title h2 {
+	font-size: 2.5rem;
+}
+
+.input-box span {
+	font-size: 2rem;
+	margin-bottom: 10px;
+	display: block;
+	color: red;
+	font-weight: 300;
+	letter-spacing: 1px;
+}
+
+.input__error__hidden {
+	visibility: hidden;
+}
+
+
+.input-box .email-valid,
+.email-invalid, .pass-valid,
+.pass-invalid {
+	width: 100%;
+	padding: 10px 20px;
+	outline: none;
+	font-weight: 400;
+	font-size: 16px;
+	letter-spacing: 1px;
+	background: transparent;
+	border-radius: 30px;
+	margin-bottom: 1rem;
+}
+
+.email-valid, .pass-valid {
+	border: 1px solid #607d8b65;
+	color: #607d8b;
+}
+
+.email-invalid {
+  border: 1px solid red;
+	color: #607d8b;
+}
+
+.pass-invalid {
+  border: 2px solid red;
+}
+
+.pass-valid:focus {
+  outline: none !important;
+  border:1px solid rgb(116, 143, 200);
+  box-shadow: 0 0 10px #719ECE;
+}
+
+.pass-invalid:focus {
+  border: 2px solid red;
+  outline: none;
+}
+
+
+
+.email-valid:focus {
+  outline: none !important;
+  border:1px solid rgb(116, 143, 200);
+  box-shadow: 0 0 5px #719ECE;
+}
+
+/* @media screen and (max-width: 960px) {
+
+	.img__container {
+		display: none;
+	}
+
+
+
+	.form__container form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 500px;
+	width: 30rem;
+	margin: auto;
+	}
+
+	.form__container form label {
+		display: block;
+		font-size: 2rem;
+
+	}
+
+
+} */
