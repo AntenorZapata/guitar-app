@@ -46,13 +46,12 @@ export default function Login({ error, setError, initial }) {
       <section className="img__container">
         <div className="contentBx">
           <div className="form__container">
+            <div className="form__title">
+              <img src={symbol} alt="guitar-symbol" />
+            </div>
             <form onSubmit={hendleSubmit}>
               <div className="input-box">
-                <div className="form__title">
-                  <img src={symbol} alt="guitar-symbol" />
-                  <div className="overlay-img" />
-                </div>
-                <span htmlFor="email">Email</span>
+                {/* <span htmlFor="email">Email</span> */}
                 <input
                   type="email"
                   onBlur={(e) => handleEmailValidation(e, error, setError)}
@@ -60,6 +59,7 @@ export default function Login({ error, setError, initial }) {
                   name="email"
                   className={!error.email.valid ? 'email-invalid' : 'email-valid'}
                   onChange={handleValueInput}
+                  placeholder="Email"
                 />
                 <p className={!error.email.valid ? 'input__error' : 'input__error__hidden'}>
                   {error.email.text ? error.email.text : 'error msg'}
@@ -67,7 +67,7 @@ export default function Login({ error, setError, initial }) {
                 {/* {!error.email.valid && <p className="input__error">{error.email.text}</p>} */}
               </div>
               <div className="input-box">
-                <span htmlFor="password">Senha</span>
+                {/* <span htmlFor="password">Senha</span> */}
                 <input
                   onBlur={(e) => handlePasswordValidation(e, error, setError)}
                   type="password"
@@ -75,20 +75,26 @@ export default function Login({ error, setError, initial }) {
                   value={state.password}
                   className={!error.password.valid ? 'pass-invalid' : 'pass-valid'}
                   onChange={handleValueInput}
+                  placeholder="Senha"
                 />
                 <p className={!error.password.valid ? 'input__error' : 'input__error__hidden'}>
                   {error.password.text ? error.password.text : 'error msg'}
                 </p>
-                {/* {!error.password.valid && <p>{error.password.text}</p>} */}
+                <div className="forgot__password">
+                  <Link to="/forgotPassword" className="forgot__link">Esqueci minha senha</Link>
+                </div>
               </div>
-              <button
-                disabled={!error.email.valid || state.password.length < 8}
-                type="submit"
-              >
-                Entrar
-              </button>
-              <Link to="/forgotPassword">Esqueci minha senha</Link>
-              <Link to="/signup">Criar conta</Link>
+              <div className="login__btn">
+                <button
+                  disabled={!error.email.valid || state.password.length < 8}
+                  type="submit"
+                >
+                  Entrar
+                </button>
+              </div>
+              <div className="signup">
+                <Link to="/signup" className="signup__link">Criar conta</Link>
+              </div>
             </form>
             <p className={authError ? 'input__error' : 'input__error__hidden'}>
               <span>Email ou senha inválidos.</span>
