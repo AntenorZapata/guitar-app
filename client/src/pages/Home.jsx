@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { IoSearchCircleSharp } from 'react-icons/io5';
 import paginate from '../utils/paginate';
 import GuitarDeck from '../components/guitarDeck/GuitarDeck';
 import {
@@ -20,6 +21,7 @@ function Home() {
   const dispatch = useDispatch();
   const [state, setState] = useState(initialState);
   const [token, setToken] = useState(() => localStorage.getItem('token'));
+  const [showFilters, setShowFilters] = useState(false);
   const guitars = useSelector((gtState) => gtState.guitars.allGuitars);
   const [guitarFiltered, setGuitarFiltered] = useState([]);
   const { filterGuitars } = useFilters();
@@ -39,6 +41,10 @@ function Home() {
     setGuitarFiltered(guitars);
   };
 
+  const handleShowFilters = () => {
+    setShowFilters((prev) => !prev);
+  };
+
   useEffect(() => {
     dispatch(clearGuitar());
     dispatch(clearReviews());
@@ -50,17 +56,25 @@ function Home() {
     <div>
       <Header />
       <main className="main__container">
-        <div className="filters-container">
-          {token
+        {token
         && (
-        <HomeFilters
-          handleClearFilters={handleClearFilters}
-          handleValue={handleValue}
-          state={state}
-          handleTopGuitars={handleTopGuitars}
+        <IoSearchCircleSharp
+          onClick={handleShowFilters}
+          className={!showFilters ? 'show__filters' : 'show__filters active'}
         />
         )}
+        {showFilters
+        && (
+        <div className="filters-container">
+          <HomeFilters
+            handleClearFilters={handleClearFilters}
+            handleValue={handleValue}
+            state={state}
+            handleTopGuitars={handleTopGuitars}
+          />
         </div>
+        )}
+
         <div className="guitar-deck-container">
           <GuitarDeck guitars={paginate(guitarFiltered, 9)} />
         </div>

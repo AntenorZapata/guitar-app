@@ -65,22 +65,22 @@ function HomeFilters({
               <input type="radio" id="player" name="filter" onChange={handleValue} />
               Guitarrista
             </label>
+            <input
+              value={state.search}
+              type="text"
+              placeholder="Pesquisar"
+              name="search"
+              onChange={handleValue}
+              className="search__by__text"
+            />
           </div>
-          <input
-            value={state.search}
-            type="text"
-            placeholder="Pesquisar"
-            name="search"
-            onChange={handleValue}
-            className="search__by__text"
-          />
-          <div className="by-price__btns">
-            <span>Preço:</span>
-            <div className="by-price">
-              <input value={state.min} type="number" name="min" placeholder="min" onChange={handleValue} />
-              <p>-</p>
-              <input value={state.max} type="number" name="max" placeholder="max" onChange={handleValue} />
-            </div>
+        </form>
+        <div className="by-price__btns">
+          <span>Preço:</span>
+          <div className="by-price">
+            <input value={state.min} type="number" name="min" placeholder="min" onChange={handleValue} />
+            <p>-</p>
+            <input value={state.max} type="number" name="max" placeholder="max" onChange={handleValue} />
           </div>
           <div className="clear__filters__container">
             <button
@@ -91,8 +91,7 @@ function HomeFilters({
               Limpar Filtros
             </button>
           </div>
-
-        </form>
+        </div>
       </div>
     </div>
   );

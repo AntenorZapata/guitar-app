@@ -49,7 +49,6 @@ body {
   );
 }
 
-
 .heading-tertirary {
   font-size: 2.75rem;
   text-align: right;
@@ -60,10 +59,9 @@ body {
   z-index: 10;
 }
 
-
 .card-container {
   max-width: 120rem;
-  margin: 10rem auto;
+  margin: 5rem auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 12rem;
