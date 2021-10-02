@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './Header.css';
 
-// const handleLogout = () => {
-//   localStorage.clear();
-// };
-
 function Header() {
   const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('user')));
   const [token, setToken] = useState(() => localStorage.getItem('token'));
@@ -41,24 +37,60 @@ function Header() {
         </div>
         <ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
           <li>
-            <Link onClick={handleClicked} className="nav-links" to="/">Início</Link>
+            <Link
+              onClick={handleClicked}
+              className="nav-links"
+              to="/"
+            >
+              Início
+            </Link>
           </li>
           {!token && (
           <li>
-            <Link className="nav-links" to="/login">Login</Link>
+            <Link
+              className="nav-links"
+              onClick={handleClicked}
+              to="/login"
+            >
+              Login
+            </Link>
           </li>
           )}
           <li>
-            <Link onClick={handleClicked} className="nav-links" to={token ? '/config' : '/signup'}>{token ? 'Minha Conta' : 'Crie sua conta'}</Link>
+            <Link
+              onClick={handleClicked}
+              className="nav-links"
+              to={token ? '/config' : '/signup'}
+            >
+              {token ? 'Minha Conta' : 'Crie sua conta'}
+            </Link>
           </li>
           <li>
-            <Link onClick={handleClicked} className={token ? 'nav-links' : 'links-off'} to="/admin">Admin</Link>
+            <Link
+              onClick={handleClicked}
+              className={token ? 'nav-links' : 'links-off'}
+              to="/admin"
+            >
+              Admin
+            </Link>
           </li>
           <li>
-            <Link onClick={handleClicked} className={token ? 'nav-links' : 'links-off'} to="/about">Sobre</Link>
+            <Link
+              onClick={handleClicked}
+              className={token ? 'nav-links' : 'links-off'}
+              to="/about"
+            >
+              Sobre
+            </Link>
           </li>
           <li>
-            <Link onClick={handleLogout} className={token ? 'nav-links' : 'links-off'} to="/login">Sair</Link>
+            <Link
+              onClick={handleLogout}
+              className={token ? 'nav-links' : 'links-off'}
+              to="/login"
+            >
+              Sair
+            </Link>
           </li>
         </ul>
 

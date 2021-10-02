@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { IoSearchCircleSharp } from 'react-icons/io5';
 import paginate from '../utils/paginate';
@@ -26,6 +26,7 @@ function Home() {
   const [guitarFiltered, setGuitarFiltered] = useState([]);
   const { filterGuitars } = useFilters();
   const { handleTopGuitars } = useTopGuitars();
+  const filtersRef = useRef();
 
   const handleValue = (e) => {
     const fns = {
@@ -55,7 +56,9 @@ function Home() {
   return (
     <div>
       <Header />
-      <main className="main__container">
+      <main
+        className="main__container"
+      >
         {token
         && (
         <IoSearchCircleSharp
@@ -76,10 +79,9 @@ function Home() {
         )}
 
         <div className="guitar-deck-container">
-          <GuitarDeck guitars={paginate(guitarFiltered, 9)} />
+          <GuitarDeck guitars={paginate(guitarFiltered, 6)} />
         </div>
       </main>
-
     </div>
   );
 }

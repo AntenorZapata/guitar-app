@@ -1,5 +1,7 @@
-.navBarItems {
+@import url('https://fonts.googleapis.com/css2?family=Grechen+Fuemen&display=swap');
 
+
+.navBarItems {
     background: linear-gradient(90deg, rgba(110, 94, 254, 0.671), rgba(73, 63, 252, 1));
     height: 80px;
     display: flex;
@@ -8,12 +10,19 @@
     font-size: 1.2rem;
 }
 
+.icons-nav {
+    font-size: 2.5rem;
+    color: #eee;
+}
+
 .navbar-logo {
     color: #fff;
     justify-self: start;
     margin-left: 20px;
     cursor: pointer;
-}
+    font-size: 5rem;
+    font-family: 'Grechen Fuemen', cursive;}
+
 
 .fa-guitar {
     margin-left: .5rem;
@@ -35,6 +44,7 @@
     color: white;
     text-decoration: none;
     padding: 0.5rem 1rem;
+    font-size: 2rem;
 }
 
 .nav-links:hover {
@@ -57,6 +67,7 @@
 
 .links-off {
     display: none;
+    padding: 0.5rem 1rem;
 }
 
 .home-title {
@@ -67,20 +78,25 @@
 
 @media screen and (max-width: 960px) {
     .navBarItems {
-        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .nav-menu {
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 400px;
+        height: 100vh;
         position: absolute;
         top: 80px;
         left: -100%;
         opacity:1;
         transition: all .5s ease;
-        justify-content: center;
+        padding-top: 4rem;
+        justify-content: flex-start;
+        font-size: 2rem;
+
     }
 
     .nav-menu.active {
@@ -88,7 +104,8 @@
         left:0;
         opacity: 1;
         transition: all .5s ease;
-        z-index: 1;
+        z-index: 200;
+        height: 100vh;
     }
 
     .nav-links {
@@ -105,9 +122,10 @@
 
     .navbar-logo {
         position:absolute;
-        top:0;
-        left:0;
-        transform: translate(25%, 50%)
+        top: -2.5rem;
+        left:-3.5rem;
+        transform: translate(25%, 50%);
+        font-size: 4rem;
     }
 
     .menu-icon {
@@ -116,12 +134,12 @@
         top: 0;
         right: 0;
         transform: translate(-100%, 60%);
-        font-size: 1.6rem;
+        font-size: 2.2rem;
         cursor: pointer
     }
 
     .fa-times {
         color: #fff;
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 }
