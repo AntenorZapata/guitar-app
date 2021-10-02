@@ -46,10 +46,10 @@ export default function Login({ error, setError, initial }) {
       <section className="img__container">
         <div className="contentBx">
           <div className="form__container">
+            <div className="form__title">
+              <img src={symbol} alt="guitar-symbol" />
+            </div>
             <form onSubmit={hendleSubmit}>
-              <div className="form__title">
-                {/* <img src={symbol} alt="guitar-symbol" /> */}
-              </div>
               <div className="input-box">
                 {/* <span htmlFor="email">Email</span> */}
                 <input
