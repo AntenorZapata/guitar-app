@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getReviewByEmailAction, deleteReviewAction } from '../actions';
+import AccountTitle from '../components/AccountTitle/AccountTitle';
 
 import Header from '../components/header/Header';
 import SideBar from '../components/sideBar/SideBar';
@@ -26,15 +27,17 @@ function Reviews() {
   return (
     <div>
       <Header />
-      <h1>Minha Conta</h1>
-      <SideBar />
-      {reviews.length ? reviews.map((rev) => (
-        <div key={rev._id}>
-          <StarRating starValue={rev.rating} />
-          <p>{rev.review}</p>
-          <button type="button" onClick={() => handleDeleteReview(rev._id, rev.guitar)}>deletar</button>
-        </div>
-      )) : 'você não escreveu nenhum review'}
+      <section className="main__container">
+        {/* <AccountTitle title="Reviews" /> */}
+        <SideBar />
+        {reviews.length ? reviews.map((rev) => (
+          <div key={rev._id}>
+            <StarRating starValue={rev.rating} />
+            <p>{rev.review}</p>
+            <button type="button" onClick={() => handleDeleteReview(rev._id, rev.guitar)}>deletar</button>
+          </div>
+        )) : 'você não escreveu nenhum review'}
+      </section>
 
     </div>
   );
