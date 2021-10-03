@@ -19,16 +19,34 @@
 	width: 8rem;
 }
 
-.img__container {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-  width: 100%;
-  min-height: 100vh;
-  background: url('../../imgs/home.jpg');
-  background-size:cover;
-	background-position-y:-400rem;
+@media only screen   
+and (min-width: 1600px)  {	
+	.img__container {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		min-height: 100vh;
+		background: url('../../imgs/home.jpg');
+		background-size:cover;
+		background-position-y:-400rem;
+	}
+}
+
+
+@media only screen  and (max-width: 1600px)   {
+	.img__container {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		min-height: 100vh;
+		background: url('../../imgs/home.jpg');
+		background-size:cover;
+		background-position-y:-10000rem;
+	}
 }
 
 
@@ -38,7 +56,6 @@
 	align-items: center;
 	width: 50%;
 	height: 100%;
-
 }
 
 .form__container {
@@ -52,6 +69,12 @@ height: 100%;
 box-shadow: 0 3px 6px rgba(98, 97, 97, 0.16), 0 3px 6px rgba(0,0,0,0.23);
 background-color: rgb(255, 255, 255);
 z-index: 1;
+}
+
+@media only screen  and (max-width: 1600px)   {
+	.form__container {
+		width: 45%;
+	}
 }
 
 .form__container form {
@@ -169,17 +192,17 @@ z-index: 1;
 }
 
 .pass-invalid {
-  border: 2px solid red;
+  border: 1px solid red;
 }
 
 .pass-valid:focus {
   outline: none !important;
-  border:1px solid rgb(116, 143, 200);
+  border: 1px solid rgb(116, 143, 200);
   box-shadow: 0 0 10px #719ECE;
 }
 
 .pass-invalid:focus {
-  border: 2px solid red;
+  border: 1px solid red;
   outline: none;
 }
 
