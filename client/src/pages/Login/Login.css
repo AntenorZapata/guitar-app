@@ -77,6 +77,29 @@ z-index: 1;
 	}
 }
 
+@media screen and (max-width: 960px) {
+	.contentBx {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 80%;
+		height: 100%;
+	}
+
+	.form__container {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		/* justify-content: space-around; */
+		padding: 3rem 2.5rem;
+		border-radius: 5px;
+		height: 100%;
+		box-shadow: 0 3px 6px rgba(98, 97, 97, 0.16), 0 3px 6px rgba(0,0,0,0.23);
+		background-color: rgb(255, 255, 255);
+		z-index: 1;
+		}
+}
+
 .form__container form {
 	z-index: 1;
 }
@@ -144,7 +167,6 @@ z-index: 1;
 	font-weight: 400;
 }
 
-
 .form__title h2 {
 	font-size: 2.5rem;
 }
@@ -187,31 +209,29 @@ z-index: 1;
 }
 
 .email-invalid {
-  border: 1px solid red;
+    border: 1px solid red;
 	color: #607d8b;
 }
 
 .pass-invalid {
-  border: 1px solid red;
+    border: 1px solid red;
 }
 
 .pass-valid:focus {
-  outline: none !important;
-  border: 1px solid rgb(116, 143, 200);
-  box-shadow: 0 0 10px #719ECE;
+	outline: none !important;
+	border: 1px solid rgb(116, 143, 200);
+	box-shadow: 0 0 10px #719ECE;
 }
 
 .pass-invalid:focus {
-  border: 1px solid red;
-  outline: none;
+	border: 1px solid red;
+	outline: none;
 }
 
-
-
 .email-valid:focus {
-  outline: none !important;
-  border:1px solid rgb(116, 143, 200);
-  box-shadow: 0 0 5px #719ECE;
+	outline: none !important;
+	border:1px solid rgb(116, 143, 200);
+	box-shadow: 0 0 5px #719ECE;
 }
 
 /* @media screen and (max-width: 960px) {
