@@ -7,7 +7,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Home from './pages/Home';
 import PrivateRoute from './components/routing/PrivateRoute';
-import Config from './pages/Config';
+import Config from './pages/Account/Config';
 import history from './service/history';
 import Favorites from './pages/Favorites';
 import Details from './pages/Details';

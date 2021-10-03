@@ -4,6 +4,7 @@ import Header from '../components/header/Header';
 import GuitarCard from '../components/guitarCard/GuitarCard';
 import { getFavoriteByEmailAction, deleteFavoriteAction } from '../actions';
 import SideBar from '../components/sideBar/SideBar';
+import AccountTitle from '../components/AccountTitle/AccountTitle';
 
 function Favorites() {
   const token = localStorage.getItem('token') || '';
@@ -27,11 +28,13 @@ function Favorites() {
   return (
     <div>
       <Header />
-      <h1>Minha Conta</h1>
-      <SideBar />
-      {favorites.length ? favorites.map((gt) => (
-        <GuitarCard guitar={gt} favorite key={gt.guitar} handleDeleteFav={handleDeleteFav} />
-      )) : 'Você não tem favoritos'}
+      <section className="main__container">
+        {/* <AccountTitle title="Favoritos" /> */}
+        <SideBar />
+        {favorites.length ? favorites.map((gt) => (
+          <GuitarCard guitar={gt} favorite key={gt.guitar} handleDeleteFav={handleDeleteFav} />
+        )) : 'Você não tem favoritos'}
+      </section>
     </div>
   );
 }
