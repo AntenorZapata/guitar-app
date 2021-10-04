@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AiFillStar } from 'react-icons/ai';
+import './starRating.css';
 
 function StarRating({ bool, starValue, onChange }) {
   const num = 5;

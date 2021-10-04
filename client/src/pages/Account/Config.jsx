@@ -54,12 +54,12 @@ function Config() {
   return (
     <div>
       <Header />
-      <section className="main__container">
-        {/* <AccountTitle title="Perfil" /> */}
+      <section className="main__container config__main">
+        <div className="overflow__content " />
         <div className="account-content">
           <SideBar />
           <div className="user-data-config">
-            <form action="update-data" onSubmit={handleSubmit}>
+            <form action="update__data" onSubmit={handleSubmit}>
               {updateUserFields.map((field) => (
                 <div key={field.id} className="input-box-account">
                   <span htmlFor={field.name}>

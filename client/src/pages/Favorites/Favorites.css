@@ -1,0 +1,65 @@
+.empty__msg {
+	font-size: 1.7rem;
+	margin-left: 4rem;
+	font-weight: 400;
+	margin-right: 1.5rem;
+}
+
+.card-fav-container{
+	max-width: 120rem;
+  margin: 5rem auto;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 3rem;
+}
+
+.empty__msg__container {
+	display: flex;
+	width: 50rem;
+	height: 2rem;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.icon-fav {
+	font-size: 2.5rem;
+}
+
+.card-fav {
+	width: 20rem;
+	background-size: cover;
+}
+
+.fav-heart {
+	font-size: 3rem;
+	margin: 1rem;
+	color: rgb(160, 72, 46);
+	cursor: pointer;
+}
+
+.heading-fav {
+	font-size: 1.7rem;
+}
+
+@media only screen  and (min-width: 960px)   {
+
+	.card-fav {
+			margin: 4rem -2rem;
+	}
+
+	.empty__msg {
+		font-size: 2.5rem;
+	}
+
+	.empty__msg__container {
+		margin: 10rem;
+	}
+
+	.card-fav-container{
+		max-width: 120rem;
+		margin: 5rem auto;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		grid-gap: 10rem;
+	}
+}

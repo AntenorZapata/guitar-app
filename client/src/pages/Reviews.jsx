@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { ImFileEmpty } from 'react-icons/im';
+
 import { getReviewByEmailAction, deleteReviewAction } from '../actions';
 import AccountTitle from '../components/AccountTitle/AccountTitle';
 
@@ -27,8 +29,8 @@ function Reviews() {
   return (
     <div>
       <Header />
-      <section className="main__container">
-        {/* <AccountTitle title="Reviews" /> */}
+      <section className="main__container config__main">
+        <div className="overflow__content" />
         <SideBar />
         {reviews.length ? reviews.map((rev) => (
           <div key={rev._id}>
@@ -36,7 +38,13 @@ function Reviews() {
             <p>{rev.review}</p>
             <button type="button" onClick={() => handleDeleteReview(rev._id, rev.guitar)}>deletar</button>
           </div>
-        )) : 'você não escreveu nenhum review'}
+        ))
+          : (
+            <div className="empty__msg__container">
+              <p className="empty__msg">Você não escreveu nenhum review.</p>
+              <ImFileEmpty className="icon-fav" />
+            </div>
+          )}
       </section>
 
     </div>

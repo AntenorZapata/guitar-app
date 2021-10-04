@@ -12,7 +12,8 @@ function SideBar() {
         <li>
           <Link
             to="/config"
-            className={path === '/config' ? 'link active-link' : 'link'}
+            className={path === '/config'
+              ? 'link active-link' : 'link link-disable'}
           >
             Perfil
           </Link>
@@ -20,7 +21,8 @@ function SideBar() {
         <li>
           <Link
             to="/favs"
-            className={path === '/favs' ? 'link active-link' : 'link'}
+            className={path === '/favs'
+              ? 'link active-link' : 'link link-disable'}
           >
             Favoritos
           </Link>
@@ -28,7 +30,8 @@ function SideBar() {
         <li>
           <Link
             to="/reviews"
-            className={path === '/reviews' ? 'link active-link' : 'link'}
+            className={path === '/reviews'
+              ? 'link active-link' : 'link link-disable'}
           >
             Reviews
           </Link>

@@ -1,0 +1,14 @@
+
+.heart  {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  color: rgb(192, 187, 187);
+  cursor: pointer;
+}
+
+.black-heart {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  color: black;
+  cursor: pointer;
+}

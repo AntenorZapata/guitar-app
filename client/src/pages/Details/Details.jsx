@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
-import Header from '../components/header/Header';
+import Header from '../../components/header/Header';
 import {
   getGuitarByIdAction, getReviews, getReviewById, createReviewAction,
   deleteReviewAction, createFavoriteAction, deleteFavoriteAction,
   getFavoriteByEmailAction,
-} from '../actions';
-import StarRating from '../components/starRating/StarRating';
-import '../components/starRating/starRating.css';
-import useDetails from '../hooks/useDetails';
+} from '../../actions';
+import StarRating from '../../components/starRating/StarRating';
+import useDetails from '../../hooks/useDetails';
+import './Details.css';
 
 function Details({ match: { params: { id } } }) {
   const guitar = useSelector((state) => state.guitars.guitar);

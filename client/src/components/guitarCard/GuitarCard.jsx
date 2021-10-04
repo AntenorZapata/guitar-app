@@ -16,11 +16,20 @@ function GuitarCard({ guitar, favorite, handleDeleteFav }) {
   return (
     <div>
       {favorite ? (
-        <div className="favorite-card">
-          <MdFavorite onClick={() => handleDeleteFav(guitar._id)} />
-          <p>{guitar.brand}</p>
-          <p>{guitar.model}</p>
-          <p>{guitar.year}</p>
+        <div className="card card-fav">
+          <MdFavorite onClick={() => handleDeleteFav(guitar._id)} className="fav-heart" />
+          <div className="card__header">
+            <div className="card__picture">
+              <img
+                src={`./images/${guitar.imageCover}`}
+                alt="fender 1"
+                className="card__picture-img"
+              />
+            </div>
+            <h3 className="heading-tertirary heading-fav">
+              <span>{`${guitar.brand} ${guitar.model}`}</span>
+            </h3>
+          </div>
         </div>
       ) : (
         <div>
