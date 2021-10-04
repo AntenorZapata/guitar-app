@@ -1,5 +1,3 @@
-
-
 .account-title {
     margin: 2rem 3rem;
 }
@@ -15,7 +13,6 @@
 }
 
 .input-box-account {
-    /* background-color: red; */
     display: flex;
     flex-direction: column;
     width: 75%;
@@ -30,8 +27,7 @@
     background-color: white;
 }
 
-.config__main {
-    /* overflow:auto; */
+.config__container {
     height: 100vh;
 }
 
@@ -46,7 +42,4 @@
         width: 40%;
         margin: 9rem 0;
     }
-
-
-
 }

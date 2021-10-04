@@ -44,12 +44,6 @@ export default function Login({ error, setError, initial }) {
   return (
     <div>
       <Header />
-      {/* <section className="img__container">
-        <div className="contentBx">
-          <div className="form__container">
-            <div className="form__title">
-              <img src={symbol} alt="guitar-symbol" />
-            </div> */}
       <LoginForm>
         <form onSubmit={hendleSubmit}>
           <div className="input-box">

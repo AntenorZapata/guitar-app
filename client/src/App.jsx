@@ -15,7 +15,7 @@ import About from './pages/About';
 import './App.css';
 
 import UserData from './pages/UserData';
-import Reviews from './pages/Reviews';
+import Reviews from './pages/Reviews/Reviews';
 
 import { getGuitars } from './actions';
 import AdminPanel from './pages/AdminPanel';

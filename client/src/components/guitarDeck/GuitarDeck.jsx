@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import BtnsPage from '../BtnsPage';
+import BtnsPage from '../BtnsPage/BtnsPage';
 import GuitarCard from '../guitarCard/GuitarCard';
 import './GuitarDeck.css';
 

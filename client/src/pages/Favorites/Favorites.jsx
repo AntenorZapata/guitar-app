@@ -8,7 +8,7 @@ import SideBar from '../../components/sideBar/SideBar';
 import AccountTitle from '../../components/AccountTitle/AccountTitle';
 import './Favorites.css';
 import paginate from '../../utils/paginate';
-import BtnsPage from '../../components/BtnsPage';
+import BtnsPage from '../../components/BtnsPage/BtnsPage';
 
 const token = localStorage.getItem('token') || '';
 function Favorites() {
@@ -37,7 +37,7 @@ function Favorites() {
   return (
     <div>
       <Header />
-      <section className="main__container config__main">
+      <section className="main__container config__container">
         {/* <AccountTitle title="Favoritos" /> */}
         <div className="overflow__content" />
         <SideBar />
@@ -51,22 +51,15 @@ function Favorites() {
             </div>
           )}
         </div>
+        {/* <div className="btns-page__container"> */}
+        {favorites.length > 12 && (
         <BtnsPage
           handleBtnPage={handleBtnPage}
           arrayOfElements={paginate(favorites, 12)}
         />
-        {/* <div className="btns-page">
-          {paginate(favorites, 12).map((btn, index) => (
-            <button
-              key={index}
-              type="button"
-              className="btn-page"
-              onClick={() => handleBtnPage(index)}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div> */}
+        ) }
+
+        {/* </div> */}
       </section>
     </div>
   );

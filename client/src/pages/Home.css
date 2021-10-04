@@ -2,8 +2,6 @@
 	background-color: #f7f7f7;
 	max-width: 1400px;
 	margin: auto;
-	height: 100vh;
-	/* overflow: */
 }
 
 ::-webkit-scrollbar {

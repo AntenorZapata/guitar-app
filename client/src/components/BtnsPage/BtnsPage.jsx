@@ -1,4 +1,5 @@
 import React from 'react';
+import './BtnsPage.css';
 
 function BtnsPage({ arrayOfElements, handleBtnPage }) {
   return (

@@ -1,14 +1,14 @@
-/* .btns-page {
+.btns-page {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .btns-page button {
-border: 2px solid rgba(0, 0, 0, 0.486);
+border: 2px solid rgba(44, 42, 42, 0.486);
 padding:.3rem 1.5rem;
 border-radius: 5px;
 cursor: pointer;
 margin: 1rem;
 }
- */
+
