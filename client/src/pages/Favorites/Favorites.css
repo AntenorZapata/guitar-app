@@ -7,7 +7,7 @@
 
 .card-fav-container{
 	max-width: 120rem;
-  margin: 5rem auto;
+  margin: 2rem auto;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 3rem;
@@ -43,9 +43,9 @@
 
 @media only screen  and (min-width: 960px)   {
 
-	.card-fav {
-			margin: 4rem -2rem;
-	}
+	/* .card-fav {
+			margin: 4rem auto
+	} */
 
 	.empty__msg {
 		font-size: 2.5rem;
@@ -57,9 +57,10 @@
 
 	.card-fav-container{
 		max-width: 120rem;
-		margin: 5rem auto;
+		margin: 6rem auto;
 		display: grid;
 		grid-template-columns: repeat(5, 1fr);
-		grid-gap: 10rem;
+		grid-template-rows: 30rem;
+		grid-gap: 3rem;
 	}
 }

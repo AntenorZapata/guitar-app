@@ -28,7 +28,10 @@
 }
 
 .config__container {
-    height: 100vh;
+    background-color: #f7f7f7;
+	max-width: 1400px;
+	margin: auto;
+    padding-bottom: 2rem;
 }
 
 .overflow__content {
@@ -37,9 +40,19 @@
     height: .1rem;
 }
 
+.btns-page{
+    width: 80%;
+    margin: auto;
+}
+
 @media only screen  and (min-width: 960px)   {
     .user-data-config {
         width: 40%;
         margin: 9rem 0;
+    }
+
+    .config__container {
+    height: 100vh;
+
     }
 }

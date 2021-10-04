@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './Header.css';
@@ -16,6 +16,12 @@ function Header() {
     localStorage.clear();
     setClicked(!clicked);
   };
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      setClicked(false);
+    });
+  }, []);
 
   return (
     <div>

@@ -12,6 +12,7 @@ import Header from '../../components/header/Header';
 import SideBar from '../../components/sideBar/SideBar';
 import StarRating from '../../components/starRating/StarRating';
 import BtnsPage from '../../components/BtnsPage/BtnsPage';
+import Footer from '../../components/Footer/Footer';
 
 function Reviews() {
   const token = localStorage.getItem('token') || '';
@@ -31,18 +32,24 @@ function Reviews() {
   }, []);
 
   const handleBtnPage = (index) => {
-    console.log(index);
     setPage(index);
   };
 
   return (
     <div>
       <Header />
-      <section className="main__container config__container">
+      <section className="config__container">
         <div className="overflow__content" />
         <SideBar />
-        <div>
-          {reviews.length ? paginate(reviews, 5)[page].map((rev) => (
+        {reviews.length > 3
+          && (
+            <BtnsPage
+              handleBtnPage={handleBtnPage}
+              arrayOfElements={paginate(reviews, 3)}
+            />
+          ) }
+        <div className="review__container">
+          {reviews.length ? paginate(reviews, 3)[page].map((rev) => (
             <div key={rev._id} className="card__reviews card__reviews__container">
               <StarRating starValue={rev.rating} />
               <p>{rev.review}</p>
@@ -57,22 +64,13 @@ function Reviews() {
           ))
             : (
               <div className="empty__msg__container">
-                <p className="empty__msg">Você não escreveu nenhum review.</p>
+                <p className="empty__msg">Você não fez comentários.</p>
                 <ImFileEmpty className="icon-fav" />
               </div>
             )}
         </div>
-        {reviews.length > 4
-          && (
-
-          <BtnsPage
-            handleBtnPage={handleBtnPage}
-            arrayOfElements={paginate(reviews, 5)}
-          />
-
-          )}
       </section>
-
+      <Footer />
     </div>
   );
 }

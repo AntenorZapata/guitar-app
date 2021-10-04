@@ -54,7 +54,7 @@ function Details({ match: { params: { id } } }) {
           />
           <form onSubmit={(e) => handleAddReview(e, id)}>
             <label htmlFor="review">
-              Adicione um Review
+              Adicione um comentário
               <input
                 type="text"
                 id="review"
@@ -62,9 +62,15 @@ function Details({ match: { params: { id } } }) {
                 value={review.review}
                 required
                 onChange={handleReviewValues}
+                placeholder="max 760 caracteres"
               />
             </label>
-            <button type="submit"> Adicionar</button>
+            <button
+              type="submit"
+              disabled={review.review.length > 760}
+            >
+              Adicionar
+            </button>
           </form>
         </section>
       )}

@@ -9,6 +9,7 @@ import AccountTitle from '../../components/AccountTitle/AccountTitle';
 import './Favorites.css';
 import paginate from '../../utils/paginate';
 import BtnsPage from '../../components/BtnsPage/BtnsPage';
+import Footer from '../../components/Footer/Footer';
 
 const token = localStorage.getItem('token') || '';
 function Favorites() {
@@ -41,8 +42,14 @@ function Favorites() {
         {/* <AccountTitle title="Favoritos" /> */}
         <div className="overflow__content" />
         <SideBar />
+        {favorites.length > 5 && (
+          <BtnsPage
+            handleBtnPage={handleBtnPage}
+            arrayOfElements={paginate(favorites, 12)}
+          />
+        )}
         <div className="card-fav-container">
-          {favorites.length ? paginate(favorites, 12)[page].map((gt) => (
+          {favorites.length ? paginate(favorites, 10)[page].map((gt) => (
             <GuitarCard guitar={gt} favorite key={gt.guitar} handleDeleteFav={handleDeleteFav} />
           )) : (
             <div className="empty__msg__container">
@@ -51,16 +58,8 @@ function Favorites() {
             </div>
           )}
         </div>
-        {/* <div className="btns-page__container"> */}
-        {favorites.length > 12 && (
-        <BtnsPage
-          handleBtnPage={handleBtnPage}
-          arrayOfElements={paginate(favorites, 12)}
-        />
-        ) }
-
-        {/* </div> */}
       </section>
+      <Footer />
     </div>
   );
 }
