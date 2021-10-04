@@ -23,9 +23,9 @@ const ResetPassword = (props) => {
     setState({ ...state, [name]: e.target.value });
   };
 
-  const hendleSubmit = async (e) => {
+  const hendleSubmit = (e) => {
     e.preventDefault();
-    await dispatch(resetAction(state, token));
+    dispatch(resetAction(state, token));
     props.history.push('/login');
   };
 

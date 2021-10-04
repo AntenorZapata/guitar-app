@@ -1,0 +1,52 @@
+
+
+.account-title {
+    margin: 2rem 3rem;
+}
+
+.account__btn {
+    margin: 1.5rem auto;
+}
+
+.input-box-account span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.input-box-account {
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    justify-content: center;
+    margin: auto;
+    height: 10rem;
+}
+
+.input-box-account input {
+    width: 100%;
+    margin: auto;
+    background-color: white;
+}
+
+.config__main {
+    /* overflow:auto; */
+    height: 100vh;
+}
+
+.overflow__content {
+    background-color: transparent;
+    width: 20rem;
+    height: .1rem;
+}
+
+@media only screen  and (min-width: 960px)   {
+    .user-data-config {
+        width: 40%;
+        margin: 9rem 0;
+    }
+
+
+
+}

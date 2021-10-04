@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import BtnsPage from '../BtnsPage';
 import GuitarCard from '../guitarCard/GuitarCard';
 import './GuitarDeck.css';
 
@@ -18,7 +19,11 @@ export default function GuitarDeck({ guitars }) {
         && guitars.length > 0
         && guitars[page].map((gt) => <GuitarCard guitar={gt} key={gt._id} />)}
       </div>
-      <div className="btns-page">
+      <BtnsPage
+        handleBtnPage={handleBtnPage}
+        arrayOfElements={guitars}
+      />
+      {/* <div className="btns-page">
         {guitars.map((btn, index) => (
           <button
             key={index}
@@ -29,7 +34,7 @@ export default function GuitarDeck({ guitars }) {
             {index + 1}
           </button>
         ))}
-      </div>
+      </div> */}
     </>
   );
 }

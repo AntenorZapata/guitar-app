@@ -2,10 +2,13 @@
 	background-color: #f7f7f7;
 	max-width: 1400px;
 	margin: auto;
-	overflow: auto;
-
+	height: 100vh;
+	/* overflow: */
 }
 
+::-webkit-scrollbar {
+	display: none;
+}
 
 @media screen and (max-width: 960px) {
 }
