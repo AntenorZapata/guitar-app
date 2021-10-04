@@ -6,6 +6,7 @@ import updateUserFields from '../../service/updateUserFields';
 import { updateUserAction } from '../../actions';
 import AccountTitle from '../../components/AccountTitle/AccountTitle';
 import './Config.css';
+import Footer from '../../components/Footer/Footer';
 
 function Config() {
   const dispatch = useDispatch();
@@ -54,8 +55,8 @@ function Config() {
   return (
     <div>
       <Header />
-      <section className="main__container config__main">
-        <div className="overflow__content " />
+      <section className="main__container config__container">
+        <div className="overflow__content" />
         <div className="account-content">
           <SideBar />
           <div className="user-data-config">
@@ -87,6 +88,7 @@ function Config() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

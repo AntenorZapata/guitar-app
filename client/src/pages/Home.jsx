@@ -12,6 +12,7 @@ import HomeFilters from '../components/homeFilters/HomeFilters';
 import useFilters from '../hooks/useFilters';
 import useTopGuitars from '../hooks/useTopGuitars';
 import './Home.css';
+import Footer from '../components/Footer/Footer';
 
 const initialState = {
   filter: '', search: '', min: '', max: '',
@@ -54,6 +55,7 @@ function Home() {
   }, [guitars]);
 
   return (
+
     <div>
       <Header />
       <main
@@ -82,6 +84,7 @@ function Home() {
           <GuitarDeck guitars={paginate(guitarFiltered, 6)} />
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

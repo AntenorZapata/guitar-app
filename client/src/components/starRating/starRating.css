@@ -19,8 +19,6 @@
     display: flex;
 }
 
-
-
 .star-rating input {
     display: none;
 }
@@ -28,6 +26,6 @@
 .star {
     cursor: pointer;
     color: rgb(169, 169, 169);
-    font-size: 1.5rem;
+    font-size: 2.5rem;
 }
 

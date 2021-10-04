@@ -33,7 +33,7 @@ function SideBar() {
             className={path === '/reviews'
               ? 'link active-link' : 'link link-disable'}
           >
-            Reviews
+            Comentários
           </Link>
         </li>
       </ul>

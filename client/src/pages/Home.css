@@ -2,8 +2,9 @@
 	background-color: #f7f7f7;
 	max-width: 1400px;
 	margin: auto;
-	height: 100vh;
-	/* overflow: */
+	/* height: 100vh; */
+	/* overflow-y:auto; */
+
 }
 
 ::-webkit-scrollbar {

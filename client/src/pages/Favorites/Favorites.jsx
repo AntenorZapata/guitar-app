@@ -8,7 +8,8 @@ import SideBar from '../../components/sideBar/SideBar';
 import AccountTitle from '../../components/AccountTitle/AccountTitle';
 import './Favorites.css';
 import paginate from '../../utils/paginate';
-import BtnsPage from '../../components/BtnsPage';
+import BtnsPage from '../../components/BtnsPage/BtnsPage';
+import Footer from '../../components/Footer/Footer';
 
 const token = localStorage.getItem('token') || '';
 function Favorites() {
@@ -37,12 +38,18 @@ function Favorites() {
   return (
     <div>
       <Header />
-      <section className="main__container config__main">
+      <section className="main__container config__container">
         {/* <AccountTitle title="Favoritos" /> */}
         <div className="overflow__content" />
         <SideBar />
+        {favorites.length > 5 && (
+          <BtnsPage
+            handleBtnPage={handleBtnPage}
+            arrayOfElements={paginate(favorites, 12)}
+          />
+        )}
         <div className="card-fav-container">
-          {favorites.length ? paginate(favorites, 12)[page].map((gt) => (
+          {favorites.length ? paginate(favorites, 10)[page].map((gt) => (
             <GuitarCard guitar={gt} favorite key={gt.guitar} handleDeleteFav={handleDeleteFav} />
           )) : (
             <div className="empty__msg__container">
@@ -51,23 +58,8 @@ function Favorites() {
             </div>
           )}
         </div>
-        <BtnsPage
-          handleBtnPage={handleBtnPage}
-          arrayOfElements={paginate(favorites, 12)}
-        />
-        {/* <div className="btns-page">
-          {paginate(favorites, 12).map((btn, index) => (
-            <button
-              key={index}
-              type="button"
-              className="btn-page"
-              onClick={() => handleBtnPage(index)}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div> */}
       </section>
+      <Footer />
     </div>
   );
 }

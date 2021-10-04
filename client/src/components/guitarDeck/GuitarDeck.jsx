@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import BtnsPage from '../BtnsPage';
+import BtnsPage from '../BtnsPage/BtnsPage';
+import Footer from '../Footer/Footer';
 import GuitarCard from '../guitarCard/GuitarCard';
 import './GuitarDeck.css';
 
@@ -23,6 +24,8 @@ export default function GuitarDeck({ guitars }) {
         handleBtnPage={handleBtnPage}
         arrayOfElements={guitars}
       />
+      {/* <div className="overflow__content-home" /> */}
+
       {/* <div className="btns-page">
         {guitars.map((btn, index) => (
           <button
