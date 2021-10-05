@@ -38,11 +38,10 @@ function Favorites() {
   return (
     <div>
       <Header />
-      <section className="main__container config__container">
-        {/* <AccountTitle title="Favoritos" /> */}
+      <section className="config__container">
         <div className="overflow__content" />
         <SideBar />
-        {favorites.length > 5 && (
+        {favorites.length > 10 && (
           <BtnsPage
             handleBtnPage={handleBtnPage}
             arrayOfElements={paginate(favorites, 12)}
@@ -50,7 +49,14 @@ function Favorites() {
         )}
         <div className="card-fav-container">
           {favorites.length ? paginate(favorites, 10)[page].map((gt) => (
-            <GuitarCard guitar={gt} favorite key={gt.guitar} handleDeleteFav={handleDeleteFav} />
+
+            <GuitarCard
+              guitar={gt}
+              favorite
+              key={gt.guitar}
+              handleDeleteFav={handleDeleteFav}
+            />
+
           )) : (
             <div className="empty__msg__container">
               <p className="empty__msg">Você não tem favoritos.</p>
@@ -59,6 +65,7 @@ function Favorites() {
           )}
         </div>
       </section>
+      <div className="overflow__content-config" />
       <Footer />
     </div>
   );

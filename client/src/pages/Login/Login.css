@@ -49,6 +49,7 @@ and (min-width: 1400px)  {
 	align-items: center;
 	width: 50%;
 	height: 100%;
+	margin-top: -3rem;
 }
 
 .form__container {

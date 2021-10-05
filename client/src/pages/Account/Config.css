@@ -45,10 +45,14 @@
     margin: auto;
 }
 
+.overflow__content-config {
+    height: 5vh;
+}
+
 @media only screen  and (min-width: 960px)   {
     .user-data-config {
         width: 40%;
-        margin: 9rem 0;
+        margin: 10rem 0 0 10rem;
     }
 
     .config__container {

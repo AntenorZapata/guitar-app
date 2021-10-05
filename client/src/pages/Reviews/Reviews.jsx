@@ -63,13 +63,14 @@ function Reviews() {
             </div>
           ))
             : (
-              <div className="empty__msg__container">
+              <div className="empty__msg__container empty-review">
                 <p className="empty__msg">Você não fez comentários.</p>
                 <ImFileEmpty className="icon-fav" />
               </div>
             )}
         </div>
       </section>
+      <div className="overflow__content-config" />
       <Footer />
     </div>
   );

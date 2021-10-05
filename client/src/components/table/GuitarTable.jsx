@@ -4,6 +4,8 @@ import useSort from '../../hooks/useSort';
 import paginate from '../../utils/paginate';
 import useGuitarFilter from '../../hooks/useGuitarFilter';
 import useEditTable from '../../hooks/useEditTable';
+import './GuitarTable.css';
+import sort from '../../imgs/sort.png';
 
 export default function GuitarTable({
   guitarTable,
@@ -35,11 +37,11 @@ export default function GuitarTable({
   };
 
   return (
-    <div>
+    <div className="responsive-container">
       <table
         rules="none"
         border="1"
-        className="guitar-table"
+        className="smart-table"
       >
         <thead>
           <tr>
@@ -61,6 +63,9 @@ export default function GuitarTable({
                 Filtros
               </button>
             </th>
+            <th className="sort-warning">
+              <img src={sort} alt="sort" />
+            </th>
           </tr>
           <tr>
             <th />
@@ -68,6 +73,7 @@ export default function GuitarTable({
             && titles.slice(1).map((el, index) => (
               <th key={el.id}>
                 <input
+                  className="table-filters-input"
                   type="text"
                   onChange={(e) => handleGuitarFilter(e, el,
                     guitarTable, setValueFilter)}
@@ -81,21 +87,21 @@ export default function GuitarTable({
           {valueFilter && valueFilter.length > 0
             ? (paginate(valueFilter, 5)[page].map((gt) => (
               <tr key={gt._id}>
-                <td>{gt._id}</td>
-                <td>{gt.brand}</td>
-                <td>{gt.model}</td>
-                <td>{gt.year}</td>
-                <td>{gt.summary}</td>
-                <td>{gt.description}</td>
-                <td>{gt.player}</td>
-                <td>{gt.songs}</td>
-                <td>{gt.price}</td>
-                <td>{gt.imageCover}</td>
-                <td>{gt.images}</td>
-                <td>{gt.link}</td>
-                <td>{gt.tags}</td>
-                <td>{gt.likeCount}</td>
-                <td>
+                <td data-col-title="ID">{gt._id}</td>
+                <td data-col-title="brand">{gt.brand}</td>
+                <td data-col-title="model">{gt.model}</td>
+                <td data-col-title="year">{gt.year}</td>
+                <td data-col-title="summary">{gt.summary}</td>
+                <td data-col-title="description">{gt.description}</td>
+                <td data-col-title="player">{gt.player}</td>
+                <td data-col-title="songs">{gt.songs}</td>
+                <td data-col-title="price">{gt.price}</td>
+                <td data-col-title="imageCover">{gt.imageCover}</td>
+                <td data-col-title="images">{gt.images}</td>
+                <td data-col-title="link">{gt.link}</td>
+                <td data-col-title="tags">{gt.tags}</td>
+                <td data-col-title="likeCount">{gt.likeCount}</td>
+                <td data-col-title="btn">
                   <button
                     onClick={() => handleEditTable(gt._id,
                       guitarTable, setState, state, initialState)}
@@ -118,23 +124,25 @@ export default function GuitarTable({
             ))) : <tr><td>Not Found</td></tr> }
         </tbody>
       </table>
-      <button
-        disabled={page === paginate(valueFilter, 5).length - 1}
-        onClick={handlePagination}
-        type="button"
-        name="next"
-      >
-        Proximo
-      </button>
-      {page > 0 && (
-      <button
-        type="button"
-        name="back"
-        onClick={handlePagination}
-      >
-        Voltar
-      </button>
-      )}
+      <div className="btns-table">
+        <button
+          disabled={page === paginate(valueFilter, 5).length - 1}
+          onClick={handlePagination}
+          type="button"
+          name="next"
+        >
+          Proximo
+        </button>
+        {page > 0 && (
+        <button
+          type="button"
+          name="back"
+          onClick={handlePagination}
+        >
+          Voltar
+        </button>
+        )}
+      </div>
     </div>
   );
 }
