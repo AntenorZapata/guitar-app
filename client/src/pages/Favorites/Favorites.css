@@ -15,7 +15,6 @@
 
 .empty__msg__container {
 	display: flex;
-	width: 50rem;
 	height: 2rem;
 	justify-content: flex-start;
 	align-items: center;
@@ -49,6 +48,7 @@
 
 	.empty__msg__container {
 		margin: 5rem 0 0 2rem;
+		width: 40rem;
 	}
 
 	.card-fav-container{

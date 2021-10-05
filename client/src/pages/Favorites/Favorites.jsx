@@ -39,7 +39,6 @@ function Favorites() {
     <div>
       <Header />
       <section className="config__container">
-        {/* <AccountTitle title="Favoritos" /> */}
         <div className="overflow__content" />
         <SideBar />
         {favorites.length > 10 && (
