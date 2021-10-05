@@ -50,10 +50,14 @@ function Home() {
   };
 
   useEffect(() => {
+    let isSubscribed = true;
     dispatch(clearGuitar());
     dispatch(clearReviews());
     dispatch(clearFavorites());
     setGuitarFiltered(guitars);
+
+    isSubscribed = false;
+    return () => isSubscribed;
   }, [guitars]);
 
   const handleBtnPage = (index) => {

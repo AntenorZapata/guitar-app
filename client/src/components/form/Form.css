@@ -1,0 +1,57 @@
+.form__container-table {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 0 5rem 0;
+	/* background-color: red; */
+}
+
+@media screen and (min-width: 960px) {
+	.step-input {
+		width: 35rem;
+		margin-top: 1.5rem;
+		border-radius: 15px;
+	}
+
+}
+
+
+.btn-steps-table {
+	margin: 2.5rem auto;
+}
+
+.btn-steps-table button {
+	padding: .5rem 1.2rem;
+	margin-right: 1rem;
+}
+
+.btns-steps {
+	display: flex;
+	width: 30%;
+	justify-content: space-around;
+	margin: 2rem auto;
+}
+
+.create-guitar__container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1.5rem;
+}
+
+.create-guitar__container  button {
+	border: none;
+	padding: .5rem 1rem;
+	color: white;
+	background-color: rgba(167, 36, 36, 0.842);
+	border-radius: 5px;
+	margin-bottom: -1rem;
+}
+
+/* .btns-steps button {
+	border-radius: 50%;
+	padding: .5rem 1rem;
+	margin: 1rem;
+
+} */

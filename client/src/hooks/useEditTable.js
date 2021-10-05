@@ -16,7 +16,8 @@ function useEditTable() {
     if (guitar) {
       err = dispatch(updateGuitarData(state));
     } else {
-      err = dispatch(createGuitarData(state));
+      err = await dispatch(createGuitarData(state));
+      console.log(err);
     }
     setStep(1);
     setState(initialState);

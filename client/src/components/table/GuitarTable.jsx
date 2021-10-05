@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { AiTwotoneEdit } from 'react-icons/ai';
+import { RiDeleteBin2Fill } from 'react-icons/ri';
+import { IoFilterSharp } from 'react-icons/io5';
 import titles from '../../service/tableTitles';
 import useSort from '../../hooks/useSort';
 import paginate from '../../utils/paginate';
@@ -37,39 +40,43 @@ export default function GuitarTable({
   };
 
   return (
-    <div className="responsive-container">
-      <table
-        rules="none"
-        border="1"
-        className="smart-table"
-      >
-        <thead>
-          <tr>
-            {titles.map((title) => (
-              <th
-                key={title.id}
-                name={title.state}
-                onClick={(e) => handleSort(e, guitarTable,
-                  order, setGuitarTable)}
-              >
-                {title.value}
+    <>
+      <div className="responsive-container">
+        <table
+          rules="none"
+          border="1"
+          className="smart-table"
+        >
+          <thead>
+            <tr>
+              {titles.map((title) => (
+                <th
+                  key={title.id}
+                  name={title.state}
+                  onClick={(e) => handleSort(e, guitarTable,
+                    order, setGuitarTable)}
+                >
+                  {title.value}
+                </th>
+              ))}
+              <th>
+                <IoFilterSharp
+                  className="table-icon filter-icon"
+                  type="button"
+                  onClick={() => setFilters(!filters)}
+                />
               </th>
-            ))}
-            <th>
-              <button
-                type="button"
-                onClick={() => setFilters(!filters)}
-              >
-                Filtros
-              </button>
-            </th>
-            <th className="sort-warning">
-              <img src={sort} alt="sort" />
-            </th>
-          </tr>
-          <tr>
-            <th />
-            {filters
+              <th className="sort-warning">
+                <div className="msg-popup">
+                  Clique nos títulos para ordernar a tabela.
+                </div>
+                <img src={sort} alt="sort" />
+
+              </th>
+            </tr>
+            <tr>
+              <th />
+              {filters
             && titles.slice(1).map((el, index) => (
               <th key={el.id}>
                 <input
@@ -80,69 +87,74 @@ export default function GuitarTable({
                 />
               </th>
             ))}
-          </tr>
+            </tr>
+          </thead>
+          <tbody>
+            {valueFilter && valueFilter.length > 0
+              ? (paginate(valueFilter, 5)[page].map((gt) => (
+                <tr key={gt._id}>
+                  <td data-col-title="ID">{gt._id}</td>
+                  <td data-col-title="Marca">{gt.brand}</td>
+                  <td data-col-title="Modelo">{gt.model}</td>
+                  <td data-col-title="Ano">{gt.year}</td>
+                  <td data-col-title="Resumo">{gt.summary}</td>
+                  <td data-col-title="Descrição">{gt.description}</td>
+                  <td data-col-title="Guitarrista">{gt.player}</td>
+                  <td data-col-title="Músicas">{gt.songs}</td>
+                  <td data-col-title="Preço">{gt.price}</td>
+                  <td data-col-title="Imagem de Capa">
+                    <img
+                      src={`./images/${gt.imageCover}`}
+                      alt="fender 1"
+                      className="card__picture-table"
+                    />
+                  </td>
+                  <td data-col-title="Imagens">{gt.images}</td>
+                  <td data-col-title="Link">{gt.link}</td>
+                  <td data-col-title="Tags">{gt.tags}</td>
+                  <td data-col-title="Likes">{gt.likeCount}</td>
+                  <td>
+                    <AiTwotoneEdit
+                      className="table-icon"
+                      onClick={() => handleEditTable(gt._id,
+                        guitarTable, setState, state, initialState)}
+                      type="button"
+                    />
+                  </td>
+                  <td>
+                    <RiDeleteBin2Fill
+                      className="table-icon remove-table-icon"
+                      onClick={() => handleDeleteRow(gt._id, {
+                        setState, initialState, page, setPage,
+                      }, paginate(valueFilter, 5))}
+                      type="button"
+                    />
 
-        </thead>
-        <tbody>
-          {valueFilter && valueFilter.length > 0
-            ? (paginate(valueFilter, 5)[page].map((gt) => (
-              <tr key={gt._id}>
-                <td data-col-title="ID">{gt._id}</td>
-                <td data-col-title="brand">{gt.brand}</td>
-                <td data-col-title="model">{gt.model}</td>
-                <td data-col-title="year">{gt.year}</td>
-                <td data-col-title="summary">{gt.summary}</td>
-                <td data-col-title="description">{gt.description}</td>
-                <td data-col-title="player">{gt.player}</td>
-                <td data-col-title="songs">{gt.songs}</td>
-                <td data-col-title="price">{gt.price}</td>
-                <td data-col-title="imageCover">{gt.imageCover}</td>
-                <td data-col-title="images">{gt.images}</td>
-                <td data-col-title="link">{gt.link}</td>
-                <td data-col-title="tags">{gt.tags}</td>
-                <td data-col-title="likeCount">{gt.likeCount}</td>
-                <td data-col-title="btn">
-                  <button
-                    onClick={() => handleEditTable(gt._id,
-                      guitarTable, setState, state, initialState)}
-                    type="button"
-                  >
-                    edit
-                  </button>
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleDeleteRow(gt._id, {
-                      setState, initialState, page, setPage,
-                    }, paginate(valueFilter, 5))}
-                    type="button"
-                  >
-                    delete
-                  </button>
-                </td>
-              </tr>
-            ))) : <tr><td>Not Found</td></tr> }
-        </tbody>
-      </table>
-      <div className="btns-table">
-        <button
-          disabled={page === paginate(valueFilter, 5).length - 1}
-          onClick={handlePagination}
-          type="button"
-          name="next"
-        >
-          Proximo
-        </button>
-        {page > 0 && (
-        <button
-          type="button"
-          name="back"
-          onClick={handlePagination}
-        >
-          Voltar
-        </button>
-        )}
+                  </td>
+                </tr>
+              ))) : <tr><td>Not found</td></tr> }
+          </tbody>
+        </table>
+        <div className="btns-table">
+          <button
+            disabled={page === paginate(valueFilter, 5).length - 1}
+            onClick={handlePagination}
+            type="button"
+            name="next"
+          >
+            Proximo
+          </button>
+          {page > 0 && (
+          <button
+            type="button"
+            name="back"
+            onClick={handlePagination}
+          >
+            Voltar
+          </button>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -19,11 +19,13 @@ function FormSteps({
   };
 
   return (
-    <div>
+    <>
       {handleFields().map((field) => (
         <div key={field.id}>
-          <label htmlFor={field.value}>{field.label}</label>
+          {/* <label htmlFor={field.value}>{field.label}</label> */}
           <input
+            className="pass-valid step-input"
+            placeholder={field.label}
             type={field.type}
             id={field.value}
             name={field.value}
@@ -33,8 +35,12 @@ function FormSteps({
           />
         </div>
       ))}
-      {step === 3 && <button type="submit">Criar guitarra</button>}
-    </div>
+      {step === 3 && (
+      <div className="create-guitar__container">
+        <button type="submit">Criar Guitarra</button>
+      </div>
+      )}
+    </>
   );
 }
 
