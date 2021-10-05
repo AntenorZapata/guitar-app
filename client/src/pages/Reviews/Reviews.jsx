@@ -28,7 +28,11 @@ function Reviews() {
   };
 
   useEffect(() => {
+    let isSubscribed = true;
     dispatch(getReviewByEmailAction(email, token));
+
+    isSubscribed = false;
+    return () => isSubscribed;
   }, []);
 
   const handleBtnPage = (index) => {

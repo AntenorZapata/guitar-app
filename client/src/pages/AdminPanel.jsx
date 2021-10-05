@@ -10,6 +10,7 @@ import Footer from '../components/Footer/Footer';
 
 import Form from '../components/form/Form';
 import Header from '../components/header/Header';
+import Steps from '../components/Steps/Steps';
 
 const initialState = {
   brand: '',
@@ -98,7 +99,6 @@ function AdminPanel() {
             />
           </div>
           <div>
-            <h4>tabela</h4>
             <GuitarTable
               guitarTable={guitarTable}
               initialState={initialState}

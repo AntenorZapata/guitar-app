@@ -14,7 +14,6 @@ const validateGuitar = catchAsync(async (req, res, next) => {
     'imageCover',
     'images',
     'link',
-    'likeCount',
   ];
 
   if (values.some((field) => !req.body[field])) {

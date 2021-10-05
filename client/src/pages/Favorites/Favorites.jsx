@@ -22,9 +22,12 @@ function Favorites() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    let isSubscribed = true;
     if (token) {
       dispatch(getFavoriteByEmailAction(email, token));
     }
+    isSubscribed = false;
+    return () => isSubscribed;
   }, [favorites]);
 
   const handleDeleteFav = async (id) => {
