@@ -1,3 +1,6 @@
+.btns-page-container {
+	margin: 3rem 0 -2rem 0;
+}
 .btns-page {
 	display: flex;
 	justify-content: center;
@@ -6,7 +9,7 @@
 
 .btns-page button {
 border: 2px solid rgba(44, 42, 42, 0.486);
-padding:.3rem 1.5rem;
+padding: .2rem 1rem;
 border-radius: 5px;
 cursor: pointer;
 margin: 1rem;

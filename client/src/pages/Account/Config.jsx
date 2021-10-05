@@ -55,7 +55,7 @@ function Config() {
   return (
     <div>
       <Header />
-      <section className="main__container config__container">
+      <section className="config__container">
         <div className="overflow__content" />
         <div className="account-content">
           <SideBar />
@@ -88,6 +88,7 @@ function Config() {
           </div>
         </div>
       </section>
+      <div className="overflow__content-config" />
       <Footer />
     </div>
   );

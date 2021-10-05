@@ -24,4 +24,13 @@
 		max-width: 120rem;
 	}
 
+	/* .card__reviews p {
+		font-size: 1.5rem;
+		margin: 5rem;
+	} */
+
+
+	.empty-review {
+		margin: 10rem 0 0 12rem;
+	}
 }

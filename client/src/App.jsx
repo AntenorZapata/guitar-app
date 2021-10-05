@@ -43,7 +43,6 @@ export default function App() {
           <PrivateRoute exact path="/favs" component={Favorites} />
           {/* <PrivateRoute exact path="/userdata" component={UserData} /> */}
           <PrivateRoute exact path="/reviews" component={Reviews} />
-
           <Route exact path="/" component={Home} />
           <Route
             exact
@@ -90,7 +89,7 @@ export default function App() {
             )}
           />
           <PrivateRoute path="/about" component={About} />
-          <PrivateRoute path="/admin" component={AdminPanel} />
+          <Route path="/admin" component={AdminPanel} />
           <Route path="*" exact component={Home} />
         </Switch>
       </Router>

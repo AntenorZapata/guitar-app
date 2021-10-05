@@ -13,6 +13,7 @@ import useFilters from '../hooks/useFilters';
 import useTopGuitars from '../hooks/useTopGuitars';
 import './Home.css';
 import Footer from '../components/Footer/Footer';
+import BtnsPage from '../components/BtnsPage/BtnsPage';
 
 const initialState = {
   filter: '', search: '', min: '', max: '',
@@ -28,6 +29,7 @@ function Home() {
   const { filterGuitars } = useFilters();
   const { handleTopGuitars } = useTopGuitars();
   const filtersRef = useRef();
+  const [page, setPage] = useState(0);
 
   const handleValue = (e) => {
     const fns = {
@@ -54,20 +56,26 @@ function Home() {
     setGuitarFiltered(guitars);
   }, [guitars]);
 
+  const handleBtnPage = (index) => {
+    setPage(index);
+  };
+
   return (
 
     <div>
       <Header />
       <main
-        className="main__container"
+        className={showFilters
+          ? 'main__container main__container-margin'
+          : 'main__container'}
       >
         {token
-        && (
-        <IoSearchCircleSharp
-          onClick={handleShowFilters}
-          className={!showFilters ? 'show__filters' : 'show__filters active'}
-        />
-        )}
+          ? (
+            <IoSearchCircleSharp
+              onClick={handleShowFilters}
+              className={!showFilters ? 'show__filters' : 'show__filters active'}
+            />
+          ) : <div className="overflow__content" />}
         {showFilters
         && (
         <div className="filters-container">
@@ -81,7 +89,8 @@ function Home() {
         )}
 
         <div className="guitar-deck-container">
-          <GuitarDeck guitars={paginate(guitarFiltered, 6)} />
+          <GuitarDeck guitars={paginate(guitarFiltered, 6)} token={token} />
+          <div className="overflow__content-home" />
         </div>
       </main>
       <Footer />
