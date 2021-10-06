@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './Header.css';
@@ -16,6 +16,12 @@ function Header() {
     localStorage.clear();
     setClicked(!clicked);
   };
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      setClicked(false);
+    });
+  }, []);
 
   return (
     <div>
@@ -45,24 +51,22 @@ function Header() {
               Início
             </Link>
           </li>
-          {!token && (
           <li>
             <Link
               className="nav-links"
               onClick={handleClicked}
-              to="/login"
+              to={token ? '/config' : '/login'}
             >
-              Login
+              {token ? 'Minha Conta' : 'Login'}
             </Link>
           </li>
-          )}
           <li>
             <Link
               onClick={handleClicked}
               className="nav-links"
-              to={token ? '/config' : '/signup'}
+              to={token ? '/about' : '/signup'}
             >
-              {token ? 'Minha Conta' : 'Crie sua conta'}
+              {token ? 'Sobre' : 'Crie sua conta'}
             </Link>
           </li>
           <li>
@@ -71,16 +75,7 @@ function Header() {
               className={token ? 'nav-links' : 'links-off'}
               to="/admin"
             >
-              Admin
-            </Link>
-          </li>
-          <li>
-            <Link
-              onClick={handleClicked}
-              className={token ? 'nav-links' : 'links-off'}
-              to="/about"
-            >
-              Sobre
+              Painel
             </Link>
           </li>
           <li>
@@ -93,7 +88,6 @@ function Header() {
             </Link>
           </li>
         </ul>
-
       </nav>
     </div>
   );

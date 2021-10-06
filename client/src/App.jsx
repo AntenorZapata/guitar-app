@@ -9,13 +9,13 @@ import Home from './pages/Home';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Config from './pages/Account/Config';
 import history from './service/history';
-import Favorites from './pages/Favorites';
-import Details from './pages/Details';
+import Favorites from './pages/Favorites/Favorites';
+import Details from './pages/Details/Details';
 import About from './pages/About';
 import './App.css';
 
 import UserData from './pages/UserData';
-import Reviews from './pages/Reviews';
+import Reviews from './pages/Reviews/Reviews';
 
 import { getGuitars } from './actions';
 import AdminPanel from './pages/AdminPanel';
@@ -43,7 +43,6 @@ export default function App() {
           <PrivateRoute exact path="/favs" component={Favorites} />
           {/* <PrivateRoute exact path="/userdata" component={UserData} /> */}
           <PrivateRoute exact path="/reviews" component={Reviews} />
-
           <Route exact path="/" component={Home} />
           <Route
             exact
@@ -90,7 +89,7 @@ export default function App() {
             )}
           />
           <PrivateRoute path="/about" component={About} />
-          <PrivateRoute path="/admin" component={AdminPanel} />
+          <Route path="/admin" component={AdminPanel} />
           <Route path="*" exact component={Home} />
         </Switch>
       </Router>

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
-import Header from '../components/header/Header';
+import Header from '../../components/header/Header';
 import {
   getGuitarByIdAction, getReviews, getReviewById, createReviewAction,
   deleteReviewAction, createFavoriteAction, deleteFavoriteAction,
   getFavoriteByEmailAction,
-} from '../actions';
-import StarRating from '../components/starRating/StarRating';
-import '../components/starRating/starRating.css';
-import useDetails from '../hooks/useDetails';
+} from '../../actions';
+import StarRating from '../../components/starRating/StarRating';
+import useDetails from '../../hooks/useDetails';
+import './Details.css';
 
 function Details({ match: { params: { id } } }) {
   const guitar = useSelector((state) => state.guitars.guitar);
@@ -54,7 +54,7 @@ function Details({ match: { params: { id } } }) {
           />
           <form onSubmit={(e) => handleAddReview(e, id)}>
             <label htmlFor="review">
-              Adicione um Review
+              Adicione um comentário
               <input
                 type="text"
                 id="review"
@@ -62,9 +62,15 @@ function Details({ match: { params: { id } } }) {
                 value={review.review}
                 required
                 onChange={handleReviewValues}
+                placeholder="max 760 caracteres"
               />
             </label>
-            <button type="submit"> Adicionar</button>
+            <button
+              type="submit"
+              disabled={review.review.length > 760}
+            >
+              Adicionar
+            </button>
           </form>
         </section>
       )}

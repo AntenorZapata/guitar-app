@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import {
   getGuitarByIdAction, getReviews, getReviewById, createReviewAction,
   deleteReviewAction, createFavoriteAction, deleteFavoriteAction,
@@ -37,6 +37,8 @@ function useDetails() {
     setReview(initialState);
     const res = await dispatch(createReviewAction(id, review, token));
     if (res) history.push('/login');
+    // console.log(res);
+    // if (res) console.log(res);
   };
 
   const handleDeleteReview = async (reviewId, id) => {

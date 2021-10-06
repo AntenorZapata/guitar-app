@@ -6,9 +6,11 @@ import useValidation from '../hooks/useValidation';
 import GuitarTable from '../components/table/GuitarTable';
 import useSort from '../hooks/useSort';
 import useEditTable from '../hooks/useEditTable';
+import Footer from '../components/Footer/Footer';
 
 import Form from '../components/form/Form';
 import Header from '../components/header/Header';
+import Steps from '../components/Steps/Steps';
 
 const initialState = {
   brand: '',
@@ -46,11 +48,11 @@ function AdminPanel() {
     setOrder(!order);
   }, [guitarTable]);
 
-  useEffect(() => {
-    if (!token) {
-      history.push('/');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!token) {
+  //     history.push('/');
+  //   }
+  // }, []);
 
   const handleValue = ({ target }) => {
     const { name } = target;
@@ -65,47 +67,50 @@ function AdminPanel() {
   return (
     <>
       <Header />
-      <div className="popup-left-content">
-        <ul>
-          <li>
-            <div className="content-popup">
-              <p>
-                Apenas administradores têm permissão para
-                adicionar, editar ou remover uma guitarra.
-              </p>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div className="admin-painel">
-        <div>
-          <Form
-            handleSubmit={(e) => handleSubmit(e, {
-              guitarTable,
-              state,
-              setStep,
-              setState,
-              initialState,
-            })}
-            state={state}
-            handleValue={handleValue}
-            step={step}
-            setStep={setStep}
-          />
+      <section className="main__container">
+        <div className="overflow__content" />
+        <div className="popup-left-content">
+          <ul>
+            <li>
+              <div className="content-popup">
+                <p>
+                  Apenas administradores têm permissão para
+                  adicionar, editar ou remover uma guitarra. Faça login
+                  com sua conta de administrador.
+                </p>
+              </div>
+            </li>
+          </ul>
         </div>
-        <div>
-          <h4>tabela</h4>
-          <GuitarTable
-            guitarTable={guitarTable}
-            initialState={initialState}
-            setState={setState}
-            state={state}
-            order={order}
-            setGuitarTable={setGuitarTable}
-          />
+        <div className="admin-painel">
+          <div>
+            <GuitarTable
+              guitarTable={guitarTable}
+              initialState={initialState}
+              setState={setState}
+              state={state}
+              order={order}
+              setGuitarTable={setGuitarTable}
+            />
+          </div>
+          <div>
+            <Form
+              handleSubmit={(e) => handleSubmit(e, {
+                guitarTable,
+                state,
+                setStep,
+                setState,
+                initialState,
+              })}
+              state={state}
+              handleValue={handleValue}
+              step={step}
+              setStep={setStep}
+            />
+          </div>
         </div>
-      </div>
-
+      </section>
+      <Footer />
     </>
   );
 }

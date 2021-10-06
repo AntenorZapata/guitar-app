@@ -2,9 +2,9 @@
     display: flex;
     width: 100%;
     justify-content: space-around;
-    align-items: center;        
-    margin: 5rem auto;  
-}  
+    align-items: center;
+    margin: 5rem auto;
+}
 
 .sideBar__nav li {
     list-style: none;
@@ -12,40 +12,41 @@
 
 .active-link {
     color: white;
-    background-color: rgb(110, 94, 254);
-    padding: .3rem 1rem;
-    border-radius: 4px;
+	background-color: rgb(127, 89, 189);
+    border-radius: 5px;
 }
+
+.link-disable {
+    color: #777777;
+}
+
 
 .link {
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 500;
     padding: .3rem 1rem;
-    color: #777777;
-
 }
 
 @media screen and (min-width: 960px) {
     .sideBar__nav {
-        width: 40%;
-    } 
-
+        width: 30%;
+    }
 }
 
-/* 
+/*
 
 @media screen and (max-width: 960px) {
     .sideBar__nav {
         display: flex;
         width: 100%;
         justify-content: space-around;
-        align-items: center;        
-        margin: 2.5rem auto;  
-    }  
+        align-items: center;
+        margin: 2.5rem auto;
+    }
 
     .sideBar__nav li {
-       list-style: none;
+    list-style: none;
     }
 
     .active-link {
