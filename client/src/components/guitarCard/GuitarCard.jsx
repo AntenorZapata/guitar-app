@@ -83,11 +83,10 @@ function GuitarCard({ guitar, favorite, handleDeleteFav }) {
               </p>
               <Link
                 to={`/guitarDetails/${guitar._id}`}
-                className="btn btn--green btn--small"
+                className="btn-card"
               >
                 Detalhes
               </Link>
-
             </div>
           </div>
         </div>

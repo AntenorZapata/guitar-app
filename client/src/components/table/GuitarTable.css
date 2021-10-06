@@ -2,9 +2,8 @@
 
 .responsive-container {
 	width: 100%;
-	margin: 0 auto;
+	margin: 4rem auto 7rem auto;
 	padding:15px;
-	margin-top: 80px;
 	border-radius: 4px;
 }
 
@@ -61,7 +60,7 @@
 	padding: 1rem;
 	border-radius: 5px;
 	left: 69.5%;
-	top: 40%;
+	top: 15%;
 	visibility: hidden;
 	opacity: 0;
 	transition: 0.2s;
@@ -120,7 +119,7 @@
 
 	.responsive-container {
 		width: 95%;
-		margin: auto;
+		margin: -2rem auto -4rem auto;
 	}
 
 	.responsive-container table {

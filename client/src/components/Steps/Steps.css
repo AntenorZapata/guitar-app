@@ -9,6 +9,19 @@
 .container {
   text-align: center;
 	margin-top: -3rem;
+  background-color: white;
+  width: 85%;
+  margin: 0 auto;
+  padding: 5.5rem;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+  margin-bottom: 2rem;
+}
+
+@media screen and (min-width: 960px) {
+    .container {
+      width: 40%;
+      padding: 5.5rem 2rem;
+    }
 }
 
 .progress-container {
@@ -67,6 +80,14 @@
   transition: 0.4s ease;
 }
 
+@media screen and (min-width: 960px) {
+  .circle {
+    width: 50px;
+    height: 50px;
+  }
+
+}
+
 .circle.active {
   border-color: var(--line-border-fill);
 }
@@ -94,4 +115,8 @@
 .btn:disabled {
   background-color: var(--line-border-empty);
   cursor: not-allowed;
+}
+
+.overflow__content-steps {
+  height: 10rem;
 }

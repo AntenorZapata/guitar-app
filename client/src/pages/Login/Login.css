@@ -13,8 +13,22 @@
 	width: 8rem;
 }
 
+.img__container {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	min-height: 100vh;
+	background: url('../../imgs/home.jpg');
+	background-size:cover;
+	background-position-x:-400rem;
+}
+
+/* // Full */
+
 @media only screen
-and (min-width: 1400px)  {
+and (min-width: 1700px)  {
 	.img__container {
 		position: relative;
 		display: flex;
@@ -29,7 +43,9 @@ and (min-width: 1400px)  {
 }
 
 
-@media only screen  and (max-width: 1400px)   {
+@media only screen   
+and (min-device-width : 768px)   
+and (max-device-width : 1600px) {
 	.img__container {
 		position: relative;
 		display: flex;
@@ -39,7 +55,7 @@ and (min-width: 1400px)  {
 		min-height: 100vh;
 		background: url('../../imgs/home.jpg');
 		background-size:cover;
-		background-position-x: 2000rem;
+		background-position-x: -25rem;
 	}
 }
 

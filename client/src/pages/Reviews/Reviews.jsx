@@ -58,7 +58,7 @@ function Reviews() {
               <StarRating starValue={rev.rating} />
               <p>{rev.review}</p>
               <button
-                className="btn btn-review"
+                className="btn-card btn-review"
                 type="button"
                 onClick={() => handleDeleteReview(rev._id, rev.guitar)}
               >

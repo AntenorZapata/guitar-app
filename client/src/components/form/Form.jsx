@@ -27,7 +27,6 @@ export default function Form(props) {
 
   return (
     <>
-
       <Steps onClick={handleFormSteps} step={step}>
         <div className="form__container-table">
           <form className="form" onSubmit={handleSubmit}>
@@ -35,27 +34,6 @@ export default function Form(props) {
               props={props}
               error={error}
             />
-            {/* <div className="login__btn btn-steps-table">
-              <button
-                type="button"
-                onClick={handleFormSteps}
-                className="form-step-button"
-                name="next"
-                disabled={step === 3}
-              >
-                próximo
-              </button>
-              {step > 1 && (
-              <button
-                type="button"
-                name="back"
-                onClick={handleFormSteps}
-                className="form-step-button"
-              >
-                voltar
-              </button>
-              )}
-            </div> */}
           </form>
         </div>
       </Steps>

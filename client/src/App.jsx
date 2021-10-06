@@ -18,7 +18,7 @@ import UserData from './pages/UserData';
 import Reviews from './pages/Reviews/Reviews';
 
 import { getGuitars } from './actions';
-import AdminPanel from './pages/AdminPanel';
+import AdminPanel from './pages/AdminPanel/AdminPanel';
 
 export default function App() {
   const dispatch = useDispatch();
