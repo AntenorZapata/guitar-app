@@ -35,9 +35,9 @@ const fields = [
   {
     id: 12, label: 'Tags', type: 'text', value: 'tags',
   },
-  // {
-  //   id: 13, label: 'Likes', type: 'number', value: 'likeCount',
-  // },
+  {
+    id: 13, label: 'País', type: 'string', value: 'country',
+  },
 
 ];
 

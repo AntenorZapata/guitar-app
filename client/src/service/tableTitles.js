@@ -8,11 +8,12 @@ const titles = [
   { id: 7, value: 'Guitarrista', state: 'player' },
   { id: 8, value: 'Músicas', state: 'songs' },
   { id: 9, value: 'Preço', state: 'price' },
-  { id: 10, value: 'Imagem da Capa', state: 'imageCover' },
-  { id: 11, value: 'Imagens', state: 'images' },
-  { id: 12, value: 'Link', state: 'link' },
-  { id: 13, value: 'Tags', state: 'tags' },
-  { id: 14, value: 'Likes', state: 'likeCount' },
+  { id: 10, value: 'País', state: 'country' },
+  { id: 11, value: 'Imagem da Capa', state: 'imageCover' },
+  { id: 12, value: 'Imagens', state: 'images' },
+  { id: 13, value: 'Link', state: 'link' },
+  { id: 14, value: 'Tags', state: 'tags' },
+  { id: 15, value: 'Likes', state: 'likeCount' },
 ];
 
 export default titles;

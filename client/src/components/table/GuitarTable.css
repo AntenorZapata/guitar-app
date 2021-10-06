@@ -48,6 +48,10 @@
 .responsive-container td {
 	text-align: center;
 	padding: 5px;
+	max-width: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .sort-warning {
@@ -137,6 +141,8 @@
 
 	.responsive-container td {
 		display: block;
+		max-width: 100%;
+
 	}
 
 	.responsive-container td:first-child,
