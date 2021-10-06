@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { createGuitarData, deleteGuitarData, updateGuitarData } from '../actions';
-import useValidation from '../hooks/useValidation';
-import GuitarTable from '../components/table/GuitarTable';
-import useSort from '../hooks/useSort';
-import useEditTable from '../hooks/useEditTable';
-import Footer from '../components/Footer/Footer';
+import { createGuitarData, deleteGuitarData, updateGuitarData } from '../../actions';
+import useValidation from '../../hooks/useValidation';
+import GuitarTable from '../../components/table/GuitarTable';
+import useSort from '../../hooks/useSort';
+import useEditTable from '../../hooks/useEditTable';
+import Footer from '../../components/Footer/Footer';
+import './AdminPanel.css';
 
-import Form from '../components/form/Form';
-import Header from '../components/header/Header';
-import Steps from '../components/Steps/Steps';
+import Form from '../../components/form/Form';
+import Header from '../../components/header/Header';
+import Steps from '../../components/Steps/Steps';
 
 const initialState = {
   brand: '',
@@ -72,11 +73,11 @@ function AdminPanel() {
         <div className="popup-left-content">
           <ul>
             <li>
+              ?
               <div className="content-popup">
                 <p>
                   Apenas administradores têm permissão para
-                  adicionar, editar ou remover uma guitarra. Faça login
-                  com sua conta de administrador.
+                  adicionar, editar ou remover uma guitarra.
                 </p>
               </div>
             </li>
@@ -110,6 +111,7 @@ function AdminPanel() {
           </div>
         </div>
       </section>
+      <div className="overflow__content-config" />
       <Footer />
     </>
   );

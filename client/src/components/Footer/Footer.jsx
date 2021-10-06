@@ -4,7 +4,7 @@ import './Footer.css';
 function Footer() {
   return (
     <footer className="footer">
-      <h1>footer</h1>
+      <p>Feito com 🖤 por Antenor Zapata</p>
     </footer>
   );
 }
