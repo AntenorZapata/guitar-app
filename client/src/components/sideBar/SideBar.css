@@ -3,7 +3,7 @@
     width: 100%;
     justify-content: space-around;
     align-items: center;        
-    margin: 3rem auto;  
+    margin: 5rem auto;  
 }  
 
 .sideBar__nav li {
@@ -11,7 +11,7 @@
 }
 
 .active-link {
-    /* color: white; */
+    color: white;
     background-color: rgb(110, 94, 254);
     padding: .3rem 1rem;
     border-radius: 4px;
@@ -22,7 +22,7 @@
     font-size: 1.5rem;
     font-weight: 500;
     padding: .3rem 1rem;
-    color: black;
+    color: #777777;
 
 }
 
