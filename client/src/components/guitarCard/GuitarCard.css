@@ -143,10 +143,11 @@ body {
 }
 
 .card__sub-heading {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-transform: uppercase;
   font-weight: 700;
   grid-column: 1 / -1;
+  margin-top: -1rem;
 }
 
 .card__text {
@@ -159,12 +160,8 @@ body {
 
 .card__data {
   font-size: 1.3rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  margin-left: 2rem;
 }
 
 .card__data svg {

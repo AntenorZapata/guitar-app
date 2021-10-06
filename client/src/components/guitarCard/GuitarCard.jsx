@@ -44,7 +44,9 @@ function GuitarCard({ guitar, favorite, handleDeleteFav }) {
                 />
               </div>
               <h3 className="heading-tertirary">
-                <span>{`${guitar.brand} ${guitar.model}`}</span>
+                <span>
+                  {`${guitar.brand} ${guitar.model}`}
+                </span>
               </h3>
             </div>
 
@@ -57,7 +59,7 @@ function GuitarCard({ guitar, favorite, handleDeleteFav }) {
                 <FaGuitar className="card__icon">
                   <use xlinkHref="img/icons.svg#icon-map-pin" />
                 </FaGuitar>
-                <span>Banff, Canada</span>
+                <span>{guitar.country}</span>
               </div>
               <div className="card__data">
                 <FaRegCalendarCheck className="card__icon">
@@ -77,10 +79,7 @@ function GuitarCard({ guitar, favorite, handleDeleteFav }) {
                 </span>
                 {/* <span className="card__footer-text">per person</span> */}
               </p>
-              <p className="card__ratings">
-                <span className="card__footer-value">{`Likes: ${guitar.likeCount}`}</span>
-                {/* <span className="card__footer-text">rating (21)</span> */}
-              </p>
+              <p className="card__ratings" />
               <Link
                 to={`/guitarDetails/${guitar._id}`}
                 className="btn-card"

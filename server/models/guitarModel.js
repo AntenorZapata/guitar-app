@@ -34,6 +34,10 @@ const guitarSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'A guitar must have a price'],
   },
+  country: {
+    type: String,
+    required: [true, 'A guitar must have a country'],
+  },
   imageCover: {
     type: String,
     required: [true, 'A guitar must have a image'],

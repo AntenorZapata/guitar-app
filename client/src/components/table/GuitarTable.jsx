@@ -102,6 +102,7 @@ export default function GuitarTable({
                   <td data-col-title="Guitarrista">{gt.player}</td>
                   <td data-col-title="Músicas">{gt.songs}</td>
                   <td data-col-title="Preço">{gt.price}</td>
+                  <td data-col-title="Preço">{gt.country}</td>
                   <td data-col-title="Imagem de Capa">
                     <img
                       src={`./images/${gt.imageCover}`}

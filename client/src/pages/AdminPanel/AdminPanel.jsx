@@ -25,6 +25,7 @@ const initialState = {
   imageCover: '',
   images: [],
   link: '',
+  country: '',
   tags: [],
   likeCount: 0,
 };
