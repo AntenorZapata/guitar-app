@@ -7,7 +7,8 @@
 
 
 <p align="center">
-<img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/asserts/finder.png?raw=true" width="200" height="200"/>
+<img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/client/src/asserts/finder.png?raw=true" width="500" height="300"/>
+
 </p>
 
 <h2 align="center">App CRUD de Cadastro e Busca por Guitarras</h1>
