@@ -13,7 +13,7 @@ const titles = [
   { id: 12, value: 'Imagens', state: 'images' },
   { id: 13, value: 'Link', state: 'link' },
   { id: 14, value: 'Tags', state: 'tags' },
-  { id: 15, value: 'Likes', state: 'likeCount' },
+  // { id: 15, value: 'Likes', state: 'likeCount' },
 ];
 
 export default titles;

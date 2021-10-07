@@ -113,7 +113,7 @@ export default function GuitarTable({
                   <td data-col-title="Imagens">{gt.images}</td>
                   <td data-col-title="Link">{gt.link}</td>
                   <td data-col-title="Tags">{gt.tags}</td>
-                  <td data-col-title="Likes">{gt.likeCount}</td>
+                  {/* <td data-col-title="Likes">{gt.likeCount}</td> */}
                   <td>
                     <AiTwotoneEdit
                       className="table-icon"
