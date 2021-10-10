@@ -15,7 +15,7 @@
 
 ### 📚Sobre
 
-O Guitar Finder é um app feito para amantes da guitarra. Ele tem como objetivo ser uma espécie de banco de dados em que o usuário, após se cadastrar, poderá criar sua própria coleção, favoritando e resenhando seus instrumentos favoritos. Um diferencial do app é que ele traz informações que vão além de especificações técnicas. Vídeos, curiosidades e infos sobre músicos são alguns dos pontos que garantem mais interação entre o usuário e a aplicação.
+O Guitar Finder é um app para amantes da guitarra. Ele tem como objetivo ser uma espécie de banco de dados em que o usuário, após se cadastrar, poderá criar sua própria coleção, favoritando e resenhando seus instrumentos favoritos. Um diferencial do app é que ele traz informações que vão além de especificações técnicas. Vídeos, curiosidades e infos sobre músicos são alguns dos pontos que garantem maior interação entre o usuário e a aplicação.
 
 ---
 
