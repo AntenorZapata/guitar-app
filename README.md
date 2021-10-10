@@ -15,7 +15,7 @@
 
 ### 📚Sobre
 
-O Guitar Finder é um app feito para amantes da guitarra. Ele atua como uma espécie de banco de dados em que o usuário, após se cadastrar, poderá criar sua própria coleção, favoritando e resenhando seus instrumentos favoritos. Um diferencial do app é que ele traz informações que vão além de especificações técnicas. Vídeos, curiosidades, infos sobre músicos são alguns dos pontos que garantem mais interação entre o usuário e a aplicação.
+O Guitar Finder é um app feito para amantes da guitarra. Ele tem como objetivo ser uma espécie de banco de dados em que o usuário, após se cadastrar, poderá criar sua própria coleção, favoritando e resenhando seus instrumentos favoritos. Um diferencial do app é que ele traz informações que vão além de especificações técnicas. Vídeos, curiosidades e infos sobre músicos são alguns dos pontos que garantem mais interação entre o usuário e a aplicação.
 
 ---
 
@@ -27,16 +27,16 @@ O projeto possui as seguintes tecnologias:
 Backend:
 - Node.js
 - Express
-- MongoDB
+- MongoDB/Mongoose
 
-Aqui, exercitei conceitos importantes, como autenticação JWT, paginação, modelagem, validação, MSC archtecture, dentre outros.
+Aqui, exercitei conceitos importantes, como autenticação JWT (cadastro, login, redefinição de senha com Nodemailer e atualização de usuário), paginação, modelagem, validação, MSC archtecture, dentre outros.
 
 FrontEnd:
 - React
 - Redux
 - Css
 
-Custom Hooks, Hocs, animations, grid e várias funcionalidades interessantes, como filtros, validações, reviews, likes, formulários dinâmicos, tabelas etc.
+Custom Hooks, Hocs, animations, grid e várias funcionalidades interessantes, como filtros, validações, reviews, likes, formulários dinâmicos, tabelas, etc.
 
 ---
 Desenvolvido com ❤ por Antenor Zapata
