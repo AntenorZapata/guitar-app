@@ -55,5 +55,19 @@ Custom Hooks, Hocs, animations, grid e várias funcionalidades interessantes, co
 <img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/client/src/asserts/admin.png?raw=true" width="500" height="300"/>
 </p>
 
+<p align="left">
+<img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/client/src/asserts/admin2.png?raw=true" width="500" height="300"/>
+</p>
+
+## Favoritos
+<p align="left">
+<img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/client/src/asserts/favs.png?raw=true" width="500" height="300"/>
+</p>
+
+## Comentários
+<p align="left">
+<img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/client/src/asserts/commnets.png?raw=true" width="500" height="300"/>
+</p>
+
 ---
 Desenvolvido com ❤ por Antenor Zapata
