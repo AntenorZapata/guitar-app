@@ -28,7 +28,7 @@ Backend: 100% ✅
 - Express
 - MongoDB/Mongoose
 
-Aqui, exercitei conceitos importantes, como autenticação JWT (cadastro, login, redefinição de senha com Nodemailer e atualização de usuário), paginação, modelagem, validação, MSC archtecture, dentre outros.
+Aqui, exercitei conceitos importantes como autenticação JWT (cadastro, login, redefinição de senha com Nodemailer e atualização de usuário), paginação, modelagem, validação, MSC archtecture, dentre outros.
 
 FrontEnd: 90% ✗
 - React
