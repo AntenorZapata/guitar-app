@@ -23,7 +23,7 @@ O Guitar Finder é um app para amantes da guitarra. Ele tem como objetivo ser um
 
 O projeto possui as seguintes tecnologias:
 
-Backend: 100 ✅
+Backend: 100% ✅
 - Node.js
 - Express
 - MongoDB/Mongoose
@@ -40,24 +40,19 @@ Custom Hooks, Hocs, animations, grid e várias funcionalidades interessantes, co
 
 ### 🖥 Telas
 
-## Login
-<p align="center">
-<img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/client/src/asserts/login?raw=true" width="500" height="300"/>
-</p>
-
 ## Home
-<p align="center">
-<img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/client/src/asserts/homeF?raw=true" width="500" height="300"/>
+<p align="left">
+<img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/client/src/asserts/homeF.png?raw=true" width="500" height="300"/>
 </p>
 
 ## Minha Conta
-<p align="center">
-<img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/client/src/asserts/menuF?raw=true" width="500" height="300"/>
+<p align="left">
+<img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/client/src/asserts/menuF.png?raw=true" width="500" height="300"/>
 </p>
 
 ## Painel de Admin
-<p align="center">
-<img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/client/src/asserts/admin?raw=true" width="500" height="300"/>
+<p align="left">
+<img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/client/src/asserts/admin.png?raw=true" width="500" height="300"/>
 </p>
 
 ---
