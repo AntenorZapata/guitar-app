@@ -9,7 +9,6 @@ function DetailsHeader({
     <>
       <div className="details-title">
         <h1>{`${guitar.brand} ${guitar.model}`}</h1>
-
         <MdFavorite
           onClick={() => handleFavorite(id)}
           type="button"
