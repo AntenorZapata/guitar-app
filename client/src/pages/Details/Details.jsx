@@ -14,6 +14,7 @@ import './Details.css';
 import DetailsHeader from '../../components/detailsHeader/DetailsHeader';
 import Footer from '../../components/Footer/Footer';
 import ImageCarousel from '../../components/carousel/ImageCarousel';
+import GuitarInfo from '../../components/GuitarInfo/GuitarInfo';
 
 function Details({ match: { params: { id } } }) {
   const guitar = useSelector((state) => state.guitars.guitar);
@@ -53,15 +54,16 @@ function Details({ match: { params: { id } } }) {
         : (
           <section className="main__container">
             <div className="overflow__content" />
-
             <DetailsHeader
               handleFavorite={handleFavorite}
               favId={favId}
               guitar={guitar}
               id={id}
             />
-            <ImageCarousel guitar={guitar} />
-
+            <div className="guitar-info-content">
+              <ImageCarousel guitar={guitar} />
+              <GuitarInfo guitar={guitar} />
+            </div>
             {token && (
             <section>
               <StarRating
