@@ -17,3 +17,18 @@ background: none;
 /* color: rgba(119, 73, 139, 0.486); */
 }
 
+.controls-icon {
+	font-size: 3rem;
+	/* color: rgba(110, 94, 254, 0.671) */
+	cursor: pointer;
+
+}
+
+.controls-icon-next {
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	font-size: 3rem;
+	/* color: rgba(110, 94, 254, 0.671) */
+	cursor: pointer;
+
+}

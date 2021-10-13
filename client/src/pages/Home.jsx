@@ -91,7 +91,6 @@ function Home() {
           />
         </div>
         )}
-
         <div className="guitar-deck-container">
           <GuitarDeck guitars={paginate(guitarFiltered, 6)} token={token} />
           <div className="overflow__content-home" />
