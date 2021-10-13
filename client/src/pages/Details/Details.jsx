@@ -10,6 +10,8 @@ import {
 import StarRating from '../../components/starRating/StarRating';
 import useDetails from '../../hooks/useDetails';
 import './Details.css';
+import DetailsHeader from '../../components/detailsHeader/DetailsHeader';
+import Footer from '../../components/Footer/Footer';
 
 function Details({ match: { params: { id } } }) {
   const guitar = useSelector((state) => state.guitars.guitar);
@@ -34,15 +36,24 @@ function Details({ match: { params: { id } } }) {
   return (
     <div>
       <Header />
-      <div className="details-title">
-        <h1>{guitar.model}</h1>
-        <MdFavorite
-          onClick={() => handleFavorite(id)}
-          type="button"
-          className={favId ? 'black-heart' : 'heart'}
+      <section className="main__container">
+        <div className="overflow__content" />
+
+        <DetailsHeader
+          handleFavorite={handleFavorite}
+          favId={favId}
+          guitar={guitar}
+          id={id}
         />
-      </div>
-      {token && (
+        {/* <div className="details-title">
+          <h1>{guitar.model}</h1>
+          <MdFavorite
+            onClick={() => handleFavorite(id)}
+            type="button"
+            className={favId ? 'black-heart' : 'heart'}
+          />
+        </div> */}
+        {token && (
         <section>
           <StarRating
             count={5}
@@ -73,24 +84,27 @@ function Details({ match: { params: { id } } }) {
             </button>
           </form>
         </section>
-      )}
-      {reviews.length ? reviews.map((revi) => (
-        <div key={revi.id}>
-          <p key={revi._id}>{revi.review}</p>
-          <StarRating
-            className="show-rating"
-            starValue={revi.rating}
-          />
-          {email === revi.user.email && (
-          <button
-            onClick={() => handleDeleteReview(revi._id, id)}
-            type="button"
-          >
-            deletar
-          </button>
-          )}
-        </div>
-      )) : null}
+        )}
+        {reviews.length ? reviews.map((revi) => (
+          <div key={revi.id}>
+            <p key={revi._id}>{revi.review}</p>
+            <StarRating
+              className="show-rating"
+              starValue={revi.rating}
+            />
+            {email === revi.user.email && (
+            <button
+              onClick={() => handleDeleteReview(revi._id, id)}
+              type="button"
+            >
+              deletar
+            </button>
+            )}
+          </div>
+        )) : null}
+      </section>
+      <div className="overflow__content-config" />
+      <Footer />
     </div>
   );
 }

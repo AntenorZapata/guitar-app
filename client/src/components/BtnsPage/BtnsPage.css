@@ -18,17 +18,25 @@ background: none;
 }
 
 .controls-icon {
-	font-size: 3rem;
-	/* color: rgba(110, 94, 254, 0.671) */
+	font-size: 3.5rem;
+	color: rgba(112, 110, 138, 0.671);
 	cursor: pointer;
-
 }
 
 .controls-icon-next {
 	-webkit-transform: scaleX(-1);
 	transform: scaleX(-1);
-	font-size: 3rem;
-	/* color: rgba(110, 94, 254, 0.671) */
+	font-size: 3.5rem;
+	color: rgba(112, 110, 138, 0.671);
 	cursor: pointer;
+}
 
+.controls-icon:hover {
+	color: rgba(35, 26, 153, 0.671);
+	transition: .4s;
+}
+
+.controls-icon-next:hover {
+	color: rgba(35, 26, 153, 0.671);
+	transition: .4s;
 }
