@@ -1,0 +1,41 @@
+.guitar-info-content {
+	display: flex;
+	justify-content: space-between;
+	/* align-items: center; */
+	margin-top: 5rem;
+	padding: 0 3rem;
+	width: 100%;
+}
+
+.guitar-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 50%;
+	height: 100%;
+}
+
+.guitar-info div {
+	margin-bottom: 1rem;
+}
+
+.guitar-info-left-content {
+	width: 50%;
+	height: 100%;
+}
+
+@media screen and (max-width: 960px) {
+	.guitar-info-content {
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+	}
+
+	.guitar-info {
+		/* display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		width: 50%; */
+	}
+
+}

@@ -2,11 +2,26 @@
 	display: flex;
 	width: 80%;
 	margin: 2rem auto;
+	justify-content: center;
+	align-items: center;
 }
 
 .details-title h1 {
   font-size: 3rem;
-  /* background: -webkit-linear-gradient(rgba(67, 63, 98, 0.671), rgb(38, 38, 42)); */
-  /* -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
+	color: #181616bb;
+}
+
+.heart, .black-heart {
+  margin-left: 1rem;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.heart  {
+  color: rgb(192, 187, 187);
+}
+
+
+.black-heart {
+  color: black;
 }
