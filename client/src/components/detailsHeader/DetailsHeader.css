@@ -17,10 +17,20 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 960px) {
+	.details-title {
+		width: 70%;
+	}
+
+	.heart, .black-heart {
+		font-size: 4rem;
+		cursor: pointer;
+	}
+}
+
 .heart  {
   color: rgb(192, 187, 187);
 }
-
 
 .black-heart {
   color: black;

@@ -55,9 +55,9 @@ function useDetails() {
     };
 
     if (!favId) {
-      await dispatch(createFavoriteAction(fav, token));
+      dispatch(createFavoriteAction(fav, token));
     } else {
-      await dispatch(deleteFavoriteAction(favId, token));
+      dispatch(deleteFavoriteAction(favId, token));
     }
     setFavId('');
   };
