@@ -15,6 +15,7 @@ import DetailsHeader from '../../components/detailsHeader/DetailsHeader';
 import Footer from '../../components/Footer/Footer';
 import ImageCarousel from '../../components/carousel/ImageCarousel';
 import GuitarInfo from '../../components/GuitarInfo/GuitarInfo';
+import VideoCarousel from '../../components/videoCarousel/VideoCarousel';
 
 function Details({ match: { params: { id } } }) {
   const guitar = useSelector((state) => state.guitars.guitar);
@@ -63,6 +64,9 @@ function Details({ match: { params: { id } } }) {
             <div className="guitar-info-content">
               <ImageCarousel guitar={guitar} />
               <GuitarInfo guitar={guitar} />
+            </div>
+            <div className="video-container">
+              <VideoCarousel />
             </div>
             {token && (
             <section>
