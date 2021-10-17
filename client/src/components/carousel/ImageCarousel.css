@@ -1,22 +1,22 @@
 @media screen and (min-width: 960px) {
 
 	.carousel {
-		/* margin: 4rem; */
-		width: 90%;
+		width: 95%;
 		height: 20%;
 	}
 
 	.card__carousel {
 		height: 40rem;
 	}
-
-
-
 }
 
 @media screen and (max-width: 960px) {
 
 	.carousel {
+		margin-top: -2rem;
+		width: 100%;
+	}
+	.card__carousel {
 		width: 100%;
 	}
 
