@@ -1,10 +1,3 @@
-<!-- ## Guitar Finder - Aplicação Fullstack CRUD aco Node, Express, MongoDB, React, Redux and Sass. -->
-<!-- ![IN PROGRESS](https://media0.giphy.com/media/gizZvICXsQn2g6JajG/giphy.gif?cid=6c09b952wp4klljdm8iiegnniicy9p0no1ej942r3k1gzq06&rid=giphy.gif&ct=s) -->
-
-<p align="center">
-<img src="https://media3.giphy.com/media/SMjDFkq5mGxhLdsBOK/giphy.gif" width="200" height="200"/>
-</p>
-
 
 <p align="center">
 <img src="https://github.com/AntenorZapata/guitar-finder/blob/app-guitar/client/src/asserts/finder.png?raw=true" width="500" height="300"/>
