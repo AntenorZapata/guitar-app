@@ -6,7 +6,7 @@
 <h2 align="center">App CRUD de Cadastro e Busca por Guitarras</h1>
 
 ### 💡 Meus comentários
-No backend, exercitei conceitos importantes, como autenticação JWT (cadastro, login, redefinição de senha com Nodemailer e atualização de usuário), paginação, modelagem, validações, MSC architecture, dentre outros.
+Meu primeiro projeto full stack. 💙 No backend, exercitei conceitos importantes, como autenticação JWT (cadastro, login, redefinição de senha com Nodemailer e atualização de usuário), paginação, modelagem, validações, MSC architecture, dentre outros.
 
 No front: 
 Custom Hooks, Hocs, animations, grid e várias funcionalidades interessantes, como filtros, validações, reviews, likes, formulários dinâmicos, tabelas, etc.
