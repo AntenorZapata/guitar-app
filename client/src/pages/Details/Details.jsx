@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
+import VanillaTilt from 'vanilla-tilt';
 import Header from '../../components/header/Header';
 import {
   getGuitarByIdAction, getReviews, getReviewById, createReviewAction,
@@ -16,11 +17,14 @@ import Footer from '../../components/Footer/Footer';
 import ImageCarousel from '../../components/carousel/ImageCarousel';
 import GuitarInfo from '../../components/GuitarInfo/GuitarInfo';
 import VideoCarousel from '../../components/videoCarousel/VideoCarousel';
+import Tilt from '../../components/tilt/Tilt';
 
 function Details({ match: { params: { id } } }) {
   const guitar = useSelector((state) => state.guitars.guitar);
   const favorites = useSelector((state) => state.favorites.allFavorites);
   const reviews = useSelector((state) => state.reviews.reviewById);
+  const tiltRef = React.useRef();
+
   const {
     handleChange, handleFavorite, handleAddReview, handleReviewValues, handleDeleteReview,
     setFavId, favId, token, review, email,
@@ -36,6 +40,18 @@ function Details({ match: { params: { id } } }) {
   useEffect(() => {
     if (token) favorites.map((el) => el.guitar === id && setFavId(el._id));
   }, [favorites]);
+
+  useEffect(() => {
+    const { current: tiltNode } = tiltRef;
+    const vanillaTiltOptions = {
+      max: 25,
+      speed: 400,
+      glare: true,
+      'max-glare': 0.5,
+    };
+    VanillaTilt.init(tiltNode, vanillaTiltOptions);
+    return () => tiltNode.vanillaTilt.destroy();
+  }, []);
 
   return (
     <div>
@@ -67,7 +83,11 @@ function Details({ match: { params: { id } } }) {
             </div>
             <div className="video-container">
               <VideoCarousel />
+              <Tilt className="tilt">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_858940-MLB46183318472_052021-O.jpg" alt="" />
+              </Tilt>
             </div>
+
             {token && (
             <section>
               <StarRating

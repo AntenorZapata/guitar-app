@@ -13,7 +13,10 @@ function VideoCarousel({ guitar }) {
           <ReactPlayer url="https://www.youtube.com/watch?v=kI90CoSVQ-k" />
         </div>
         <div className="card__picture card__carousel">
-          <ReactPlayer url="https://www.youtube.com/watch?v=u9K3opFAh64" />
+          <ReactPlayer
+            allow="autoplay; encrypted-media"
+            url="https://www.youtube.com/watch?v=u9K3opFAh64"
+          />
         </div>
         <div className="card__picture card__carousel">
           <ReactPlayer url="https://www.youtube.com/watch?v=hyVGQ_3EuUY" />

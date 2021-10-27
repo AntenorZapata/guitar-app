@@ -1,8 +1,17 @@
-
 .loading {
-	margin: auto;
-	height: 90vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  margin: auto;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.video-container img {
+  height: 60rem;
 }
