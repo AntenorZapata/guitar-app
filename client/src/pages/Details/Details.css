@@ -1,3 +1,10 @@
+.main__container__details {
+  background-color: #f7f7f7;
+  max-width: 1400px;
+  margin: auto;
+  min-height: 100vh;
+}
+
 .loading {
   margin: auto;
   height: 90vh;
@@ -14,4 +21,8 @@
 
 .video-container img {
   height: 60rem;
+}
+
+.review__container {
+  margin: 1.5rem;
 }

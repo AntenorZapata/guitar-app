@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { loginAction, forgotAction, clearErrors } from '../actions';
 import useValidation from '../hooks/useValidation';
 import LoginForm from '../components/LoginForm/LoginForm';
+import Header from '../components/header/Header';
 
 const forgotUrl = 'http://localhost:3001/api/v1/users/forgotPassword/';
 
@@ -35,6 +36,7 @@ export default function ForgotPassword({ error, setError, initial }) {
 
   return (
     <div>
+      <Header />
       <LoginForm>
         <form onSubmit={hendleSubmit}>
           {/* <label htmlFor="email">

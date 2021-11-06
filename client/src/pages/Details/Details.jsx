@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
-import VanillaTilt from 'vanilla-tilt';
+// import VanillaTilt from 'vanilla-tilt';
 import Header from '../../components/header/Header';
 import {
   getGuitarByIdAction, getReviews, getReviewById, createReviewAction,
@@ -41,18 +41,6 @@ function Details({ match: { params: { id } } }) {
     if (token) favorites.map((el) => el.guitar === id && setFavId(el._id));
   }, [favorites]);
 
-  useEffect(() => {
-    const { current: tiltNode } = tiltRef;
-    const vanillaTiltOptions = {
-      max: 25,
-      speed: 400,
-      glare: true,
-      'max-glare': 0.5,
-    };
-    VanillaTilt.init(tiltNode, vanillaTiltOptions);
-    return () => tiltNode.vanillaTilt.destroy();
-  }, []);
-
   return (
     <div>
       <Header />
@@ -69,7 +57,7 @@ function Details({ match: { params: { id } } }) {
         </div>
       )
         : (
-          <section className="main__container">
+          <section className="main__container__details">
             <div className="overflow__content" />
             <DetailsHeader
               handleFavorite={handleFavorite}
@@ -121,7 +109,7 @@ function Details({ match: { params: { id } } }) {
             </section>
             )}
             {reviews.length ? reviews.map((revi) => (
-              <div key={revi.id}>
+              <div key={revi.id} className="review__container">
                 <p key={revi._id}>{revi.review}</p>
                 <StarRating
                   className="show-rating"
